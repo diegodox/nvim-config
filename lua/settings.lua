@@ -1,0 +1,45 @@
+vim.cmd [[syntax enable]]
+vim.cmd [[filetype plugin indent on]]
+
+vim.o.title = true
+vim.o.hidden = true
+vim.o.encoding = 'utf-8'
+vim.o.fileencoding = 'utf-8'
+vim.o.conceallevel = 0
+vim.o.updatetime = 300
+vim.o.mouse = 'a'
+vim.o.clipboard = 'unnamedplus'
+vim.o.iskeyword = vim.o.iskeyword ..  ',_'
+vim.o.backspace = 'indent,eol,start'
+
+-- indent settings
+vim.o.smarttab = true
+vim.o.expandtab = true
+vim.o.autoindent = true
+-- vim.o.tabstop = 4
+-- vim.o.shiftwidth = 4
+
+-- search settings
+vim.o.ignorecase = true
+vim.o.smartcase = true
+
+-- visual settings
+vim.o.showmode = false
+vim.o.signcolumn = 'yes'
+vim.o.termguicolors = true
+vim.o.ruler = true
+vim.o.colorcolumn = '120'
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.wrap = false
+vim.o.list = true
+vim.o.listchars = 'tab:▸ ,trail:·'
+vim.o.scrolloff = 5
+vim.o.sidescrolloff = 5
+
+-- window settings
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.winfixheight = true
+vim.o.winfixwidth = true
+
