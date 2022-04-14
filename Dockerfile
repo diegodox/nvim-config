@@ -28,11 +28,6 @@ RUN pip3 install --upgrade pip pynvim
 # Copy nvim config
 COPY . /root/.config/nvim
 
-# Install plugins
-RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim\
-    root/.local/share/nvim/site/pack/packer/start/packer.nvim && \
-    nvim --headless -c 'autocmd User PackerComplete quitall' -c 'silent PackerSync'
-
 RUN chmod -R 777 /root
 
 ENTRYPOINT ["nvim"]
