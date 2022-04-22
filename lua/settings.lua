@@ -43,3 +43,11 @@ vim.o.splitright = true
 vim.o.winfixheight = true
 vim.o.winfixwidth = true
 
+vim.g.mapleader = " "
+
+vim.api.nvim_set_keymap(
+    "t",
+    "<C-Space>",
+    "<C-\\><C-n>",
+    {noremap = true, silent = true}
+)
