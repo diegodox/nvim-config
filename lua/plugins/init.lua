@@ -148,24 +148,24 @@ return require("packer").startup(function(use)
     --
     -- LSP
     --
-    -- use {
-    --     "neovim/nvim-lspconfig",
-    --     --after = "cmp-nvim-lsp",
-    --     after = "which-key.nvim",
-    --     config = function()
-    --         local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-    --         for type, icon in pairs(signs) do
-    --             local hl = "DiagnosticSign" .. type
-    --             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    --         end
+    use {
+        "neovim/nvim-lspconfig",
+        --after = "cmp-nvim-lsp",
+        after = "which-key.nvim",
+        config = function()
+            local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+            for type, icon in pairs(signs) do
+                local hl = "DiagnosticSign" .. type
+                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+            end
+            require('which-key').register(
+                { k = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "LSP Hover" } },
+                { prefix = "<Leader>" }
+            )
+        end
+    }
 
-    --         require('which-key').register(
-    --             { k = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "LSP Hover" } },
-    --             { prefix = "<Leader>" }
-    --         )
 
-    --     end
-    -- }
 
     -- use {
     --     "williamboman/nvim-lsp-installer",
