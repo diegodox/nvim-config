@@ -1,7 +1,12 @@
 local M = {}
 
 function M.config()
-    require("gitsigns").setup {
+    local ok, gitsigns = pcall(require, "gitsigns")
+    if not ok then
+        print("plugin 'gitsigns.nvim' not found")
+        return
+    end
+    gitsigns.setup {
         current_line_blame = true,
         current_line_blame_opts = { delay = 100 },
     }
