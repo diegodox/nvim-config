@@ -10,17 +10,9 @@ M.requires = {
     "hrsh7th/cmp-cmdline"
 }
 
-local ok, cmp = pcall(require, 'cmp')
-if not ok then
-    print("'cmp' not found")
-    M.setup = function() end
-    M.config = function() end
-    return M
-end
-print("'cmp' found")
 
 -- call cmp.setup
-M.setup = function()
+function M.setup(cmp)
     cmp.setup({
         snippet = {
             expand = function(args)
@@ -61,7 +53,7 @@ M.setup = function()
     })
 end
 
-M.setup_search = function()
+function M.setup_search(cmp)
     cmp.setup.cmdline('/', {
         mapping = {
             ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -85,7 +77,7 @@ M.setup_search = function()
     })
 end
 
-M.setup_cmdline = function()
+function M.setup_cmdline(cmp)
     cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline({
             ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -125,10 +117,15 @@ M.set_hightlight = function()
 end
 
 -- setup, setup_cmdline, setup_search, set_hightlight
-M.config = function()
-    M.setup()
-    M.setup_cmdline()
-    M.setup_search()
+function M.config()
+    local ok, cmp = pcall(require, 'cmp')
+    if not ok then
+        print("'cmp' not found")
+        return
+    end
+    M.setup(cmp)
+    M.setup_cmdline(cmp)
+    M.setup_search(cmp)
     M.set_hightlight()
 end
 
