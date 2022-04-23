@@ -51,3 +51,5 @@ vim.api.nvim_set_keymap(
     "<C-\\><C-n>",
     {noremap = true, silent = true}
 )
+
+vim.g.transparent = true

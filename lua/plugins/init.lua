@@ -156,7 +156,7 @@ return require("packer").startup(function(use)
                 vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
             end
             require('which-key').register(
-                { k = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "LSP Hover" } },
+                { k = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Hover" } },
                 { prefix = "<Leader>" }
             )
         end,
