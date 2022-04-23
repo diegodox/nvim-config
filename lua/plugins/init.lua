@@ -63,12 +63,12 @@ return require("packer").startup(function(use)
         "lewis6991/gitsigns.nvim",
         requires = "nvim-lua/plenary.nvim",
         after = { "which-key.nvim" } ,
-        config = function() require('lua.plugins.config.gitsigns').config() end,
+        config = function() require('plugins.config.gitsigns').config() end,
     }
 
     use {
         "numToStr/Comment.nvim",
-        config = function() require('lua.plugins.config.Comment').config() end,
+        config = function() require('plugins.config.Comment').config() end,
     }
 
     use {
@@ -96,14 +96,14 @@ return require("packer").startup(function(use)
 
     use {
         "nvim-treesitter/nvim-treesitter",
-        run = require('lua.plugins.config.treesitter').run,
-        config = function() require('lua.plugins.config.treesitter').config() end,
+        run = require('plugins.config.treesitter').run,
+        config = function() require('plugins.config.treesitter').config() end,
     }
 
     use {
         "lukas-reineke/indent-blankline.nvim",
         after = 'nvim-treesitter',
-        config = function() require('lua.plugins.config.indent_blankline').config() end,
+        config = function() require('plugins.config.indent_blankline').config() end,
     }
 
     -- use {
