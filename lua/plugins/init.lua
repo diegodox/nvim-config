@@ -123,11 +123,11 @@ return require("packer").startup(function(use)
     -- }
 
     -- telescope
-    -- use {
-    --     "nvim-telescope/telescope.nvim",
-    --     requires = require('plugins.config.telescope').requires,
-    --     config = require('plugins.config.telescope').config,
-    -- }
+    use {
+        "nvim-telescope/telescope.nvim",
+        requires = function() require('plugins.config.telescope').requires() end,
+        config = function() require('plugins.config.telescope').config() end,
+    }
 
     -- use {
     --     -- "LinArcX/telescope-command-palette.nvim",
