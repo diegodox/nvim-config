@@ -1,7 +1,5 @@
 local M = {}
 
-local cmp = require('cmp')
-
 M.requires = {
     -- snip engine
     "L3MON4D3/LuaSnip",
@@ -11,6 +9,15 @@ M.requires = {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline"
 }
+
+local ok, cmp = pcall(require, 'cmp')
+if not ok then
+    print("'cmp' not found")
+    M.setup = function() end
+    M.config = function() end
+    return M
+end
+print("'cmp' found")
 
 -- call cmp.setup
 M.setup = function()
