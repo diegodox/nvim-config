@@ -48,7 +48,7 @@ return require("packer").startup(function(use)
 
     use {
         "tomasiser/vim-code-dark",
-        config = function() vim.cmd [[colorscheme codedark]] end
+        config = function() vim.cmd [[colorscheme codedark]] end,
     }
 
     use {
@@ -62,7 +62,7 @@ return require("packer").startup(function(use)
                 return
             end
             whichkey.setup {}
-        end
+        end,
     }
 
     use {
@@ -84,7 +84,7 @@ return require("packer").startup(function(use)
 
     use {
         "kdheepak/lazygit.nvim",
-        config = function() require('plugins.config.lazygit').keymap() end
+        config = function() require('plugins.config.lazygit').keymap() end,
     }
 
     use {
@@ -128,7 +128,6 @@ return require("packer").startup(function(use)
     --     end
     -- }
 
-    -- telescope
     use {
         "nvim-telescope/telescope.nvim",
         requires = require('plugins.config.telescope').requires,
@@ -168,7 +167,7 @@ return require("packer").startup(function(use)
                 { k = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "LSP Hover" } },
                 { prefix = "<Leader>" }
             )
-        end
+        end,
     }
 
     use {
@@ -214,7 +213,7 @@ return require("packer").startup(function(use)
                     server:install()
                 end
             end
-        end
+        end,
     }
 
     use {

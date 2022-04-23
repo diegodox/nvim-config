@@ -1,7 +1,7 @@
 local M = {}
 
 -- highlights
-M.highlight = function()
+function M.highlight()
     vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
     vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
     vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
@@ -11,12 +11,12 @@ M.highlight = function()
 end
 
 -- settings
-M.setting = function()
+function M.setting()
     vim.g.indent_blankline_show_trailing_blankline_indent=false
 end
 
 -- setup indent blank line
-M.setup = function()
+function M.setup()
     require("indent_blankline").setup {
         filetype_exclude = {
             "help",
@@ -38,7 +38,7 @@ M.setup = function()
 end
 
 -- call highlight, settings, setup
-M.config = function()
+function M.config()
     M.highlight()
     M.setting()
     M.setup()

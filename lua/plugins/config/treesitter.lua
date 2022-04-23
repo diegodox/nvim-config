@@ -2,31 +2,32 @@ local M = {}
 
 M.run = ":TSUpdate"
 
-M.setup = function()
-    -- list of must installed languages
-    -- local ensure_installed = {
-    --     "rust",
-    --     "toml",
-    --     "fish",
-    --     "cpp",
-    --     "lua",
-    -- }
+-- list of must installed languages
+M.ensure_installed = {
+    "rust",
+    "toml",
+    "fish",
+    "cpp",
+    "lua",
+}
 
-    require("nvim-treesitter.configs").setup {
-        ensure_installed = {
-            "rust",
-            "toml",
-            "fish",
-            "cpp",
-            "lua",
-        },
+-- setup treesitter
+function M.setup()
+    local ok, nvtsconf = pcall(require, "nvim-treesitter.configs")
+    
+    if not ok then
+        print("module 'nvim-treesitter.configs' not found")
+        return
+    end
+
+    nvtsconf.setup {
+        ensure_installed = M.ensure_installed,
         highlight = { enable = true, }
     }
 end
 
 -- configure treesitter
--- call setup
-M.config = function()
+function M.config()
     M.setup()
 end
 
