@@ -46,10 +46,10 @@ packer.init {
 return require("packer").startup(function(use)
     use "wbthomason/packer.nvim"
 
-    -- use {
-    --     "tomasiser/vim-code-dark",
-    --     config = function() vim.cmd [[colorscheme codedark]] end
-    -- }
+    use {
+        "tomasiser/vim-code-dark",
+        config = function() vim.cmd [[colorscheme codedark]] end
+    }
 
     use {
         "folke/which-key.nvim",
