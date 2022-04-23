@@ -105,11 +105,11 @@ return require("packer").startup(function(use)
         config = function() require('lua.plugins.config.treesitter').config() end,
     }
 
-    -- use {
-    --     "lukas-reineke/indent-blankline.nvim",
-    --     after = 'nvim-treesitter',
-    --     config = require('lua.plugins.config.indent_blankline').config,
-    -- }
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        after = 'nvim-treesitter',
+        config = function() require('lua.plugins.config.indent_blankline').config() end,
+    }
 
     -- use {
     --     "p00f/nvim-ts-rainbow",
