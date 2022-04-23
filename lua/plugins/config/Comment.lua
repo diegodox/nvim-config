@@ -1,13 +1,13 @@
 local M = {}
 
 -- setup Comment.nvim
-M.setup = function()
+function M.setup()
     require("Comment").setup()
 end
 
 -- configure Comment.nvim
 -- call setup
-M.config = function()
+function M.config()
     M.setup()
 end
 

@@ -71,10 +71,10 @@ return require("packer").startup(function(use)
         end
     }
 
-    -- use {
-    --     "numToStr/Comment.nvim",
-    --     config = require('lua.plugins.config.Comment').config
-    -- }
+    use {
+        "numToStr/Comment.nvim",
+        config = function() require('lua.plugins.config.Comment').config() end,
+    }
 
     use {
         "norcalli/nvim-colorizer.lua",
