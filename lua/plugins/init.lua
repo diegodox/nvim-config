@@ -54,8 +54,14 @@ return require("packer").startup(function(use)
     use {
         "folke/which-key.nvim",
         config = function()
-            require("which-key").setup {}
             vim.g.timeoutlen = 100
+
+            local ok, whichkey = pcall(require, 'which-key')
+            if not ok then
+                print("plugin 'which-key' not found")
+                return
+            end
+            whichkey.setup {}
         end
     }
 
