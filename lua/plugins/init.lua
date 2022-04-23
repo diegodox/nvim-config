@@ -83,7 +83,7 @@ return require("packer").startup(function(use)
 
     use {
         "kdheepak/lazygit.nvim",
-        config = function() require('plugins.config.lazygit') end
+        config = function() require('plugins.config.lazygit').keymap() end
     }
 
     use {
