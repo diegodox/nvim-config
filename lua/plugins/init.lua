@@ -125,7 +125,7 @@ return require("packer").startup(function(use)
     -- telescope
     use {
         "nvim-telescope/telescope.nvim",
-        requires = function() require('plugins.config.telescope').requires() end,
+        requires = require('plugins.config.telescope').requires,
         config = function() require('plugins.config.telescope').config() end,
     }
 
@@ -201,7 +201,7 @@ return require("packer").startup(function(use)
     use {
         "hrsh7th/nvim-cmp",
         requires = require('plugins.config.cmp').requires,
-        config = require('plugins.config.cmp').config,
+        config = function() require('plugins.config.cmp').config() end,
     }
 
     -- Automatic setup plugins
