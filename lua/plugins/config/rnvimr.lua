@@ -1,8 +1,7 @@
 local M = {}
 
--- Function to configuration
 -- register key map
-M.config = function()
+M.keymap = function()
     local ok, whichkey = pcall(require, "which-key")
     if not ok then
         print("[Rnvimr] could not load which-key")
