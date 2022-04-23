@@ -89,8 +89,8 @@ return require("packer").startup(function(use)
     use {
         "kevinhwang91/rnvimr",
         after = "which-key.nvim",
-        setup = require('plugins.config.rnvimr').setup,
-        config = require('plugins.config.rnvimr').config,
+        setup = function() require('plugins.config.rnvimr').setup() end,
+        config = function() require('plugins.config.rnvimr').config() end,
     }
 
     use {
