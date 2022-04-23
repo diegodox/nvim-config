@@ -8,9 +8,17 @@ M.requires = {
 }
 
 -- call telescope.setup
-M.setup = function()
-    local actions = require("telescope.actions")
-    require("telescope").setup {
+function M.setup()
+    local ok_telescope, telescope = pcall(require, 'telescope')
+    local ok_actions, actions = pcall(require, 'telescope.actions')
+    if not ok_telescope then
+        print("plugin 'telescope' not found")
+        return
+    elseif not ok_actions then
+        print("plugin 'telescope' found, but 'telescope.actions' not found")
+        return
+    end
+    telescope.setup {
         defaults = {
             vimgrep_arguments = {
                 "rg",
@@ -53,7 +61,7 @@ M.setup = function()
     }
 end
 
-M.set_keymap = function()
+function M.set_keymap()
     vim.api.nvim_set_keymap(
         "n",
         "<C-p>",
@@ -70,7 +78,7 @@ end
 
 -- configure telescope
 -- setup, keymap
-M.config = function()
+function M.config()
     M.setup()
     M.set_keymap()
 end
