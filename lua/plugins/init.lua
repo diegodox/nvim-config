@@ -198,11 +198,11 @@ return require("packer").startup(function(use)
         end
     }
 
-    -- use {
-    --     "hrsh7th/nvim-cmp",
-    --     requires = require('plugins.config.cmp').requires,
-    --     config = require('plugins.config.cmp').config,
-    -- }
+    use {
+        "hrsh7th/nvim-cmp",
+        requires = require('plugins.config.cmp').requires,
+        config = require('plugins.config.cmp').config,
+    }
 
     -- Automatic setup plugins
     if packer_bootstrap then
