@@ -2,7 +2,7 @@ local M = {}
 
 local telescope = require('telescope')
 
-M.setup = function()
+function M.setup()
     telescope.setup({
         extensions = {
             command_palette = {
@@ -26,7 +26,7 @@ M.setup = function()
     telescope.load_extension('command_palette')
 end
 
-M.keymap = function()
+function M.keymap()
     require("which-key").register(
         { [";"] = { "<Cmd>Telescope command_palette<CR>", "Command Palette" } },
         { prefix = "<Leader>" }
