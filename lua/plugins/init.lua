@@ -99,17 +99,16 @@ return require("packer").startup(function(use)
         config = function() require("lualine").setup() end,
     }
 
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = require('lua.plugins.config.treesitter').run,
+        config = function() require('lua.plugins.config.treesitter').config() end,
+    }
+
     -- use {
     --     "lukas-reineke/indent-blankline.nvim",
     --     after = 'nvim-treesitter',
     --     config = require('lua.plugins.config.indent_blankline').config,
-    -- }
-
-    -- use {
-    --     "nvim-treesitter/nvim-treesitter",
-    --     -- run = require('lua.plugins.config.treesitter').run,
-    --     run = ":TSUpdate",
-    --     config = require('lua.plugins.config.treesitter').config,
     -- }
 
     -- use {
