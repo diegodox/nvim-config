@@ -107,29 +107,21 @@ return require("packer").startup(function(use)
     }
 
     use {
+        "p00f/nvim-ts-rainbow",
+        after = "nvim-treesitter",
+        -- after = "nvim-treesitter",
+        config = function() require('plugins.config.treesitter-rainbow').config() end,
+    }
+
+    use {
         "lukas-reineke/indent-blankline.nvim",
         after = 'nvim-treesitter',
         config = function() require('plugins.config.indent_blankline').config() end,
     }
 
-    -- use {
-    --     "p00f/nvim-ts-rainbow",
-    --     after = { "nvim-treesitter" },
-    --     config = function()
-    --         require("nvim-treesitter.configs").setup {
-    --             rainbow = {
-    --                 colors = {
-    --                     "#FFD700",
-    --                     "#87CEFA",
-    --                     "#DA70D6",
-    --                 },
-    --             },
-    --         }
-    --     end
-    -- }
-
     use {
         "nvim-telescope/telescope.nvim",
+        after = "which-key.nvim",
         requires = require('plugins.config.telescope').requires,
         config = function() require('plugins.config.telescope').config() end,
     }
