@@ -43,6 +43,11 @@ return require("packer").startup(function(use)
         config = function() require('rc.plugins.config.Comment').config() end,
     }
 
+    use {
+        "norcalli/nvim-colorizer.lua",
+        config = function() require('colorizer').setup() end,
+    }
+
     -- Automatic setup plugins
     if packer_bootstrap then
           require("packer").sync()
