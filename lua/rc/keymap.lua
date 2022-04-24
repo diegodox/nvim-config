@@ -16,3 +16,9 @@ vim.api.nvim_set_keymap( 'n', '<down>', '<nop>', { silent = true, noremap = true
 vim.api.nvim_set_keymap( 'n', '<left>', '<nop>', { silent = true, noremap = true } )
 vim.api.nvim_set_keymap( 'n', '<right>', '<nop>', { silent = true, noremap = true } )
 
+vim.api.nvim_set_keymap( 'c', '<up>', '<nop>', { silent = true, noremap = true } )
+vim.api.nvim_set_keymap( 'c', '<down>', '<nop>', { silent = true, noremap = true } )
+vim.api.nvim_set_keymap( 'c', '<left>', '<nop>', { silent = true, noremap = true } )
+vim.api.nvim_set_keymap( 'c', '<right>', '<nop>', { silent = true, noremap = true } )
+vim.api.nvim_set_keymap( 'c', '<Tab>', '<nop>', { silent = true, noremap = true } )
+vim.api.nvim_set_keymap( 'c', '<S-Tab>', '<nop>', { silent = true, noremap = true } )
