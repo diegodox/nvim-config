@@ -48,12 +48,12 @@ return require("packer").startup(function(use)
 
     use {
         "mhinz/vim-startify",
-        setup = function() require('plugins.config.startify').setup() end,
+        setup = function() require('rc.plugins.config.startify').setup() end,
     }
 
     use {
         "tomasiser/vim-code-dark",
-        config = function() require('plugins.config.codedark').config() end,
+        config = function() require('rc.plugins.config.codedark').config() end,
     }
 
     use {
@@ -74,12 +74,12 @@ return require("packer").startup(function(use)
         "lewis6991/gitsigns.nvim",
         requires = "nvim-lua/plenary.nvim",
         after = { "which-key.nvim" } ,
-        config = function() require('plugins.config.gitsigns').config() end,
+        config = function() require('rc.plugins.config.gitsigns').config() end,
     }
 
     use {
         "numToStr/Comment.nvim",
-        config = function() require('plugins.config.Comment').config() end,
+        config = function() require('rc.plugins.config.Comment').config() end,
     }
 
     use {
@@ -89,14 +89,14 @@ return require("packer").startup(function(use)
 
     use {
         "kdheepak/lazygit.nvim",
-        config = function() require('plugins.config.lazygit').keymap() end,
+        config = function() require('rc.plugins.config.lazygit').keymap() end,
     }
 
     use {
         "kevinhwang91/rnvimr",
         after = "which-key.nvim",
-        setup = function() require('plugins.config.rnvimr').setup() end,
-        config = function() require('plugins.config.rnvimr').keymap() end,
+        setup = function() require('rc.plugins.config.rnvimr').setup() end,
+        config = function() require('rc.plugins.config.rnvimr').keymap() end,
     }
 
     use {
@@ -107,27 +107,27 @@ return require("packer").startup(function(use)
 
     use {
         "nvim-treesitter/nvim-treesitter",
-        run = require('plugins.config.treesitter').run,
-        config = function() require('plugins.config.treesitter').config() end,
+        run = require('rc.plugins.config.treesitter').run,
+        config = function() require('rc.plugins.config.treesitter').config() end,
     }
 
     use {
         "p00f/nvim-ts-rainbow",
         after = "nvim-treesitter",
-        config = function() require('plugins.config.treesitter-rainbow').config() end,
+        config = function() require('rc.plugins.config.treesitter-rainbow').config() end,
     }
 
     use {
         "lukas-reineke/indent-blankline.nvim",
         after = 'nvim-treesitter',
-        config = function() require('plugins.config.indent_blankline').config() end,
+        config = function() require('rc.plugins.config.indent_blankline').config() end,
     }
 
     use {
         "nvim-telescope/telescope.nvim",
         after = "which-key.nvim",
-        requires = require('plugins.config.telescope').requires,
-        config = function() require('plugins.config.telescope').config() end,
+        requires = require('rc.plugins.config.telescope').requires,
+        config = function() require('rc.plugins.config.telescope').config() end,
     }
 
     -- use {
@@ -153,20 +153,20 @@ return require("packer").startup(function(use)
         "neovim/nvim-lspconfig",
         --after = "cmp-nvim-lsp",
         after = "which-key.nvim",
-        config = function() require('plugins.config.lspconfig').config() end,
+        config = function() require('rc.plugins.config.lspconfig').config() end,
     }
 
     use {
         "williamboman/nvim-lsp-installer",
         -- after = { "nvim-lspconfig", "nvim-cmp" },
         after = { "nvim-lspconfig" },
-        config = function() require('plugins.config.lsp-installer').config() end,
+        config = function() require('rc.plugins.config.lsp-installer').config() end,
     }
 
     use {
         "hrsh7th/nvim-cmp",
-        requires = require('plugins.config.cmp').requires,
-        config = function() require('plugins.config.cmp').config() end,
+        requires = require('rc.plugins.config.cmp').requires,
+        config = function() require('rc.plugins.config.cmp').config() end,
     }
 
     -- Automatic setup plugins
