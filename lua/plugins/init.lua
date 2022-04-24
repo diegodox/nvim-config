@@ -160,46 +160,7 @@ return require("packer").startup(function(use)
         "williamboman/nvim-lsp-installer",
         -- after = { "nvim-lspconfig", "nvim-cmp" },
         after = { "nvim-lspconfig" },
-        config = function()
-            local lsp_installer = require("nvim-lsp-installer")
-
-            local servers = {
-                "rust_analyzer",
-                "sumneko_lua",
-                "clangd",
-            }
-
-            lsp_installer.on_server_ready(function(server)
-                local opts = {}
-                if server.name == "sumneko_lua" then
-                    opts.settings = {
-                        Lua = {
-                            diagnostics = {
-                                globals = { 'vim' },
-                            },
-                            workspace = {
-                                -- Make the server aware of Neovim runtime files
-                                library = vim.api.nvim_get_runtime_file("", true),
-                            },
-                        },
-                    }
-                end
-                server:setup(opts)
-                vim.cmd([[do User LspAttachBuffers]])
-            end)
-
-            for _, name in pairs(servers) do
-                local is_server_found, server = lsp_installer.get_server(name)
-                if not is_server_found then
-                    print("LSP: " .. name .. " is not found")
-                elseif server:is_installed() then
-                    -- print("LSP: " .. name .. " is already installed")
-                else
-                    -- print("Installing LSP: " .. name)
-                    server:install()
-                end
-            end
-        end,
+        config = function() require('plugins.config.lsp-installer').config() end,
     }
 
     use {
