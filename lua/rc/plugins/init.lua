@@ -84,6 +84,12 @@ return require("packer").startup(function(use)
         after = "which-key.nvim",
         config = function() require('rc.plugins.config.lspconfig').config() end,
     }
+    use {
+        "williamboman/nvim-lsp-installer",
+        after = "nvim-lspconfig",
+        config = function() require('rc.plugins.config.lsp-installer').config() end,
+    }
+
     -- Automatic setup plugins
     if packer_bootstrap then
           require("packer").sync()
