@@ -3,6 +3,7 @@ vim.cmd [[filetype plugin indent on]]
 
 vim.o.title = true
 vim.o.hidden = true
+vim.o.swapfile = false
 vim.o.encoding = 'utf-8'
 vim.o.fileencoding = 'utf-8'
 vim.o.conceallevel = 0
