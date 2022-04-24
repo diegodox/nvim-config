@@ -80,7 +80,8 @@ function M.set_keymap()
         "<Cmd>lua vim.lsp.buf.rename()<CR>",
         {noremap = true, silent = true}
     )
-    require('which-key').register(
+    local whichkey = require('which-key')
+    whichkey.register(
         {
             d = { "<Cmd>Telescope lsp_definitions<CR>", "Definitions" },
             t = { "<Cmd>Telescope lsp_type_definitions<CR>", "Type definitions" },
@@ -93,6 +94,22 @@ function M.set_keymap()
         },
         { prefix = "g" }
     )
+    whichkey.register(
+        {
+            t = {
+                name = "Telescope",
+                b = { "<Cmd>Telescope buffers<CR>", "List buffers" },
+                B = { "<Cmd>Telescope builtin<CR>", "Find builtin features" },
+                f = { "<Cmd>Telescope find_files<CR>", "Find file" },
+                g = { "<Cmd>Telescope live_grep<CR>", "Live grep" },
+                G = { "<Cmd>Telescope git_files<CR>", "Git files" },
+                r = { "<Cmd>Telescope old files<CR>", "MRU" },
+                k = { "<Cmd>Telescope keymaps<CR>", "Keymap" },
+            },
+        },
+        { prefix = "<Leader>" }
+    )
+
 end
 
 -- configure telescope (setup, keymap)
