@@ -114,7 +114,6 @@ return require("packer").startup(function(use)
     use {
         "p00f/nvim-ts-rainbow",
         after = "nvim-treesitter",
-        -- after = "nvim-treesitter",
         config = function() require('plugins.config.treesitter-rainbow').config() end,
     }
 
