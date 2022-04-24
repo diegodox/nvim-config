@@ -72,6 +72,13 @@ return require("packer").startup(function(use)
         config = function() require('rc.plugins.config.indent_blankline').config() end,
     }
 
+    use {
+        "nvim-telescope/telescope.nvim",
+        after = "which-key.nvim",
+        requires = require('rc.plugins.config.telescope').requires,
+        config = function() require('rc.plugins.config.telescope').config() end,
+    }
+
     -- Automatic setup plugins
     if packer_bootstrap then
           require("packer").sync()
