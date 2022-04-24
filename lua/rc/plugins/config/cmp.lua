@@ -30,24 +30,26 @@ function M.setup(cmp)
             ['<C-Up>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
             ['<C-Down>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 
-            ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-            ['<C-e>'] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
             ['<Up>'] = cmp.mapping(
                 function(fallback)
                     if cmp.visible() then
-                        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                        cmp.select_prev_item()
                     else
                         fallback()
                     end
-                end, { "i" }),
+                end, { "i", "c" }),
             ['<Down>'] = cmp.mapping(
                 function(fallback)
                     if cmp.visible() then
-                        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                        cmp.select_next_item()
                     else
                         fallback()
                     end
-                end, { "i" }),
+                end, { "i", "c" }),
+
+            ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+            ['<C-e>'] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
+
             ['<CR>'] = cmp.mapping.confirm({
                 behavior = cmp.ConfirmBehavior.Replace,
                 select = false
@@ -64,10 +66,6 @@ function M.setup(cmp)
                     end
                 end, { "i", "s" }),
         },
-
-        -- view = {
-        --     entries = "native",
-        -- },
 
         experimental = {
             ghost_text = true,
@@ -87,24 +85,6 @@ end
 function M.setup_cmdline(cmp)
     cmp.setup.cmdline(':', {
         mapping = {
-            ['<Up>'] = cmp.mapping(
-                function(fallback)
-                    if cmp.visible() then
-                        cmp.select_prev_item()
-                    else
-                        fallback()
-                    end
-                end, { "c" }
-            ),
-            ['<Down>'] = cmp.mapping(
-                function(fallback)
-                    if cmp.visible() then
-                        cmp.select_next_item()
-                    else
-                        fallback()
-                    end
-                end, { "c" }
-            ),
             ['<Tab>'] = cmp.mapping(
                 function(fallback)
                     if cmp.visible() then
@@ -114,7 +94,6 @@ function M.setup_cmdline(cmp)
                     end
                 end, { "c" }
             ),
-            ['<C-e>'] = { c = cmp.mapping.close() },
         },
         sources = {
             { name = "cmdline" },
