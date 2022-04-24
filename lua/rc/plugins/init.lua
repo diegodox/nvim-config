@@ -54,6 +54,12 @@ return require("packer").startup(function(use)
         config = function() require("lualine").setup() end,
     }
 
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = require('rc.plugins.config.treesitter').run,
+        config = function() require('rc.plugins.config.treesitter').config() end,
+    }
+
     -- Automatic setup plugins
     if packer_bootstrap then
           require("packer").sync()
