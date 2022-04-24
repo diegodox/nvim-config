@@ -60,6 +60,12 @@ return require("packer").startup(function(use)
         config = function() require('rc.plugins.config.treesitter').config() end,
     }
 
+    use {
+        "p00f/nvim-ts-rainbow",
+        after = "nvim-treesitter",
+        config = function() require('rc.plugins.config.treesitter-rainbow').config() end,
+    }
+
     -- Automatic setup plugins
     if packer_bootstrap then
           require("packer").sync()
