@@ -90,6 +90,12 @@ return require("packer").startup(function(use)
         config = function() require('rc.plugins.config.lsp-installer').config() end,
     }
 
+    use {
+        "hrsh7th/nvim-cmp",
+        requires = require('rc.plugins.config.cmp').requires,
+        config = function() require('rc.plugins.config.cmp').config() end,
+    }
+
     -- Automatic setup plugins
     if packer_bootstrap then
           require("packer").sync()
