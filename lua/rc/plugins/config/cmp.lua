@@ -10,13 +10,13 @@ M.requires = {
     "hrsh7th/cmp-cmdline"
 }
 
-
 -- call cmp.setup
 function M.setup(cmp)
+    local luasnip = require('luasnip')
     cmp.setup({
         snippet = {
             expand = function(args)
-                require('luasnip').lsp_expand(args.body)
+                luasnip.lsp_expand(args.body)
             end,
         },
 
@@ -26,22 +26,44 @@ function M.setup(cmp)
         }),
 
         preselect = true,
-        mapping = cmp.mapping.preset.insert({
-            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<Up>'] = cmp.mapping.select_prev_item(),
-            ['<Down>'] = cmp.mapping.select_next_item(),
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<C-e>'] = cmp.mapping.abort(),
+        mapping = {
+            ['<C-Up>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+            ['<C-Down>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+
+            ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+            ['<C-e>'] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
+            ['<Up>'] = cmp.mapping(
+                function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                    else
+                        fallback()
+                    end
+                end, { "i" }),
+            ['<Down>'] = cmp.mapping(
+                function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                    else
+                        fallback()
+                    end
+                end, { "i" }),
             ['<CR>'] = cmp.mapping.confirm({
                 behavior = cmp.ConfirmBehavior.Replace,
-                select = true
+                select = false
             }),
-            ['<Tab>'] = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true
-            }),
-        }),
+
+            ['<Tab>'] = cmp.mapping(
+                function(fallback)
+                    if cmp.visible() then
+                        cmp.confirm({select = false})
+                    elseif luasnip.expand_or_jumpable() then
+                        luasnip.expand_or_jump()
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+        },
 
         -- view = {
         --     entries = "native",
@@ -55,22 +77,7 @@ end
 
 function M.setup_search(cmp)
     cmp.setup.cmdline('/', {
-        mapping = {
-            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<Up>'] = cmp.mapping.select_prev_item(),
-            ['<Down>'] = cmp.mapping.select_next_item(),
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<C-e>'] = cmp.mapping.abort(),
-            ['<CR>'] = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true
-            }),
-            ['<Tab>'] = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true
-            }),
-        },
+        mapping = cmp.mapping.preset.cmdline(),
         sources = {
             { name = 'buffer' }
         }
@@ -79,22 +86,36 @@ end
 
 function M.setup_cmdline(cmp)
     cmp.setup.cmdline(':', {
-        mapping = cmp.mapping.preset.cmdline({
-            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-p>'] = cmp.mapping.select_prev_item(),
-            ['<C-n>'] = cmp.mapping.select_next_item(),
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<C-e>'] = cmp.mapping.abort(),
-            ['<CR>'] = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true
-            }),
-            ['<Tab>'] = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true
-            }),
-        }),
+        mapping = {
+            ['<Up>'] = cmp.mapping(
+                function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    else
+                        fallback()
+                    end
+                end, { "c" }
+            ),
+            ['<Down>'] = cmp.mapping(
+                function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    else
+                        fallback()
+                    end
+                end, { "c" }
+            ),
+            ['<Tab>'] = cmp.mapping(
+                function(fallback)
+                    if cmp.visible() then
+                        cmp.confirm({select = false})
+                    else
+                        fallback()
+                    end
+                end, { "c" }
+            ),
+            ['<C-e>'] = { c = cmp.mapping.close() },
+        },
         sources = {
             { name = "cmdline" },
             { name = "path" },
@@ -120,7 +141,7 @@ end
 function M.config()
     local ok, cmp = pcall(require, 'cmp')
     if not ok then
-        print("'cmp' not found")
+        print("plugin 'cmp' not found")
         return
     end
     M.setup(cmp)
