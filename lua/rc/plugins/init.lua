@@ -48,6 +48,12 @@ return require("packer").startup(function(use)
         config = function() require('colorizer').setup() end,
     }
 
+    use {
+        "nvim-lualine/lualine.nvim",
+        after = colorscheme,
+        config = function() require("lualine").setup() end,
+    }
+
     -- Automatic setup plugins
     if packer_bootstrap then
           require("packer").sync()
