@@ -47,6 +47,11 @@ return require("packer").startup(function(use)
     use "wbthomason/packer.nvim"
 
     use {
+        "mhinz/vim-startify",
+        setup = function() require('plugins.config.startify').setup() end,
+    }
+
+    use {
         "tomasiser/vim-code-dark",
         config = function() require('plugins.config.codedark').config() end,
     }
