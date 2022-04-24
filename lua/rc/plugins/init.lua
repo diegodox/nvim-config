@@ -79,6 +79,11 @@ return require("packer").startup(function(use)
         config = function() require('rc.plugins.config.telescope').config() end,
     }
 
+    use {
+        "neovim/nvim-lspconfig",
+        after = "which-key.nvim",
+        config = function() require('rc.plugins.config.lspconfig').config() end,
+    }
     -- Automatic setup plugins
     if packer_bootstrap then
           require("packer").sync()
