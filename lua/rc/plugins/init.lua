@@ -25,6 +25,12 @@ return require("packer").startup(function(use)
         config = function() require('rc.plugins.config.codedark').config() end,
     }
 
+    use {
+        "folke/which-key.nvim",
+        setup = function() require('rc.plugins.config.which-key').setup() end,
+        config = function() require('rc.plugins.config.which-key').config() end,
+    }
+
     -- Automatic setup plugins
     if packer_bootstrap then
           require("packer").sync()
