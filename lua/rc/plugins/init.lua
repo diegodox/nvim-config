@@ -66,6 +66,12 @@ return require("packer").startup(function(use)
         config = function() require('rc.plugins.config.treesitter-rainbow').config() end,
     }
 
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        after = 'nvim-treesitter',
+        config = function() require('rc.plugins.config.indent_blankline').config() end,
+    }
+
     -- Automatic setup plugins
     if packer_bootstrap then
           require("packer").sync()
