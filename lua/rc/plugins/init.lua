@@ -15,6 +15,11 @@ require('rc.plugins.packer_init').init(packer)
 return require("packer").startup(function(use)
     use "wbthomason/packer.nvim"
 
+    use {
+        "tomasiser/vim-code-dark",
+        config = function() require('rc.plugins.config.codedark').config() end,
+    }
+
     -- Automatic setup plugins
     if packer_bootstrap then
           require("packer").sync()
