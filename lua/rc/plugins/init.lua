@@ -31,6 +31,13 @@ return require("packer").startup(function(use)
         config = function() require('rc.plugins.config.which-key').config() end,
     }
 
+    use {
+        "lewis6991/gitsigns.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        after = "which-key.nvim" ,
+        config = function() require('rc.plugins.config.gitsigns').config() end,
+    }
+
     -- Automatic setup plugins
     if packer_bootstrap then
           require("packer").sync()
