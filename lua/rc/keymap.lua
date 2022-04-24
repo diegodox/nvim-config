@@ -24,10 +24,5 @@ vim.api.nvim_set_keymap( 'c', '<Tab>', '<nop>', { silent = true, noremap = true 
 vim.api.nvim_set_keymap( 'c', '<S-Tab>', '<nop>', { silent = true, noremap = true } )
 
 -- Esc from terminal
-vim.api.nvim_set_keymap(
-    "t",
-    "<C-Space>",
-    "<C-\\><C-n>",
-    {noremap = true, silent = true}
-)
+vim.api.nvim_set_keymap( "t", "<C-Space>", "<C-\\><C-n>", { noremap = true, silent = true } )
 
