@@ -38,6 +38,11 @@ return require("packer").startup(function(use)
         config = function() require('rc.plugins.config.gitsigns').config() end,
     }
 
+    use {
+        "numToStr/Comment.nvim",
+        config = function() require('rc.plugins.config.Comment').config() end,
+    }
+
     -- Automatic setup plugins
     if packer_bootstrap then
           require("packer").sync()
