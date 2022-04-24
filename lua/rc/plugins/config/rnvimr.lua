@@ -25,6 +25,10 @@ M.setup = function()
 
     -- Make Neovim wipe the buffers corresponding to the files deleted by Ranger
     vim.g.rnvimr_enable_bw = 1
+
+    vim.g.rnvimr_shadow_winblend = 90
+
+    vim.cmd [[highlight link RnvimrNormal CursorLine]]
 end
 
 return M
