@@ -74,7 +74,6 @@ function M.set_keymap()
         "<Cmd>lua require('telescope.builtin').buffers()<CR>",
         { noremap = true, silent = true }
     )
-    vim.api.nvim_set_keymap("n", "<F2>", "<Cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
     local whichkey = require("which-key")
     whichkey.register({
         d = { "<Cmd>Telescope lsp_definitions<CR>", "Definitions" },
