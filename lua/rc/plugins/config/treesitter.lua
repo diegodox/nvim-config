@@ -14,16 +14,16 @@ M.ensure_installed = {
 -- setup treesitter
 function M.setup()
     local ok, nvtsconf = pcall(require, "nvim-treesitter.configs")
-    
+
     if not ok then
         print("module 'nvim-treesitter.configs' not found")
         return
     end
 
-    nvtsconf.setup {
+    nvtsconf.setup({
         ensure_installed = M.ensure_installed,
-        highlight = { enable = true, }
-    }
+        highlight = { enable = true },
+    })
 end
 
 -- configure treesitter

@@ -4,7 +4,7 @@ M.signs = {
     Error = " ",
     Warn = " ",
     Hint = " ",
-    Info = " "
+    Info = " ",
 }
 
 function M.def_sign()
@@ -15,10 +15,7 @@ function M.def_sign()
 end
 
 function M.keymap()
-    require('which-key').register(
-        { k = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Hover" } },
-        { prefix = "<Leader>" }
-    )
+    require("which-key").register({ k = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Hover" } }, { prefix = "<Leader>" })
 end
 
 function M.config()

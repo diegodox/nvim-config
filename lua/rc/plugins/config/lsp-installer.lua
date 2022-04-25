@@ -16,7 +16,7 @@ M.enhance_server_opts = {
         opts.settings = {
             Lua = {
                 diagnostics = {
-                    globals = { 'vim' },
+                    globals = { "vim" },
                 },
                 workspace = {
                     -- Make the server aware of Neovim runtime files
@@ -27,7 +27,6 @@ M.enhance_server_opts = {
             },
         }
     end,
-
 }
 
 function M.server_setup(server)
@@ -41,17 +40,15 @@ function M.server_setup(server)
 
     server:setup(opts)
     vim.cmd([[do User LspAttachBuffers]])
-    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+    vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]])
 end
 
 function M.config()
     local lsp_installer = require("nvim-lsp-installer")
 
-    lsp_installer.on_server_ready(
-        function(server)
-            M.server_setup(server)
-        end
-    )
+    lsp_installer.on_server_ready(function(server)
+        M.server_setup(server)
+    end)
 
     for _, name in pairs(M.servers) do
         local is_server_found, server = lsp_installer.get_server(name)

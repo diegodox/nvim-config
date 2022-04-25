@@ -9,8 +9,8 @@ M.requires = {
 
 -- call telescope.setup
 function M.setup()
-    local ok_telescope, telescope = pcall(require, 'telescope')
-    local ok_actions, actions = pcall(require, 'telescope.actions')
+    local ok_telescope, telescope = pcall(require, "telescope")
+    local ok_actions, actions = pcall(require, "telescope.actions")
     if not ok_telescope then
         print("plugin 'telescope' not found")
         return
@@ -18,7 +18,7 @@ function M.setup()
         print("plugin 'telescope' found, but 'telescope.actions' not found")
         return
     end
-    telescope.setup {
+    telescope.setup({
         defaults = {
             vimgrep_arguments = {
                 "rg",
@@ -27,17 +27,17 @@ function M.setup()
                 "--with-filename",
                 "--line-number",
                 "--column",
-                "--smart-case"
+                "--smart-case",
             },
             layout_strategy = "horizontal",
             layout_defaults = {
                 horizontal = {
                     mirror = false,
-                    preview_width = 0.5
+                    preview_width = 0.5,
                 },
                 vertical = {
-                    mirror = false
-                }
+                    mirror = false,
+                },
             },
             mappings = {
                 i = {
@@ -53,12 +53,12 @@ function M.setup()
             buffers = {
                 mappings = {
                     i = {
-                        ["<C-z>"] = "delete_buffer"
-                    }
+                        ["<C-z>"] = "delete_buffer",
+                    },
                 },
-            }
-        }
-    }
+            },
+        },
+    })
 end
 
 function M.set_keymap()
@@ -66,50 +66,38 @@ function M.set_keymap()
         "n",
         "<C-p>",
         "<Cmd>lua require('telescope.builtin').find_files()<cr>",
-        {noremap = true, silent = true}
+        { noremap = true, silent = true }
     )
     vim.api.nvim_set_keymap(
         "n",
         "<M-p>",
         "<Cmd>lua require('telescope.builtin').buffers()<CR>",
-        {noremap = true, silent = true}
+        { noremap = true, silent = true }
     )
-    vim.api.nvim_set_keymap(
-        "n",
-        "<F2>",
-        "<Cmd>lua vim.lsp.buf.rename()<CR>",
-        {noremap = true, silent = true}
-    )
-    local whichkey = require('which-key')
-    whichkey.register(
-        {
-            d = { "<Cmd>Telescope lsp_definitions<CR>", "Definitions" },
-            t = { "<Cmd>Telescope lsp_type_definitions<CR>", "Type definitions" },
-            I = { "<Cmd>Telescope lsp_implementations<CR>", "Goto implementation" },
-            r = { "<Cmd>Telescope lsp_references<CR>", "References" },
-            ["@"] = { "<Cmd>Telescope lsp_document_symbols<CR>", "Document Symbols" },
-            w = { "<Cmd>Telescope lsp_document_symbols<CR>", "Workspace Document Symbols" },
-            ["."] = { "<Cmd>Telescope lsp_code_actions<CR>", "Code Action" },
-            [","] = { "<Cmd>Telescope lsp_range_code_actions<CR>", "Range Code Action" },
+    vim.api.nvim_set_keymap("n", "<F2>", "<Cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true, silent = true })
+    local whichkey = require("which-key")
+    whichkey.register({
+        d = { "<Cmd>Telescope lsp_definitions<CR>", "Definitions" },
+        t = { "<Cmd>Telescope lsp_type_definitions<CR>", "Type definitions" },
+        I = { "<Cmd>Telescope lsp_implementations<CR>", "Goto implementation" },
+        r = { "<Cmd>Telescope lsp_references<CR>", "References" },
+        ["@"] = { "<Cmd>Telescope lsp_document_symbols<CR>", "Document Symbols" },
+        w = { "<Cmd>Telescope lsp_document_symbols<CR>", "Workspace Document Symbols" },
+        ["."] = { "<Cmd>Telescope lsp_code_actions<CR>", "Code Action" },
+        [","] = { "<Cmd>Telescope lsp_range_code_actions<CR>", "Range Code Action" },
+    }, { prefix = "g" })
+    whichkey.register({
+        t = {
+            name = "Telescope",
+            b = { "<Cmd>Telescope buffers<CR>", "List buffers" },
+            B = { "<Cmd>Telescope builtin<CR>", "Find builtin features" },
+            f = { "<Cmd>Telescope find_files<CR>", "Find file" },
+            g = { "<Cmd>Telescope live_grep<CR>", "Live grep" },
+            G = { "<Cmd>Telescope git_files<CR>", "Git files" },
+            r = { "<Cmd>Telescope old files<CR>", "MRU" },
+            k = { "<Cmd>Telescope keymaps<CR>", "Keymap" },
         },
-        { prefix = "g" }
-    )
-    whichkey.register(
-        {
-            t = {
-                name = "Telescope",
-                b = { "<Cmd>Telescope buffers<CR>", "List buffers" },
-                B = { "<Cmd>Telescope builtin<CR>", "Find builtin features" },
-                f = { "<Cmd>Telescope find_files<CR>", "Find file" },
-                g = { "<Cmd>Telescope live_grep<CR>", "Live grep" },
-                G = { "<Cmd>Telescope git_files<CR>", "Git files" },
-                r = { "<Cmd>Telescope old files<CR>", "MRU" },
-                k = { "<Cmd>Telescope keymaps<CR>", "Keymap" },
-            },
-        },
-        { prefix = "<Leader>" }
-    )
-
+    }, { prefix = "<Leader>" })
 end
 
 -- configure telescope (setup, keymap)

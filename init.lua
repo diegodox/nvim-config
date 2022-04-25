@@ -1,3 +1,3 @@
-require('rc.settings')
-require('rc.keymap')
-require('rc.plugins')
+require("rc.settings")
+require("rc.keymap")
+require("rc.plugins")
