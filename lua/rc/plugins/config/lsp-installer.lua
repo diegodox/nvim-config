@@ -30,8 +30,26 @@ M.enhance_server_opts = {
 }
 
 function M.server_setup(server)
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+    if ok then
+        capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+    else
+        print("fail to update capabilities via 'cmp_nvim_lsp'")
+    end
+
     local opts = {
-        capabilities = vim.lsp.protocol.make_client_capabilities(),
+        capabilities = capabilities,
+        on_attach = function(client)
+            if client.resolved_capabilities.document_formatting then
+                vim.cmd([[
+                augroup LspFormatting
+                    autocmd! * <buffer>
+                    autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+                augroup END
+                ]])
+            end
+        end,
     }
 
     if M.enhance_server_opts[server.name] then

@@ -112,7 +112,7 @@ return require("packer").startup(function(use)
     })
     use({
         "williamboman/nvim-lsp-installer",
-        after = "nvim-lspconfig",
+        after = { "nvim-lspconfig", "cmp-nvim-lsp" },
         config = function()
             require("rc.plugins.config.lsp-installer").config()
         end,
