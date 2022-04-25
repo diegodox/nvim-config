@@ -16,6 +16,7 @@ end
 
 function M.keymap()
     require("which-key").register({ k = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Hover" } }, { prefix = "<Leader>" })
+    require("which-key").register({ ["<F2>"] = { "<Cmd>lua vim.lsp.buf.rename()<CR>", "Rename" } })
 end
 
 function M.config()
