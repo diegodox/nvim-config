@@ -10,7 +10,7 @@ function M.config()
         return
     end
 
-    conf.setup {
+    conf.setup({
         rainbow = {
             colors = {
                 "#FFD700",
@@ -18,7 +18,7 @@ function M.config()
                 "#DA70D6",
             },
         },
-    }
+    })
 end
 
 return M
