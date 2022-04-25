@@ -6,9 +6,13 @@ M.servers = {
     "clangd",
 }
 
-function M.server_setup(server)
-    local opts = {}
-    if server.name == "sumneko_lua" then
+M.enhance_server_opts = {
+    ["sumneko_lua"] = function(opts)
+        opts.on_attach = function(client, bufnr)
+            client.resolved_capabilities.document_formatting = false
+            client.resolved_capabilities.document_range_formatting = false
+        end
+
         opts.settings = {
             Lua = {
                 diagnostics = {
@@ -18,11 +22,26 @@ function M.server_setup(server)
                     -- Make the server aware of Neovim runtime files
                     library = vim.api.nvim_get_runtime_file("", true),
                 },
+                -- Use StyLua instead of sumneko_lua builtin formatter.
+                format = { enable = false },
             },
         }
+    end,
+
+}
+
+function M.server_setup(server)
+    local opts = {
+        capabilities = vim.lsp.protocol.make_client_capabilities(),
+    }
+
+    if M.enhance_server_opts[server.name] then
+        M.enhance_server_opts[server.name](opts)
     end
+
     server:setup(opts)
     vim.cmd([[do User LspAttachBuffers]])
+    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
 end
 
 function M.config()
