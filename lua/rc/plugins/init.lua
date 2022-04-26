@@ -64,9 +64,9 @@ return require("packer").startup(function(use)
 
     use({
         "nvim-lualine/lualine.nvim",
-        after = colorscheme,
+        requires = require("rc.plugins.config.lualine").requires,
         config = function()
-            require("lualine").setup()
+            require("rc.plugins.config.lualine").config()
         end,
     })
 
@@ -110,6 +110,7 @@ return require("packer").startup(function(use)
             require("rc.plugins.config.lspconfig").config()
         end,
     })
+
     use({
         "williamboman/nvim-lsp-installer",
         after = { "nvim-lspconfig", "cmp-nvim-lsp" },
