@@ -1,6 +1,6 @@
-local lualine_conf = {} -- lualine configuration
+local M = {} -- lualine configuration
 
-lualine_conf.requires = { -- requirement plugins for lualine
+M.requires = { -- requirement plugins for lualine
     "nvim-treesitter/nvim-treesitter",
     "SmiteshP/nvim-gps",
     "kyazdani42/nvim-web-devicons",
@@ -30,7 +30,7 @@ local function hide(win_width)
 end
 
 -- configure lualine
-function lualine_conf.config()
+function M.config()
     local gps = require("nvim-gps")
 
     gps.setup({
@@ -133,4 +133,4 @@ function lualine_conf.config()
     )
 end
 
-return lualine_conf
+return M
