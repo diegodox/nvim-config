@@ -126,7 +126,7 @@ function lualine_conf.config()
     end
     _G.Tabline_timer:start(
         0, -- never timeout
-        1000, -- repeat every 1000 ms
+        300, -- repeat every 300 ms
         vim.schedule_wrap(function() -- updater function
             vim.api.nvim_command("redrawtabline")
         end)
