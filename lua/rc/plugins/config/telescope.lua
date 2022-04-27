@@ -97,6 +97,13 @@ function M.set_keymap()
             k = { "<Cmd>Telescope keymaps<CR>", "Keymap" },
         },
     }, { prefix = "<Leader>" })
+    whichkey.register({
+        g = {
+            name = "git",
+            c = { "<Cmd>Telescope git_commits<CR>", "List commits" },
+            C = { "<Cmd>Telescope git_bcommits<CR>", "List buffer commits" },
+        },
+    }, { prefix = "<Leader>" })
 end
 
 -- configure telescope (setup, keymap)
