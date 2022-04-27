@@ -1,5 +1,6 @@
 local M = {}
 
+-- configure toggleterm.nvim
 function M.config()
     if not vim.o.hidden then
         print("toggleterm needs 'hidden' option, now hidden = true")
@@ -9,6 +10,7 @@ function M.config()
     M.lazygit()
 end
 
+-- setup lazygit toggleterm
 function M.lazygit()
     local Terminal = require("toggleterm.terminal").Terminal
     local lazygit = Terminal:new({
