@@ -5,6 +5,7 @@ local lualine_conf = {}
 lualine_conf.requires = {
     "nvim-treesitter/nvim-treesitter",
     "SmiteshP/nvim-gps",
+    "kyazdani42/nvim-web-devicons",
 }
 
 function lualine_conf.config()
