@@ -18,6 +18,18 @@ local function replace_empty(replaced)
     end
 end
 
+-- return true if vim has width more than `win_width`
+-- otherwise, false
+local function hide(win_width)
+    return function()
+        local width = vim.api.nvim_list_uis()[1]["width"]
+        if not width then
+            return true
+        end
+        return width > win_width
+    end
+end
+
 function lualine_conf.config()
     local gps = require("nvim-gps")
 
@@ -64,7 +76,12 @@ function lualine_conf.config()
         },
         tabline = {
             lualine_a = { { "branch", fmt = replace_empty("-") } },
-            lualine_b = { "encoding", "fileformat", "filetype" },
+            -- Only if tabline has plenty of space, show encoding/fileformat/filetype.
+            lualine_b = {
+                { "encoding", cond = hide(200) },
+                { "fileformat", cond = hide(200) },
+                { "filetype", cond = hide(200) },
+            },
             lualine_c = {
                 {
                     -- center this section
@@ -81,8 +98,10 @@ function lualine_conf.config()
                 "filename",
                 { gps.get_location, cond = gps.is_available },
             },
-            lualine_x = { "diff" },
-            lualine_y = { "location" },
+            -- Only if tabline has space, show diff.
+            lualine_x = { { "diff", cond = hide(150) } },
+            -- Only if tabline has plenty of space, show location.
+            lualine_y = { { "location", cond = hide(200) } },
             lualine_z = {
                 {
                     -- current working directory
