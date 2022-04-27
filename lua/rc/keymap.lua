@@ -21,8 +21,6 @@ vim.api.nvim_set_keymap("v", ">", ">gv", { silent = true, noremap = true, desc =
 vim.api.nvim_set_keymap("v", "<", "<gv", { silent = true, noremap = true, desc = "Keep select while indenting" })
 
 -- No arrowkeys
-vim.api.nvim_set_keymap("c", "<Tab>", "<nop>", { silent = true, noremap = true })
-vim.api.nvim_set_keymap("c", "<S-Tab>", "<nop>", { silent = true, noremap = true })
 vim.api.nvim_set_keymap("n", "<up>", "<nop>", { silent = true, noremap = true, desc = "No arrowkeys, use hjkl" })
 vim.api.nvim_set_keymap("n", "<down>", "<nop>", { silent = true, noremap = true, desc = "No arrowkeys, use hjkl" })
 vim.api.nvim_set_keymap("n", "<left>", "<nop>", { silent = true, noremap = true, desc = "No arrowkeys, use hjkl" })
