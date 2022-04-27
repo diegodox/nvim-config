@@ -42,6 +42,7 @@ function lualine_conf.config()
     require("lualine").setup({
         options = {
             section_separators = { left = "", right = "" },
+            disabled_filetypes = { "startify" },
         },
         sections = {
             lualine_a = { "mode" },
