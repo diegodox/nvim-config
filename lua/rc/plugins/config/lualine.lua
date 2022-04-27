@@ -8,6 +8,7 @@ lualine_conf.requires = {
     "kyazdani42/nvim-web-devicons",
 }
 
+-- return function which replace text to 'replaced' if given text is empty
 local function replace_empty(replaced)
     return function(str)
         if str == "" then
@@ -30,6 +31,7 @@ local function hide(win_width)
     end
 end
 
+-- configure lualine
 function lualine_conf.config()
     local gps = require("nvim-gps")
 
@@ -51,7 +53,7 @@ function lualine_conf.config()
                     separator = "",
                     padding = { right = 0, left = 1 },
                 },
-                "filename",
+                { "filename", path = 1 }, -- relative_path
             },
             lualine_x = { "diff", "diagnostics" },
             lualine_y = {},
@@ -68,7 +70,7 @@ function lualine_conf.config()
                     separator = "",
                     padding = { right = 0, left = 1 },
                 },
-                "filename",
+                { "filename", path = 1 }, -- relative_path
             },
             lualine_x = {},
             lualine_y = {},
@@ -103,15 +105,15 @@ function lualine_conf.config()
             -- Only if tabline has plenty of space, show location.
             lualine_y = { { "location", cond = hide(200) } },
             lualine_z = {
+                -- current working directory
                 {
-                    -- current working directory
                     "vim.fn.getcwd()",
                     fmt = function(cwd)
                         return vim.fn.pathshorten(vim.fn.substitute(cwd, os.getenv("HOME"), "~", ""))
                     end,
                 },
+                -- current session
                 {
-                    -- current session
                     "vim.v.this_session",
                     fmt = function(session_path)
                         return replace_empty("[NO SESSION]")(vim.fn.fnamemodify(session_path, ":t"))
@@ -122,7 +124,7 @@ function lualine_conf.config()
     })
 
     -- Set timer to update tabline every 1000ms
-    -- Latency now is acceptable but, it would be better tabline also redrawn when statusline redrawn.
+    -- Latency now is acceptable, but it would be better tabline also redrawn when statusline redrawn.
     -- See: https://github.com/nvim-lualine/lualine.nvim/wiki/FAQ#my-tabline-updates-infrequently
     if _G.Tabline_timer == nil then
         _G.Tabline_timer = vim.loop.new_timer()
