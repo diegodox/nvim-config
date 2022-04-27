@@ -116,7 +116,7 @@ function M.config()
         },
     })
 
-    -- Set timer to update tabline every 1000ms
+    -- Set timer to update tabline periodicaly
     -- Latency now is acceptable, but it would be better tabline also redrawn when statusline redrawn.
     -- See: https://github.com/nvim-lualine/lualine.nvim/wiki/FAQ#my-tabline-updates-infrequently
     if _G.Tabline_timer == nil then
@@ -126,7 +126,7 @@ function M.config()
     end
     _G.Tabline_timer:start(
         0, -- never timeout
-        300, -- repeat every 300 ms
+        300, -- repeat every {num} ms
         vim.schedule_wrap(function() -- updater function
             vim.api.nvim_command("redrawtabline")
         end)
