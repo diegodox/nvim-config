@@ -18,7 +18,7 @@ vim.g.sessionoptions = "buffers,curdir,help,terminal,winsize"
 vim.o.smarttab = true
 vim.o.expandtab = true
 vim.o.autoindent = true
--- vim.o.tabstop = 4
+vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
 -- search settings
