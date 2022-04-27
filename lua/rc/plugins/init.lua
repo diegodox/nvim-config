@@ -145,6 +145,13 @@ return require("packer").startup(function(use)
         end,
     })
 
+    use({
+        "akinsho/toggleterm.nvim",
+        config = function()
+            require("rc.plugins.config.toggleterm").config()
+        end,
+    })
+
     -- Automatic setup plugins
     if packer_bootstrap then
         require("packer").sync()
