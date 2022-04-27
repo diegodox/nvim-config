@@ -1,8 +1,6 @@
--- lualine configuration
-local lualine_conf = {}
+local lualine_conf = {} -- lualine configuration
 
--- requirement
-lualine_conf.requires = {
+lualine_conf.requires = { -- requirement plugins for lualine
     "nvim-treesitter/nvim-treesitter",
     "SmiteshP/nvim-gps",
     "kyazdani42/nvim-web-devicons",
@@ -36,7 +34,7 @@ function lualine_conf.config()
     local gps = require("nvim-gps")
 
     gps.setup({
-        separator = "  ",
+        separator = "  ", -- match to lualine components separators
     })
 
     require("lualine").setup({
@@ -79,15 +77,13 @@ function lualine_conf.config()
         },
         tabline = {
             lualine_a = { { "branch", fmt = replace_empty("-") } },
-            -- Only if tabline has plenty of space, show encoding/fileformat/filetype.
-            lualine_b = {
+            lualine_b = { -- Only if tabline has plenty of space, show encoding/fileformat/filetype.
                 { "encoding", cond = hide(200) },
                 { "fileformat", cond = hide(200) },
                 { "filetype", cond = hide(200) },
             },
             lualine_c = {
-                {
-                    -- center this section
+                { -- center lualine_c
                     "%=",
                     separator = "",
                     padding = { right = 0, left = 0 },
@@ -101,20 +97,16 @@ function lualine_conf.config()
                 "filename",
                 { gps.get_location, cond = gps.is_available },
             },
-            -- Only if tabline has space, show diff.
-            lualine_x = { { "diff", cond = hide(150) } },
-            -- Only if tabline has plenty of space, show location.
-            lualine_y = { { "location", cond = hide(200) } },
+            lualine_x = { { "diff", cond = hide(150) } }, -- Only if tabline has enough space, show diff.
+            lualine_y = { { "location", cond = hide(200) } }, -- Only if tabline has plenty of space, show location.
             lualine_z = {
-                -- current working directory
-                {
+                { -- current working directory
                     "vim.fn.getcwd()",
                     fmt = function(cwd)
                         return vim.fn.pathshorten(vim.fn.substitute(cwd, os.getenv("HOME"), "~", ""))
                     end,
                 },
-                -- current session
-                {
+                { -- current session
                     "vim.v.this_session",
                     fmt = function(session_path)
                         return replace_empty("[NO SESSION]")(vim.fn.fnamemodify(session_path, ":t"))
