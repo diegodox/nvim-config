@@ -12,6 +12,7 @@ vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
 vim.o.iskeyword = vim.o.iskeyword .. ",_"
 vim.o.backspace = "indent,eol,start"
+vim.g.sessionoptions = "buffers,curdir,help,terminal,winsize"
 
 -- indent settings
 vim.o.smarttab = true
