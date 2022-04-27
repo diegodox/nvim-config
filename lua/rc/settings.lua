@@ -30,7 +30,6 @@ vim.o.showmode = false
 vim.o.signcolumn = "yes"
 vim.o.termguicolors = true
 vim.o.ruler = true
--- vim.o.colorcolumn = "120"
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.wrap = false
