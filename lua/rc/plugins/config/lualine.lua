@@ -46,7 +46,7 @@ function M.config()
             lualine_a = { "mode" },
             lualine_b = {},
             lualine_c = {
-                {
+                { -- have filetype icon
                     "filetype",
                     icon_only = true,
                     separator = "",
@@ -62,7 +62,7 @@ function M.config()
             lualine_a = {},
             lualine_b = {},
             lualine_c = {
-                {
+                { -- have filetype icon
                     "filetype",
                     icon_only = true,
                     colors = false,
@@ -88,7 +88,7 @@ function M.config()
                     separator = "",
                     padding = { right = 0, left = 0 },
                 },
-                {
+                { -- have filetype icon
                     "filetype",
                     icon_only = true,
                     separator = "",
