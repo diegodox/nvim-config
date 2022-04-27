@@ -147,6 +147,7 @@ return require("packer").startup(function(use)
 
     use({
         "akinsho/toggleterm.nvim",
+        after = "which-key.nvim",
         config = function()
             require("rc.plugins.config.toggleterm").config()
         end,
