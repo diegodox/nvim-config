@@ -43,6 +43,7 @@ function M.term()
         ["<C-t>"] = {
             name = "ToggleTerm",
             ["<CR>"] = { "<cmd>lua _TOGGLE_TERM()<CR>", "Open Term" },
+            ["<C-CR>"] = { "<cmd>lua _TOGGLE_TERM()<CR>", "Open Term" },
             v = { "<cmd>lua _TOGGLE_TERM_VERTICAL()<CR>", "Open Vertical Terminal" },
             s = { "<cmd>lua _TOGGLE_TERM_HORIZONTAL()<CR>", "Open Horizontal Terminal" },
         },
@@ -51,6 +52,7 @@ function M.term()
         ["<C-t>"] = {
             name = "ToggleTerm",
             ["<CR>"] = { "<cmd>lua _TOGGLE_TERM()<CR>", "Close Term" },
+            ["<C-CR>"] = { "<cmd>lua _TOGGLE_TERM()<CR>", "Close Term" },
             v = { "<cmd>lua _TOGGLE_TERM_VERTICAL()<CR>", "Move Terminal Vertical" },
             s = { "<cmd>lua _TOGGLE_TERM_HORIZONTAL()<CR>", "Open Terminal Horizontal" },
         },
