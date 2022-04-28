@@ -66,16 +66,23 @@ function M.lazygit()
         hidden = true,
     })
 
-    function _LAZYGIT_TOGGLE()
+    function _TOGGLE_LAZYGIT()
         lazygit:toggle()
     end
 
-    require("which-key").register({
+    local whichkey = require("which-key")
+    whichkey.register({
         g = {
             name = "git",
-            l = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
+            l = { "<cmd>lua _TOGGLE_LAZYGIT()<CR>", "Lazygit" },
         },
     }, { prefix = "<Leader>" })
+    whichkey.register({
+        ["<C-t>"] = {
+            name = "Toggle Lazygit",
+            g = { "<cmd>lua _TOGGLE_LAZYGIT()<CR>", "Lazygit" },
+        },
+    })
 end
 
 return M
