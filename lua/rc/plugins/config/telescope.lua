@@ -93,7 +93,7 @@ function M.set_keymap()
             f = { "<Cmd>Telescope find_files<CR>", "Find file" },
             g = { "<Cmd>Telescope live_grep<CR>", "Live grep" },
             G = { "<Cmd>Telescope git_files<CR>", "Git files" },
-            r = { "<Cmd>Telescope old files<CR>", "MRU" },
+            r = { "<Cmd>Telescope oldfiles<CR>", "MRU" },
             k = { "<Cmd>Telescope keymaps<CR>", "Keymap" },
         },
     }, { prefix = "<Leader>" })
