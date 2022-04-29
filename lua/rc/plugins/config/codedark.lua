@@ -1,12 +1,7 @@
 -- vim-code-dark cofnig
 local M = {}
 
-function M.apply()
-    vim.cmd([[colorscheme codedark]])
-    -- print("colorscheme applied")
-end
-
-function M.transparent()
+local function transparent()
     if vim.g.neovide then
         -- print("apply neovide transparent")
         vim.g.neovide_transparency = 0.9
@@ -29,12 +24,11 @@ function M.transparent()
     end
 end
 
-function M.config()
-    M.apply()
+-- create autocommand group that automatticaly set transparent after set colorscheme
+function M.autocmd()
     if vim.g.transparent then
-        M.transparent()
-    else
-        -- print("not apply transparent")
+        local group = vim.api.nvim_create_augroup("Transparent", { clear = true })
+        vim.api.nvim_create_autocmd("colorscheme", { callback = transparent, group = group })
     end
 end
 
