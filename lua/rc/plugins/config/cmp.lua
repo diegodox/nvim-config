@@ -124,6 +124,7 @@ function M.setup_cmdline(cmp)
     )
 
     cmp.setup.cmdline(":", {
+        completion = { autocomplete = false }, -- disable autocomplete on cmdmode, that allows you to keep `:ls` result and type `:bd`.
         mapping = {
             ["<Tab>"] = cmp.mapping(function(fallback)
                 if cmp.visible() then
