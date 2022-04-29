@@ -35,7 +35,7 @@ function M.server_setup(server)
     if ok then
         capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
     else
-        print("fail to update capabilities via 'cmp_nvim_lsp'")
+        vim.notify("fail to update capabilities via 'cmp_nvim_lsp'", vim.log.levels.WARN)
     end
 
     local opts = {
@@ -50,9 +50,14 @@ function M.server_setup(server)
                     group = aug_lsp_formatting,
                     callback = function()
                         vim.lsp.buf.formatting_sync()
+                        vim.notify("formatted via " .. client.name, vim.log.levels.DEBUG)
                     end,
                     buffer = 0,
                 })
+                vim.notify(
+                    "lsp formater " .. client.name .. " set to buffer " .. vim.api.nvim_buf_get_name(0),
+                    vim.log.levels.TRACE
+                )
             end
         end,
     }
@@ -74,11 +79,11 @@ function M.config()
     for _, name in pairs(M.servers) do
         local is_server_found, server = lsp_installer.get_server(name)
         if not is_server_found then
-            print("LSP: " .. name .. " is not found")
+            vim.notify("LSP: " .. name .. " is not found", vim.log.levels.WARN)
         elseif server:is_installed() then
-            -- print("LSP: " .. name .. " is already installed")
+            vim.notify("LSP: " .. name .. " is already installed", vim.lsp.log_levels.TRACE)
         else
-            -- print("Installing LSP: " .. name)
+            vim.notify("Installing LSP: " .. name, vim.log.levels.INFO)
             server:install()
         end
     end

@@ -3,13 +3,13 @@ local M = {}
 
 local function transparent()
     if vim.g.neovide then
-        -- print("apply neovide transparent")
+        vim.notify("apply neovide transparent", vim.lsp.log_levels.TRACE)
         vim.g.neovide_transparency = 0.9
         vim.cmd([[highlight StartifyPath guibg=none]])
         vim.cmd([[highlight WarningMsg guibg=none]])
         vim.cmd([[highlight Error guibg=none]])
     else
-        -- print("apply term neovim transparent")
+        vim.notify("apply term neovim transparent", vim.lsp.log_levels.TRACE)
         vim.cmd([[highlight Normal ctermbg=none guibg=none]])
         vim.cmd([[highlight NonText ctermbg=none guibg=none]])
         vim.cmd([[highlight EndOfBuffer ctermbg=none guibg=none]])

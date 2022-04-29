@@ -106,10 +106,22 @@ function M.set_keymap()
     }, { prefix = "<Leader>" })
 end
 
+function M.setup_notify()
+    require("telescope").load_extension("notify")
+    local whichkey = require("which-key")
+    whichkey.register({
+        t = {
+            name = "Telescope",
+            n = { "<Cmd>Telescope notify<CR>", "List notifications" },
+        },
+    }, { prefix = "<Leader>" })
+end
+
 -- configure telescope (setup, keymap)
 function M.config()
     M.setup()
     M.set_keymap()
+    M.setup_notify()
 end
 
 return M

@@ -8,7 +8,8 @@ M.requires = "nvim-lua/plenary.nvim"
 function M.config()
     local ok, null_ls = pcall(require, "null-ls")
     if not ok then
-        print("plugin 'null-ls' not found")
+        vim.notify_once("plugin 'null-ls' not found, skip setup", vim.lsp.log_levels.WARN)
+        return
     end
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -16,7 +17,7 @@ function M.config()
     if cmp_nvim_ok then
         capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
     else
-        print("fail to update capabilities via 'cmp_nvim_lsp'")
+        vim.notify_once("fail to update capabilities via 'cmp_nvim_lsp'", vim.lsp.log_levels.WARN)
     end
 
     null_ls.setup({
@@ -34,6 +35,10 @@ function M.config()
                     group = aug_lsp_formatting,
                     callback = function()
                         vim.lsp.buf.formatting_sync()
+                        vim.notify(
+                            "formatted buffer " .. vim.api.nvim_buf_get_name(0) .. " via " .. client.name,
+                            vim.lsp.log_levels.DEBUG
+                        )
                     end,
                     buffer = 0,
                 })
