@@ -18,7 +18,7 @@ return require("packer").startup(function(use)
     use({
         "rcarriga/nvim-notify",
         config = function()
-            vim.notify = require("notify")
+            require("rc.plugins.config.notify").config()
         end,
     })
 
