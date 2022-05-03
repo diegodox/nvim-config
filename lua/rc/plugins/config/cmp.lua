@@ -14,6 +14,13 @@ M.requires = {
     "onsails/lspkind.nvim",
 }
 
+function M.setting()
+    -- transparent completion window (this also affects other pop-up menus)
+    -- pop-up menu winblend
+    -- see :help pumblend and :help winblend
+    vim.o.pumblend = 7
+end
+
 -- call cmp.setup
 function M.setup(cmp)
     local luasnip = require("luasnip")
