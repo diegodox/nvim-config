@@ -16,6 +16,14 @@ return require("packer").startup(function(use)
     use("wbthomason/packer.nvim")
 
     use({
+        "tomasiser/vim-code-dark",
+        setup = require("rc.plugins.config.codedark").autocmd(),
+        config = function()
+            vim.cmd([[colorscheme codedark]])
+        end,
+    })
+
+    use({
         "rcarriga/nvim-notify",
         config = function()
             require("rc.plugins.config.notify").config()
@@ -26,14 +34,6 @@ return require("packer").startup(function(use)
         "mhinz/vim-startify",
         setup = function()
             require("rc.plugins.config.startify").setup()
-        end,
-    })
-
-    use({
-        "tomasiser/vim-code-dark",
-        setup = require("rc.plugins.config.codedark").autocmd(),
-        config = function()
-            vim.cmd([[colorscheme codedark]])
         end,
     })
 
