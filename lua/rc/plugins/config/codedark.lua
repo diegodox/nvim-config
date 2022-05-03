@@ -24,9 +24,9 @@ local function transparent()
     end
 end
 
--- create autocommand group that automatticaly set transparent after set colorscheme
+-- create autocommand group that automatticaly set background transparent after set colorscheme
 function M.autocmd()
-    if vim.g.transparent then
+    if vim.g.transparent_bg then
         local group = vim.api.nvim_create_augroup("Transparent", { clear = true })
         vim.api.nvim_create_autocmd("colorscheme", { callback = transparent, group = group })
     end
