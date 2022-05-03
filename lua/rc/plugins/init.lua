@@ -30,6 +30,8 @@ return require("packer").startup(function(use)
         end,
     })
 
+    use("tyru/capture.vim")
+
     use({
         "mhinz/vim-startify",
         setup = function()
