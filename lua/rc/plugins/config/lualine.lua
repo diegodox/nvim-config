@@ -37,24 +37,35 @@ function M.config()
         separator = "  ", -- match to lualine components separators
     })
 
+    local icon = { -- filetype icon
+        "filetype",
+        icon_only = true,
+        colors = false,
+        separator = "",
+        padding = { right = 0, left = 1 },
+        fmt = function(str)
+            local icon = require("nvim-web-devicons")
+            if not icon.get_icon(vim.fn.expand("%:t"), vim.bo.filetype) then
+                return nil
+            end
+            return str
+        end,
+    }
+
+    local center = { -- centerlize
+        "%=",
+        separator = "",
+        padding = { right = 0, left = 0 },
+    }
+
     require("lualine").setup({
         options = {
             section_separators = { left = "", right = "" },
-            disabled_filetypes = { "startify" },
         },
         sections = {
             lualine_a = { "mode" },
             lualine_b = {},
-            lualine_c = {
-                { -- have filetype icon
-                    -- FIXME: filetype name drawn if filetype not have icon
-                    "filetype",
-                    icon_only = true,
-                    separator = "",
-                    padding = { right = 0, left = 1 },
-                },
-                { "filename", path = 1 }, -- relative_path
-            },
+            lualine_c = { icon, { "filename", path = 1 } },
             lualine_x = { "diff", "diagnostics" },
             lualine_y = {},
             lualine_z = {},
@@ -62,17 +73,7 @@ function M.config()
         inactive_sections = {
             lualine_a = {},
             lualine_b = {},
-            lualine_c = {
-                { -- have filetype icon
-                    -- FIXME: filetype name drawn if filetype not have icon
-                    "filetype",
-                    icon_only = true,
-                    colors = false,
-                    separator = "",
-                    padding = { right = 0, left = 1 },
-                },
-                { "filename", path = 1 }, -- relative_path
-            },
+            lualine_c = { icon, { "filename", path = 1 } },
             lualine_x = {},
             lualine_y = {},
             lualine_z = {},
@@ -84,22 +85,7 @@ function M.config()
                 { "fileformat", cond = hide(200) },
                 { "filetype", cond = hide(200) },
             },
-            lualine_c = {
-                { -- center lualine_c
-                    "%=",
-                    separator = "",
-                    padding = { right = 0, left = 0 },
-                },
-                { -- have filetype icon
-                    -- FIXME: filetype name drawn if filetype not have icon
-                    "filetype",
-                    icon_only = true,
-                    separator = "",
-                    padding = { right = 0, left = 1 },
-                },
-                "filename",
-                { gps.get_location, cond = gps.is_available },
-            },
+            lualine_c = { center, icon, "filename", { gps.get_location, cond = gps.is_available } },
             lualine_x = { { "diff", cond = hide(150) } }, -- Only if tabline has enough space, show diff.
             lualine_y = { { "location", cond = hide(200) } }, -- Only if tabline has plenty of space, show location.
             lualine_z = {
