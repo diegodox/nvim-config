@@ -24,6 +24,14 @@ return require("packer").startup(function(use)
     })
 
     use({
+        "goolord/alpha-nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("alpha").setup(require("alpha.themes.startify").config)
+        end,
+    })
+
+    use({
         "rcarriga/nvim-notify",
         config = function()
             require("rc.plugins.config.notify").config()
@@ -33,11 +41,6 @@ return require("packer").startup(function(use)
     use("tyru/capture.vim")
 
     use({
-        "mhinz/vim-startify",
-        setup = function()
-            require("rc.plugins.config.startify").setup()
-        end,
-    })
 
     use({
         "folke/which-key.nvim",
