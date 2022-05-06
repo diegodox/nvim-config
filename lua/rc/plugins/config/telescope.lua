@@ -76,16 +76,6 @@ function M.set_keymap()
     )
     local whichkey = require("which-key")
     whichkey.register({
-        d = { "<Cmd>Telescope lsp_definitions<CR>", "Definitions" },
-        t = { "<Cmd>Telescope lsp_type_definitions<CR>", "Type definitions" },
-        I = { "<Cmd>Telescope lsp_implementations<CR>", "Goto implementation" },
-        r = { "<Cmd>Telescope lsp_references<CR>", "References" },
-        ["@"] = { "<Cmd>Telescope lsp_document_symbols<CR>", "Document Symbols" },
-        w = { "<Cmd>Telescope lsp_document_symbols<CR>", "Workspace Document Symbols" },
-        ["."] = { "<Cmd>Telescope lsp_code_actions<CR>", "Code Action" },
-        [","] = { "<Cmd>Telescope lsp_range_code_actions<CR>", "Range Code Action" },
-    }, { prefix = "g" })
-    whichkey.register({
         t = {
             name = "Telescope",
             b = { "<Cmd>Telescope buffers<CR>", "List buffers" },
@@ -115,6 +105,27 @@ function M.setup_notify()
             n = { "<Cmd>Telescope notify<CR>", "List notifications" },
         },
     }, { prefix = "<Leader>" })
+
+---@param bufnr number
+function M.set_lsp_keymap(bufnr)
+    vim.keymap.set("n", "gd", "<Cmd>Telescope lsp_definitions<CR>", { desc = "Definitions", buffer = bufnr })
+    vim.keymap.set("n", "gD", "<Cmd>Telescope lsp_type_definitions<CR>", { desc = "Type definitions", buffer = bufnr })
+    vim.keymap.set("n", "gI", "<Cmd>Telescope lsp_implementations<CR>", { desc = "Implementation", buffer = bufnr })
+    vim.keymap.set("n", "gr", "<Cmd>Telescope lsp_references<CR>", { desc = "References", buffer = bufnr })
+    vim.keymap.set("n", "g@", "<Cmd>Telescope lsp_document_symbols<CR>", { desc = "Document Symbols", buffer = bufnr })
+    vim.keymap.set("n", "g.", "<Cmd>Telescope lsp_code_actions<CR>", { desc = "Code Action", buffer = bufnr })
+    vim.keymap.set(
+        "n",
+        "g,",
+        "<Cmd>Telescope lsp_range_code_actions<CR>",
+        { desc = "Range Code Action", buffer = bufnr }
+    )
+    vim.keymap.set(
+        "n",
+        "gw",
+        "<Cmd>Telescope lsp_workspace_symbols<CR>",
+        { desc = "Workspace Symbols", buffer = bufnr }
+    )
 end
 
 -- configure telescope (setup, keymap)
