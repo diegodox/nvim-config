@@ -52,6 +52,10 @@ return require("packer").startup(function(use)
         end,
     })
 
+    -- simple but AMAZING!!!!
+    -- this plugin works with no configuration
+    use("tyru/capture.vim")
+
     use({
         "phaazon/hop.nvim",
         after = "which-key.nvim",

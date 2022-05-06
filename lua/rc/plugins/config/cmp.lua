@@ -33,7 +33,7 @@ function M.setup(cmp)
             format = lspkind.cmp_format({
                 mode = "symbol", -- show only symbol annotations
                 maxwidth = 50,
-                menu = {
+                menu = { -- show which source that completion item came from
                     buffer = "[buf]",
                     nvim_lsp = "[LSP]",
                     nvim_lua = "[api]",
@@ -131,7 +131,6 @@ function M.setup_cmdline(cmp)
     )
 
     cmp.setup.cmdline(":", {
-        completion = { autocomplete = false }, -- disable autocomplete on cmdmode, that allows you to keep `:ls` result and type `:bd`.
         mapping = {
             ["<Tab>"] = cmp.mapping(function(fallback)
                 if cmp.visible() then
@@ -148,7 +147,8 @@ function M.setup_cmdline(cmp)
     })
 end
 
-M.set_hightlight = function()
+-- vscode theme
+function M.set_hightlight()
     vim.cmd([[highlight CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080]])
     vim.cmd([[highlight CmpItemAbbrMatch guibg=NONE guifg=#569CD6]])
     vim.cmd([[highlight CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6]])
@@ -166,7 +166,7 @@ end
 function M.config()
     local ok, cmp = pcall(require, "cmp")
     if not ok then
-        print("plugin 'cmp' not found")
+        vim.notify_once("plugin 'cmp.nvim' not found, skip setup cmpletion", vim.log.levels.WARN)
         return
     end
     M.setup(cmp)
