@@ -1,6 +1,6 @@
 local M = {}
 
-function M.on_attch(client, bufnr)
+function M.on_attach(client, bufnr)
     local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
     vim.api.nvim_create_autocmd("BufWritePre", {
         group = group,
@@ -45,7 +45,7 @@ function M.server_setup(server, opts)
     local ok, lspconfig = pcall(require, "lspconfig")
     opts = opts or {}
     vim.tbl_deep_extend("keep", opts, {
-        on_attch = M.on_attch,
+        on_attach = M.on_attach,
         capabilities = M.capabilities(),
     })
     if ok then
