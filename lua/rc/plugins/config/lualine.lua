@@ -21,11 +21,11 @@ end
 -- otherwise, false
 local function hide(win_width)
     return function()
-        local width = vim.api.nvim_list_uis()[1]["width"]
-        if not width then
+        local ui = vim.api.nvim_list_uis()
+        if not ui then
             return true
         end
-        return width > win_width
+        return ui[1]["width"] > win_width
     end
 end
 
