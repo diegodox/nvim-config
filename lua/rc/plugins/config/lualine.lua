@@ -6,7 +6,9 @@ M.requires = { -- requirement plugins for lualine
     "kyazdani42/nvim-web-devicons",
 }
 
--- return function which replace text to 'replaced' if given text is empty
+---return function which replace text to 'replaced' if given text is empty
+---@param replaced string
+---@return function
 local function replace_empty(replaced)
     return function(str)
         if str == "" then
@@ -17,8 +19,9 @@ local function replace_empty(replaced)
     end
 end
 
--- return true if vim has width more than `win_width`
--- otherwise, false
+---return true if vim has width more than `win_width`, otherwise, false
+---@param win_width number
+---@return function
 local function hide(win_width)
     return function()
         local ui = vim.api.nvim_list_uis()
@@ -29,7 +32,7 @@ local function hide(win_width)
     end
 end
 
--- configure lualine
+---configure lualine
 function M.config()
     local gps = require("nvim-gps")
 
