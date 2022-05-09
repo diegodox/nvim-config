@@ -1,5 +1,7 @@
 local M = {}
 
+M.requires = "simrat39/rust-tools.nvim"
+
 M.ensure_installed = { "rust_analyzer", "sumneko_lua" }
 
 M.enhance_server_opts = {
@@ -39,7 +41,22 @@ function M.config()
     })
 
     for _, lsp in pairs(M.ensure_installed) do
-        M.server_setup(lsp)
+        if lsp == "rust_analyzer" then -- setup rust_analyzer with rust-tools
+            local cfg = {
+                tools = { inlay_hints = { highlight = "NonText" } },
+                server = {
+                    on_attach = require("rc.lsp-handler").on_attach,
+                    capabilities = require("rc.lsp-handler").capabilities(),
+                    settings = {
+                        -- To enable rust-analyzer settings, visit: https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+                        ["rust-analyzer"] = { checkOnSave = { command = "clippy" } },
+                    },
+                },
+            }
+            require("rust-tools").setup(cfg)
+        else
+            M.server_setup(lsp)
+        end
     end
 end
 
