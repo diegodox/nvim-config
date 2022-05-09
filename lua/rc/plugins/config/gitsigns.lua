@@ -31,8 +31,8 @@ function M.keymap()
             },
         }, { prefix = "<Leader>" })
     else
-        print("plugin 'which-key.nvim' not found, register keymap through nvim api")
         vim.api.nvim_set_keymap("n", "<Leader>gh", "<cmd>Gitsigns preview_hunk<CR>", { noremap = true, silent = true })
+        vim.notify_once("Plugin 'which-key' not found\nSetup keymap without 'which-key'", vim.lsp.log_levels.WARN)
     end
 end
 
