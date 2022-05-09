@@ -16,7 +16,7 @@ function M.setup()
     local ok, nvtsconf = pcall(require, "nvim-treesitter.configs")
 
     if not ok then
-        print("module 'nvim-treesitter.configs' not found")
+        vim.notify_once("module 'nvim-treesitter.configs' not found", vim.log.levels.ERROR)
         return
     end
 
