@@ -3,7 +3,7 @@ local M = {}
 -- configure toggleterm.nvim
 function M.config()
     if not vim.o.hidden then
-        print("toggleterm needs 'hidden' option, now hidden = true")
+        vim.notify("toggleterm needs 'hidden' option, set hidden = true", vim.log.levels.WARN)
         vim.o.hidden = true
     end
     require("toggleterm").setup()
