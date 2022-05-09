@@ -13,6 +13,9 @@ vim.o.clipboard = "unnamedplus"
 vim.o.iskeyword = vim.o.iskeyword .. ",_"
 vim.o.backspace = "indent,eol,start"
 vim.g.sessionoptions = "buffers,curdir,help,terminal,winsize"
+vim.o.pumblend = 7
+vim.o.pumheight = 20
+vim.o.pumwidth = 10
 
 -- indent settings
 vim.o.smarttab = true
