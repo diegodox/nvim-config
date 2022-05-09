@@ -1,7 +1,7 @@
 local M = {}
 
 function M.on_attach(client, bufnr)
-    local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
+    local group = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
     vim.api.nvim_create_autocmd("BufWritePre", {
         group = group,
         ---@diagnostic disable-next-line: unused-local, redefined-local
@@ -19,6 +19,7 @@ function M.on_attach(client, bufnr)
                 bufnr = vim.api.nvim_get_current_buf(),
             })
         end,
+        desc = "Format buffer just before write",
         buffer = 0,
     })
     vim.notify(
