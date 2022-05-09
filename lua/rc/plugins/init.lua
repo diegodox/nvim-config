@@ -16,6 +16,13 @@ return require("packer").startup(function(use)
     use("wbthomason/packer.nvim")
 
     use({
+        "antoinemadec/FixCursorHold.nvim",
+        config = function()
+            vim.g.cursorhold_updatetime = 200
+        end,
+    })
+
+    use({
         "tomasiser/vim-code-dark",
         setup = require("rc.plugins.config.codedark").autocmd(),
         config = function()

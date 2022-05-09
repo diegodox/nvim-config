@@ -26,6 +26,18 @@ function M.on_attach(client, bufnr)
         "lsp formater " .. client.name .. " set to buffer " .. vim.api.nvim_buf_get_name(0),
         vim.log.levels.TRACE
     )
+
+    local group2 = vim.api.nvim_create_augroup("HoverDiagnostic", { clear = false })
+    vim.api.nvim_create_autocmd("CursorHold", {
+        group = group2,
+        callback = function(bufnr)
+            vim.diagnostic.open_float(nil, { focusable = false })
+        end,
+        desc = "Open diagnostic flaoting window",
+        buffer = 0,
+    })
+    vim.notify("CursorHold diagnostic autocmd set" .. vim.api.nvim_buf_get_name(0), vim.log.levels.TRACE)
+
     require("rc.plugins.config.telescope").set_lsp_keymap(bufnr)
 end
 
