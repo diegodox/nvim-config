@@ -95,7 +95,9 @@ return require("packer").startup(function(use)
     })
 
     use({
-        "nvim-lualine/lualine.nvim",
+        -- "nvim-lualine/lualine.nvim",
+        "diegodox/lualine.nvim",
+        branch = "tabline-last-sepalator",
         requires = require("rc.plugins.config.lualine").requires,
         config = function()
             require("rc.plugins.config.lualine").config()
