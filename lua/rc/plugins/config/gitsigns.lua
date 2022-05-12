@@ -20,20 +20,13 @@ end
 -- apply keymap
 function M.keymap()
     local ok, whichkey = pcall(require, "which-key")
-
     if ok then
-        whichkey.register({
-            g = {
-                name = "git",
-                h = { "<cmd>Gitsigns preview_hunk<CR>", "Hunk diff" },
-                D = { "<cmd>Gitsigns toggle_deleted<CR>", "Toggle show deleted" },
-                W = { "<cmd>Gitsigns toogle_word_diff<CR>", "Toogle word diff" },
-            },
-        }, { prefix = "<Leader>" })
+        whichkey.register({ g = { name = "git" } }, { prefix = "<Leader>" })
     else
-        vim.api.nvim_set_keymap("n", "<Leader>gh", "<cmd>Gitsigns preview_hunk<CR>", { noremap = true, silent = true })
         vim.notify_once("Plugin 'which-key' not found\nSetup keymap without 'which-key'", vim.lsp.log_levels.WARN)
     end
+
+    vim.keymap.set("n", "<Leader>gh", "<cmd>Gitsigns preview_hunk<CR>", { silent = true, desc = "Preview Hunk Diff" })
 end
 
 return M
