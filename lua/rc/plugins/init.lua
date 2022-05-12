@@ -61,8 +61,7 @@ return require("packer").startup(function(use)
     })
 
     -- simple but AMAZING!!!!
-    -- this plugin works with no configuration
-    use("tyru/capture.vim")
+    use("tyru/capture.vim") -- this plugin works with no configuration
 
     use({
         "phaazon/hop.nvim",
