@@ -115,7 +115,7 @@ M.modules = {
     cwd = { -- current working directory
         "vim.fn.getcwd()",
         fmt = function(cwd)
-            return vim.fn.pathshorten(vim.fn.substitute(cwd, os.getenv("HOME"), "~", ""))
+            return require("rc.utils").path_icon(cwd)
         end,
     },
 
