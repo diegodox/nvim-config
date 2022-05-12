@@ -63,6 +63,9 @@ return require("packer").startup(function(use)
     -- simple but AMAZING!!!!
     use("tyru/capture.vim") -- this plugin works with no configuration
 
+    -- auto config 'tabstop', 'shiftwidth', 'softtabstop' and 'expandtab'
+    use("zsugabubus/crazy8.nvim") -- this plugin works with no configuration
+
     use({
         "phaazon/hop.nvim",
         after = "which-key.nvim",
