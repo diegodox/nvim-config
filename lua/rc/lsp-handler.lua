@@ -30,6 +30,7 @@ function M.on_attach(client, bufnr)
     local group2 = vim.api.nvim_create_augroup("HoverDiagnostic", { clear = false })
     vim.api.nvim_create_autocmd("CursorHold", {
         group = group2,
+        ---@diagnostic disable-next-line: unused-local, redefined-local
         callback = function(bufnr)
             vim.diagnostic.open_float(nil, { focusable = false })
         end,
