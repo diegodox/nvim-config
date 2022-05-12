@@ -24,7 +24,9 @@ return require("packer").startup(function(use)
 
     use({
         "tomasiser/vim-code-dark",
-        setup = require("rc.plugins.config.codedark").autocmd(),
+        setup = function()
+            require("rc.utils").setup_transparent()
+        end,
         config = function()
             vim.cmd([[colorscheme codedark]])
         end,
