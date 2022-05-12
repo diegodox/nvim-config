@@ -1,5 +1,18 @@
 local M = {}
 
+---iconize path
+---@param path string
+---@return string
+function M.path_icon(path)
+    path = vim.fn.substitute(path, os.getenv("HOME"), "", "")
+    path = vim.fn.substitute(path, "/dev/", "//", "")
+    path = vim.fn.substitute(path, ".config/", "/", "")
+    path = vim.fn.substitute(path, "/dotfiles/", "//", "")
+    path = vim.fn.substitute(path, "nvim/", "/", "")
+    path = vim.fn.substitute(path, "/work/", "//", "")
+    return path
+end
+
 local function set_transparent()
     if not vim.g.transparent_bg then
         vim.notify("not apply transparent", vim.lsp.log_levels.TRACE)
