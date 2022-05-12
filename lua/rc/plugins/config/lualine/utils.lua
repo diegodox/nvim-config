@@ -38,7 +38,7 @@ end
 function M.hide(win_width)
     return function()
         local ui = vim.api.nvim_list_uis()
-        if not ui or ui[1] or ui[1]["width"] then
+        if not ui or not ui[1] or not ui[1]["width"] then
             return true
         end
         return ui[1]["width"] > win_width
