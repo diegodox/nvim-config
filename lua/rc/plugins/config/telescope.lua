@@ -12,10 +12,10 @@ function M.setup()
     local ok_telescope, telescope = pcall(require, "telescope")
     local ok_actions, actions = pcall(require, "telescope.actions")
     if not ok_telescope then
-        print("plugin 'telescope' not found")
+        vim.notify_once("plugin 'telescope' not found", vim.log.levels.WARN)
         return
     elseif not ok_actions then
-        print("plugin 'telescope' found, but 'telescope.actions' not found")
+        vim.notify_once("plugin 'telescope' found, but 'telescope.actions' not found", vim.log.levels.WARN)
         return
     end
     telescope.setup({
