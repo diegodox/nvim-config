@@ -4,7 +4,7 @@ function M.config()
     local ok, gitsigns = pcall(require, "gitsigns")
 
     if not ok then
-        print("plugin 'gitsigns.nvim' not found")
+        vim.notify_once("plugin 'gitsigns.nvim' not found", vim.log.levels.INFO)
         return
     end
 
