@@ -33,3 +33,5 @@ vim.api.nvim_set_keymap(
     "<C-\\><C-n>",
     { noremap = true, silent = true, desc = "Enter to Normal mode from Terminal mode" }
 )
+
+vim.cmd([[source ~/.config/nvim/winresize.vim]])
