@@ -74,37 +74,37 @@ function M.set_keymap()
         "<Cmd>lua require('telescope.builtin').buffers()<CR>",
         { noremap = true, silent = true }
     )
-    local whichkey = require("which-key")
-    whichkey.register({
-        t = {
-            name = "Telescope",
-            b = { "<Cmd>Telescope buffers<CR>", "List buffers" },
-            B = { "<Cmd>Telescope builtin<CR>", "Find builtin features" },
-            f = { "<Cmd>Telescope find_files<CR>", "Find file" },
-            g = { "<Cmd>Telescope live_grep<CR>", "Live grep" },
-            G = { "<Cmd>Telescope git_files<CR>", "Git files" },
-            r = { "<Cmd>Telescope oldfiles<CR>", "MRU" },
-            k = { "<Cmd>Telescope keymaps<CR>", "Keymap" },
-        },
-    }, { prefix = "<Leader>" })
-    whichkey.register({
-        g = {
-            name = "git",
-            c = { "<Cmd>Telescope git_commits<CR>", "List commits" },
-            C = { "<Cmd>Telescope git_bcommits<CR>", "List buffer commits" },
-        },
-    }, { prefix = "<Leader>" })
+
+    local ok_whichkey, whichkey = pcall(require, "which-key")
+    if ok_whichkey then
+        whichkey.register({ l = { name = "LSP" } }, { prefix = "<Leader>" })
+        whichkey.register({ t = { name = "Telescope" } }, { prefix = "<Leader>" })
+        whichkey.register({ g = { name = "git" } }, { prefix = "<Leader>" })
+    else
+        vim.notify_once("Plugin 'which-key' not found\nSetup keymap without 'which-key'", vim.lsp.log_levels.WARN)
+    end
+
+    vim.keymap.set("n", "<Leader>tb", "<Cmd>Telescope buffers<CR>", { desc = "List buffers" })
+    vim.keymap.set("n", "<Leader>tB", "<Cmd>Telescope builtin<CR>", { desc = "Find builtin features" })
+    vim.keymap.set("n", "<Leader>tf", "<Cmd>Telescope find_files<CR>", { desc = "Find file" })
+    vim.keymap.set("n", "<Leader>tg", "<Cmd>Telescope live_grep<CR>", { desc = "Live grep" })
+    vim.keymap.set("n", "<Leader>tG", "<Cmd>Telescope git_files<CR>", { desc = "Git files" })
+    vim.keymap.set("n", "<Leader>tr", "<Cmd>Telescope oldfiles<CR>", { desc = "MRU" })
+    vim.keymap.set("n", "<Leader>tk", "<Cmd>Telescope keymaps<CR>", { desc = "List Keymap" })
+
+    vim.keymap.set("n", "<Leader>gc", "<Cmd>Telescope git_commits<CR>", { desc = "List commits" })
+    vim.keymap.set("n", "<Leader>gC", "<Cmd>Telescope git_bcommits<CR>", { desc = "List buffer commits" })
 end
 
 function M.setup_notify()
     require("telescope").load_extension("notify")
-    local whichkey = require("which-key")
-    whichkey.register({
-        t = {
-            name = "Telescope",
-            n = { "<Cmd>Telescope notify<CR>", "List notifications" },
-        },
-    }, { prefix = "<Leader>" })
+
+    local ok_whichkey, whichkey = pcall(require, "which-key")
+    if ok_whichkey then
+        whichkey.register({ t = { name = "Telescope" } }, { prefix = "<Leader>" })
+    end
+    vim.keymap.set("n", "<Leader>tn", "<Cmd>Telescope notify<CR>", { desc = "List notifications" })
+end
 
 ---@param bufnr number
 function M.set_lsp_keymap(bufnr)
@@ -126,6 +126,7 @@ function M.set_lsp_keymap(bufnr)
         "<Cmd>Telescope lsp_workspace_symbols<CR>",
         { desc = "Workspace Symbols", buffer = bufnr }
     )
+    vim.notify_once("telescope lsp keymap set to buffer: " .. bufnr, vim.log.levels.TRACE)
 end
 
 -- configure telescope (setup, keymap)
