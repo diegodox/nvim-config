@@ -39,7 +39,7 @@ function M.on_attach(client, bufnr)
     })
     vim.notify("CursorHold diagnostic autocmd set" .. vim.api.nvim_buf_get_name(0), vim.log.levels.TRACE)
 
-    require("rc.plugins.config.telescope").set_lsp_keymap(bufnr)
+    require("rc.plugins.config.telescope").keymap.lsp(bufnr)
 end
 
 function M.capabilities()
