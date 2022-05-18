@@ -6,10 +6,10 @@ function M.config()
         vim.notify("toggleterm needs 'hidden' option, set hidden = true", vim.log.levels.WARN)
         vim.o.hidden = true
     end
-    -- error: Normalにリンクされるだろうハイライトの背景が真っ黒になる？
-    --        Notifyの影響かも？
-    -- require("toggleterm").setup({ float_opts = { winblend = 4 } })
-    require("toggleterm").setup()
+    require("toggleterm").setup({
+        start_in_insert = false,
+        float_opts = { winblend = 4 },
+    })
     M.term()
     M.lazygit()
     M.ranger()
@@ -86,8 +86,8 @@ function M.lazygit()
         lazygit:toggle()
     end, { desc = "Toggle floating lazygit git client" })
 
-    vim.keymap.set("n", "<Leader>gl", "<cmd>ToggleLazygit<CR>", { desc = "Toggle floating lazygit git client" })
-    vim.keymap.set("n", "<C-t>g", "<cmd>ToggleLazygit<CR>", { desc = "Toggle floating lazygit git client" })
+    vim.keymap.set("n", "<Leader>gl", "<cmd>ToggleLazygit<CR>i", { desc = "Toggle floating lazygit git client" })
+    vim.keymap.set("n", "<C-t>g", "<cmd>ToggleLazygit<CR>i", { desc = "Toggle floating lazygit git client" })
 end
 
 -- setup ranger toggleterm
@@ -108,7 +108,7 @@ function M.ranger()
         ranger:toggle()
     end, { desc = "Toggle floating ranger file manager" })
 
-    vim.keymap.set("n", "<C-t>b", "<cmd>ToggleRanger<CR>", { desc = "Toggle floating ranger file manager" })
+    vim.keymap.set("n", "<C-t>b", "<cmd>ToggleRanger<CR>i", { desc = "Toggle floating ranger file manager" })
 end
 
 return M
