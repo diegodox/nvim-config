@@ -57,6 +57,15 @@ function M.term()
         vim.notify_once("Plugin 'which-key' not found\nSetup keymap without 'which-key'", vim.lsp.log_levels.INFO)
     end
 
+    local group = vim.api.nvim_create_augroup("AutoCloseTermTabLeave", { clear = true })
+    vim.api.nvim_create_autocmd("TabLeave", {
+        group = group,
+        callback = function()
+            term:close()
+        end,
+        desc = "Close ToggleTerm Before Leave Tab",
+    })
+
     vim.keymap.set("n", "<C-t><CR>", "<cmd>ToggleTerm<CR>", { desc = "Toglle Terminal" })
     vim.keymap.set("n", "<C-t><C-CR>", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
     vim.keymap.set("n", "<C-t>v", "<cmd>ToggleTermVertical<CR>", { desc = "Toggle Terminal Vertically" })
