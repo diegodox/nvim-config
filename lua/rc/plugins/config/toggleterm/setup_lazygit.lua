@@ -1,14 +1,8 @@
 ---Setup LazyGit
 return function()
-    local lazygit = require("toggleterm.terminal").Terminal:new({
+    local lazygit = require("rc.plugins.config.toggleterm.utils").new_terminal({
         cmd = "lazygit",
         direction = "float",
-        hidden = true,
-        env = {
-            -- open a new tab in current nvim to edit, instead of opening new vim in lazygit
-            VISUAL = "nvr --remote-tab +'set bufhidden=wipe'",
-            EDITOR = "nvr --remote-tab +'set bufhidden=wipe'",
-        },
     })
 
     vim.api.nvim_create_user_command("ToggleLazygit", function()

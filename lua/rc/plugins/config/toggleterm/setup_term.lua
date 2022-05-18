@@ -1,16 +1,17 @@
----Setup toggle terminal
-return function()
-    local Terminal = require("toggleterm.terminal").Terminal
-    local term = Terminal:new({
+---@return Terminal
+local function create_term()
+    return require("rc.plugins.config.toggleterm.utils").new_terminal({
         size = 15,
-        hidden = true,
         env = {
             -- open a new split in current nvim to edit, instead of opening new vim in terminal
             VISUAL = "nvr -cc split",
             EDITOR = "nvr -cc split",
         },
     })
+end
 
+---@param term Terminal
+local function auto_close_tab_leave(term)
     -- auto close term before leave current tab
     local group = vim.api.nvim_create_augroup("AutoCloseTermTabLeave", { clear = true })
     vim.api.nvim_create_autocmd("TabLeave", {
@@ -20,7 +21,10 @@ return function()
         end,
         desc = "Close ToggleTerm Before Leave Tab",
     })
+end
 
+---@param term Terminal
+local function create_user_command(term)
     vim.api.nvim_create_user_command("ToggleTerm", function()
         ---@diagnostic disable-next-line: missing-parameter
         term:toggle()
@@ -41,7 +45,9 @@ return function()
         end
         term:open(15, "horizontal", false)
     end, { desc = "Toggle terminal open in horizontal" })
+end
 
+local function set_keymap()
     local ok_whichkey, whichkey = pcall(require, "which-key")
     if ok_whichkey then
         whichkey.register({ ["<C-t>"] = { name = "ToggleTerm" } })
@@ -59,4 +65,12 @@ return function()
     vim.keymap.set("t", "<C-t><C-CR>", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
     vim.keymap.set("t", "<C-t>v", "<cmd>ToggleTermVertical<CR>", { desc = "Toggle Terminal Vertically" })
     vim.keymap.set("t", "<C-t>s", "<cmd>ToggleTermHorizontal<CR>", { desc = "Toggle Terminal Horizontally" })
+end
+
+---Setup toggle terminal
+return function()
+    local term = create_term()
+    auto_close_tab_leave(term)
+    create_user_command(term)
+    set_keymap()
 end

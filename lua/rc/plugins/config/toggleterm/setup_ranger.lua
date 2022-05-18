@@ -1,14 +1,8 @@
 ---Setup ranger toggleterm
 return function()
-    local ranger = require("toggleterm.terminal").Terminal:new({
+    local ranger = require("rc.plugins.config.toggleterm.utils").new_terminal({
         cmd = "ranger",
         direction = "float",
-        hidden = true,
-        env = {
-            -- open a new tab in current nvim to edit, instead of opening new vim in ranger
-            VISUAL = "nvr --remote-tab",
-            EDITOR = "nvr --remote-tab",
-        },
     })
 
     vim.api.nvim_create_user_command("ToggleRanger", function()
