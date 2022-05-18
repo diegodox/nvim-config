@@ -49,4 +49,4 @@ vim.o.winfixwidth = true
 
 vim.g.mapleader = " "
 
-vim.g.transparent_bg = true
+vim.g.transparent_bg = false
