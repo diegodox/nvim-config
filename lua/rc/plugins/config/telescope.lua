@@ -9,7 +9,7 @@ M.requires = {
 
 
 ---call telescope.setup
-function M.setup()
+local function setup()
     local ok_telescope, telescope = pcall(require, "telescope")
     local ok_actions, actions = pcall(require, "telescope.actions")
     if not ok_telescope then
@@ -113,7 +113,7 @@ M.keymap = {
 
 -- configure telescope (setup, keymap)
 function M.config()
-    M.setup()
+    setup()
     M.keymap.general()
     M.keymap.notify()
 end
