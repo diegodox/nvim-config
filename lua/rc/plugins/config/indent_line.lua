@@ -3,7 +3,7 @@ local M = {}
 M.requires = "nvim-treesitter/nvim-treesitter"
 
 -- highlights
-function M.highlight()
+local function highlight()
     vim.cmd([[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]])
     vim.cmd([[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]])
     vim.cmd([[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]])
@@ -13,12 +13,12 @@ function M.highlight()
 end
 
 -- settings
-function M.setting()
+local function setting()
     vim.g.indent_blankline_show_trailing_blankline_indent = false
 end
 
 -- setup indent blank line
-function M.setup()
+local function setup()
     require("indent_blankline").setup({
         filetype_exclude = {
             "help",
@@ -39,7 +39,7 @@ function M.setup()
     })
 end
 
-function M.autoset_highlight()
+local function autoset_highlight()
     local g = vim.api.nvim_create_augroup("AutoSetIndentBlanklineHightlight", { clear = true })
     vim.api.nvim_create_autocmd("colorscheme", {
         group = g,
@@ -53,10 +53,10 @@ end
 
 -- call highlight, settings, setup
 function M.config()
-    M.highlight()
-    M.setting()
-    M.setup()
-    M.autoset_highlight()
+    highlight()
+    setting()
+    setup()
+    autoset_highlight()
 end
 
 return M
