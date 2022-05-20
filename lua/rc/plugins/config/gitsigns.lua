@@ -19,13 +19,7 @@ end
 
 -- apply keymap
 function M.keymap()
-    local ok, whichkey = pcall(require, "which-key")
-    if ok then
-        whichkey.register({ g = { name = "git" } }, { prefix = "<Leader>" })
-    else
-        vim.notify_once("Plugin 'which-key' not found\nSetup keymap without 'which-key'", vim.lsp.log_levels.WARN)
-    end
-
+    require("rc.plugins.config.which-key").pregister({ g = { name = "Git" } }, { prefix = "<Leader>" })
     vim.keymap.set("n", "<Leader>gh", "<cmd>Gitsigns preview_hunk<CR>", { silent = true, desc = "Preview Hunk Diff" })
 end
 
