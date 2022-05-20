@@ -6,8 +6,7 @@ return function()
     })
 
     vim.api.nvim_create_user_command("ToggleLazygit", function()
-        ---@diagnostic disable-next-line: missing-parameter
-        lazygit:toggle()
+        lazygit:toggle(nil, nil)
     end, { desc = "Toggle floating lazygit git client" })
 
     vim.keymap.set("n", "<Leader>gl", "<cmd>ToggleLazygit<CR>i", { desc = "Toggle floating lazygit git client" })
