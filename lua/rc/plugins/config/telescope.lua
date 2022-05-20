@@ -8,7 +8,7 @@ M.requires = {
 }
 
 
--- call telescope.setup
+---call telescope.setup
 function M.setup()
     local ok_telescope, telescope = pcall(require, "telescope")
     local ok_actions, actions = pcall(require, "telescope.actions")
@@ -65,19 +65,6 @@ end
 M.keymap = {
     ---bind general keymap
     general = function()
-        vim.api.nvim_set_keymap(
-            "n",
-            "<C-p>",
-            "<Cmd>lua require('telescope.builtin').find_files()<cr>",
-            { noremap = true, silent = true }
-        )
-        vim.api.nvim_set_keymap(
-            "n",
-            "<M-p>",
-            "<Cmd>lua require('telescope.builtin').buffers()<CR>",
-            { noremap = true, silent = true }
-        )
-
         local ok_whichkey, whichkey = pcall(require, "which-key")
         if ok_whichkey then
             whichkey.register({ l = { name = "LSP" } }, { prefix = "<Leader>" })
@@ -87,16 +74,18 @@ M.keymap = {
             vim.notify_once("Plugin 'which-key' not found\nSetup keymap without 'which-key'", vim.lsp.log_levels.WARN)
         end
 
-        vim.keymap.set("n", "<Leader>tb", "<Cmd>Telescope buffers<CR>", { desc = "List buffers" })
-        vim.keymap.set("n", "<Leader>tB", "<Cmd>Telescope builtin<CR>", { desc = "Find builtin features" })
-        vim.keymap.set("n", "<Leader>tf", "<Cmd>Telescope find_files<CR>", { desc = "Find file" })
-        vim.keymap.set("n", "<Leader>tg", "<Cmd>Telescope live_grep<CR>", { desc = "Live grep" })
-        vim.keymap.set("n", "<Leader>tG", "<Cmd>Telescope git_files<CR>", { desc = "Git files" })
-        vim.keymap.set("n", "<Leader>tr", "<Cmd>Telescope oldfiles<CR>", { desc = "MRU" })
-        vim.keymap.set("n", "<Leader>tk", "<Cmd>Telescope keymaps<CR>", { desc = "List Keymap" })
-
-        vim.keymap.set("n", "<Leader>gc", "<Cmd>Telescope git_commits<CR>", { desc = "List commits" })
-        vim.keymap.set("n", "<Leader>gC", "<Cmd>Telescope git_bcommits<CR>", { desc = "List buffer commits" })
+        local builtin = require("telescope.builtin")
+        vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Telescope List git files" })
+        vim.keymap.set("n", "<M-p>", builtin.buffers, { desc = "Telescope List Buffers" })
+        vim.keymap.set("n", "<Leader>tb", builtin.buffers, { desc = "List buffers" })
+        vim.keymap.set("n", "<Leader>tB", builtin.builtin, { desc = "Find builtin features" })
+        vim.keymap.set("n", "<Leader>tf", builtin.find_files, { desc = "Find file" })
+        vim.keymap.set("n", "<Leader>tg", builtin.live_grep, { desc = "Live grep" })
+        vim.keymap.set("n", "<Leader>tr", builtin.oldfiles, { desc = "MRU" })
+        vim.keymap.set("n", "<Leader>tk", builtin.keymaps, { desc = "List Keymap" })
+        vim.keymap.set("n", "<Leader>tG", builtin.git_files, { desc = "Git files" })
+        vim.keymap.set("n", "<Leader>gc", builtin.git_commits, { desc = "List commits" })
+        vim.keymap.set("n", "<Leader>gC", builtin.git_bcommits, { desc = "List buffer commits" })
     end,
 
     ---bind notifications list keybindings
@@ -107,40 +96,21 @@ M.keymap = {
         if ok_whichkey then
             whichkey.register({ t = { name = "Telescope" } }, { prefix = "<Leader>" })
         end
-        vim.keymap.set("n", "<Leader>tn", "<Cmd>Telescope notify<CR>", { desc = "List notifications" })
+
+        local notify = require("telescope").extensions.notify
+        vim.keymap.set("n", "<Leader>tn", notify.notify, { desc = "List notifications" })
     end,
 
     ---bind telescope's lsp keybinding to buffer
     ---@param bufnr number
     lsp = function(bufnr)
-        vim.keymap.set("n", "gd", "<Cmd>Telescope lsp_definitions<CR>", { desc = "Definitions", buffer = bufnr })
-        vim.keymap.set(
-            "n",
-            "gD",
-            "<Cmd>Telescope lsp_type_definitions<CR>",
-            { desc = "Type definitions", buffer = bufnr }
-        )
-        vim.keymap.set("n", "gI", "<Cmd>Telescope lsp_implementations<CR>", { desc = "Implementation", buffer = bufnr })
-        vim.keymap.set("n", "gr", "<Cmd>Telescope lsp_references<CR>", { desc = "References", buffer = bufnr })
-        vim.keymap.set(
-            "n",
-            "g@",
-            "<Cmd>Telescope lsp_document_symbols<CR>",
-            { desc = "Document Symbols", buffer = bufnr }
-        )
-        vim.keymap.set("n", "g.", "<Cmd>Telescope lsp_code_actions<CR>", { desc = "Code Action", buffer = bufnr })
-        vim.keymap.set(
-            "n",
-            "g,",
-            "<Cmd>Telescope lsp_range_code_actions<CR>",
-            { desc = "Range Code Action", buffer = bufnr }
-        )
-        vim.keymap.set(
-            "n",
-            "gw",
-            "<Cmd>Telescope lsp_workspace_symbols<CR>",
-            { desc = "Workspace Symbols", buffer = bufnr }
-        )
+        local builtin = require("telescope.builtin")
+        vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Definitions", buffer = bufnr })
+        vim.keymap.set("n", "gD", builtin.lsp_type_definitions, { desc = "Type definitions", buffer = bufnr })
+        vim.keymap.set("n", "gI", builtin.lsp_implementations, { desc = "Implementation", buffer = bufnr })
+        vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "References", buffer = bufnr })
+        vim.keymap.set("n", "g@", builtin.lsp_document_symbols, { desc = "Document Symbols", buffer = bufnr })
+        vim.keymap.set("n", "gw", builtin.lsp_workspace_symbols, { desc = "Workspace Symbols", buffer = bufnr })
     end,
 }
 
