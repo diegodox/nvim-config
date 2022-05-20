@@ -60,7 +60,7 @@ return require("packer").startup(function(use)
         end,
     })
 
-    -- simple but AMAZING!!!!
+    -- capture command output to buffer
     use("tyru/capture.vim") -- this plugin works with no configuration
 
     -- auto config 'tabstop', 'shiftwidth', 'softtabstop' and 'expandtab'
