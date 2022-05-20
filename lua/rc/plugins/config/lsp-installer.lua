@@ -3,9 +3,9 @@ local M = {}
 M.requires = { "simrat39/rust-tools.nvim", "mattn/webapi-vim" }
 
 -- list of language servers which must installed and configured
-M.ensure_installed = { "rust_analyzer", "sumneko_lua", "pyright", "texlab", "taplo", "clangd", "cmake" }
+local ensure_installed = { "rust_analyzer", "sumneko_lua", "pyright", "texlab", "taplo", "clangd", "cmake" }
 
-M.enhance_server_opts = {
+local enhance_server_opts = {
     ["sumneko_lua"] = {
         settings = {
             Lua = {
@@ -26,14 +26,14 @@ M.enhance_server_opts = {
     },
 }
 
-function M.server_setup(server)
-    local enhance_opts = M.enhance_server_opts[server]
+local function server_setup(server)
+    local enhance_opts = enhance_server_opts[server]
     require("rc.lsp-handler").server_setup(server, enhance_opts)
 end
 
 function M.config()
     require("nvim-lsp-installer").setup({
-        ensure_installed = M.ensure_installed, -- ensure these servers are always installed
+        ensure_installed = ensure_installed, -- ensure these servers are always installed
         automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
         ui = {
             icons = {
@@ -59,7 +59,7 @@ function M.config()
             }
             require("rust-tools").setup(cfg)
         else
-            M.server_setup(lsp)
+            server_setup(lsp)
         end
     end
 end
