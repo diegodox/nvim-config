@@ -38,6 +38,7 @@ function M.on_attach(client, bufnr)
     )
 
     require("rc.plugins.config.telescope").keymap.lsp(bufnr)
+    require("rc.plugins.config.lspconfig").keymap(bufnr)
 end
 
 function M.capabilities()

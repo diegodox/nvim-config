@@ -14,29 +14,28 @@ function M.def_sign()
     end
 end
 
-function M.keymap()
-    local ok_whichkey, whichkey = pcall(require, "which-key")
-    if ok_whichkey then
-        whichkey.register({ l = { name = "LSP" } }, { prefix = "<Leader>" })
-    elseif vim.g.whichkey then
-        vim.notify_once("Plugin 'which-key' not found\nSetup keymap without 'which-key'", vim.lsp.log_levels.WARN)
-    end
-
-    vim.keymap.set("n", "<Leader>k", "<Cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Hover" })
-    vim.keymap.set("n", "<Leader>lh", "<Cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Hover" })
-    vim.keymap.set("n", "<Leader><C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", { desc = "Signature" })
-    vim.keymap.set("n", "<Leader>ls", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", { desc = "Signature" })
-    vim.keymap.set("n", "<Leader>l.", "<Cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code Action" })
-    vim.keymap.set("n", "<Leader>l,", "<Cmd>lua vim.lsp.buf.range_code_action()<CR>", { desc = "Range Code Action" })
-    vim.keymap.set("n", "<Leader>ld", "<Cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Definitions" })
-    vim.keymap.set("n", "<Leader>lD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "Declaration" })
-    vim.keymap.set("n", "<Leader>li", "<Cmd>lua vim.lsp.buf.implementation()<CR>", { desc = "Implementation" })
-    vim.keymap.set("n", "<F2>", "<Cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename" })
+---Set general LSP keybinding
+---@param bufnr number
+function M.keymap(bufnr)
+    require("rc.plugins.config.which-key").pregister(
+        { l = { name = "LSP" } },
+        { prefix = "<Leader>" },
+        "Setup LSP keymap without 'which-key' bufnr: " .. bufnr
+    )
+    vim.keymap.set("n", "<Leader>k", vim.lsp.buf.hover, { desc = "Hover", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>lh", vim.lsp.buf.hover, { desc = "Hover", buffer = bufnr })
+    vim.keymap.set("n", "<Leader><C-k>", vim.lsp.buf.signature_help, { desc = "Signature", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>ls", vim.lsp.buf.signature_help, { desc = "Signature", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>l.", vim.lsp.buf.code_action, { desc = "Code Action", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>l,", vim.lsp.buf.range_code_action, { desc = "Range Code Action", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>ld", vim.lsp.buf.definition, { desc = "Definitions", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>lD", vim.lsp.buf.declaration, { desc = "Declaration", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>li", vim.lsp.buf.implementation, { desc = "Implementation", buffer = bufnr })
+    vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename", buffer = bufnr })
 end
 
 function M.config()
     M.def_sign()
-    M.keymap()
 end
 
 return M
