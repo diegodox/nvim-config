@@ -6,7 +6,7 @@ local M = {}
 ---@return Terminal
 function M.new_terminal(term)
     term = term or {}
-    vim.tbl_deep_extend("keep", term, {
+    term = vim.tbl_deep_extend("keep", term, {
         hidden = true,
         env = {
             -- open a new tab in current nvim to edit, instead of opening new vim in ranger
