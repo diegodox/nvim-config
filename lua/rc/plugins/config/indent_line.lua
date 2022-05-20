@@ -44,7 +44,7 @@ local function autoset_highlight()
     vim.api.nvim_create_autocmd("colorscheme", {
         group = g,
         callback = function()
-            M.highlight()
+            highlight()
             vim.notify("set indent_blankline highlights", vim.log.levels.TRACE)
         end,
         desc = "Automatically set indent_blankline highlighting after colorscheme applied",
