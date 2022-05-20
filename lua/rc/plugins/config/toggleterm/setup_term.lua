@@ -45,13 +45,9 @@ local function create_user_command(term)
 end
 
 local function set_keymap()
-    local ok_whichkey, whichkey = pcall(require, "which-key")
-    if ok_whichkey then
-        whichkey.register({ ["<C-t>"] = { name = "ToggleTerm" } })
-        whichkey.register({ ["<C-t>"] = { name = "ToggleTerm" } }, { mode = "t" })
-    else
-        vim.notify_once("Plugin 'which-key' not found\nSetup keymap without 'which-key'", vim.lsp.log_levels.INFO)
-    end
+    local pregister = require("rc.plugins.config.which-key").pregister
+    pregister({ ["<C-t>"] = { name = "ToggleTerm" } })
+    pregister({ ["<C-t>"] = { name = "ToggleTerm" } }, { mode = "t" })
 
     vim.keymap.set("n", "<C-t><CR>", "<cmd>ToggleTerm<CR>", { desc = "Toglle Terminal" })
     vim.keymap.set("n", "<C-t><C-CR>", "<cmd>ToggleTerm<CR>", { desc = "Toggle Terminal" })
