@@ -15,7 +15,7 @@ M.requires = {
 }
 
 -- call cmp.setup
-function M.setup(cmp)
+local function setup(cmp)
     local luasnip = require("luasnip")
     local ok_lspkind, lspkind = pcall(require, "lspkind")
 
@@ -104,7 +104,7 @@ function M.setup(cmp)
     })
 end
 
-function M.setup_search(cmp)
+local function setup_search(cmp)
     cmp.setup.cmdline("/", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
@@ -113,7 +113,7 @@ function M.setup_search(cmp)
     })
 end
 
-function M.setup_cmdline(cmp)
+local function setup_cmdline(cmp)
     -- disable tabs on command
     vim.keymap.set("c", "<Tab>", "<nop>", { desc = "disable tab on command" })
     vim.keymap.set("c", "<S-Tab>", "<nop>", { desc = "disable S-tab on command" })
@@ -136,7 +136,7 @@ function M.setup_cmdline(cmp)
 end
 
 -- vscode theme
-function M.set_hightlight()
+local function set_hightlight()
     vim.cmd([[highlight CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080]])
     vim.cmd([[highlight CmpItemAbbrMatch guibg=NONE guifg=#569CD6]])
     vim.cmd([[highlight CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6]])
@@ -157,10 +157,10 @@ function M.config()
         vim.notify_once("plugin 'cmp.nvim' not found, skip setup cmpletion", vim.log.levels.WARN)
         return
     end
-    M.setup(cmp)
-    M.setup_cmdline(cmp)
-    M.setup_search(cmp)
-    M.set_hightlight()
+    setup(cmp)
+    setup_cmdline(cmp)
+    setup_search(cmp)
+    set_hightlight()
 end
 
 return M
