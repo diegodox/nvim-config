@@ -65,14 +65,10 @@ end
 M.keymap = {
     ---bind general keymap
     general = function()
-        local ok_whichkey, whichkey = pcall(require, "which-key")
-        if ok_whichkey then
-            whichkey.register({ l = { name = "LSP" } }, { prefix = "<Leader>" })
-            whichkey.register({ t = { name = "Telescope" } }, { prefix = "<Leader>" })
-            whichkey.register({ g = { name = "git" } }, { prefix = "<Leader>" })
-        else
-            vim.notify_once("Plugin 'which-key' not found\nSetup keymap without 'which-key'", vim.lsp.log_levels.WARN)
-        end
+        local pregister = require("rc.plugins.config.which-key").pregister
+        pregister({ l = { name = "LSP" } }, { prefix = "<Leader>" }, "Setup telescope keymap without 'which-key'")
+        pregister({ t = { name = "Telescope" } }, { prefix = "<Leader>" }, "Setup telescope keymap without 'which-key'")
+        pregister({ g = { name = "Git" } }, { prefix = "<Leader>" }, "Setup telescope keymap without 'which-key'")
 
         local builtin = require("telescope.builtin")
         vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Telescope List git files" })
@@ -92,10 +88,11 @@ M.keymap = {
     notify = function()
         require("telescope").load_extension("notify")
 
-        local ok_whichkey, whichkey = pcall(require, "which-key")
-        if ok_whichkey then
-            whichkey.register({ t = { name = "Telescope" } }, { prefix = "<Leader>" })
-        end
+        require("rc.plugins.config.which-key").pregister(
+            { t = { name = "Telescope" } },
+            { prefix = "<Leader>" },
+            "Setup telescope notify keymap without 'which-key'"
+        )
 
         local notify = require("telescope").extensions.notify
         vim.keymap.set("n", "<Leader>tn", notify.notify, { desc = "List notifications" })
