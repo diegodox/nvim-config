@@ -7,7 +7,7 @@ M.signs = {
     Info = " ",
 }
 
-function M.def_sign()
+local function def_sign()
     for type, icon in pairs(M.signs) do
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon })
@@ -35,7 +35,7 @@ function M.keymap(bufnr)
 end
 
 function M.config()
-    M.def_sign()
+    def_sign()
 end
 
 return M
