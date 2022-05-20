@@ -1,5 +1,7 @@
 local M = {}
 
+M.requires = "nvim-lua/plenary.nvim"
+
 function M.config()
     local ok, gitsigns = pcall(require, "gitsigns")
 

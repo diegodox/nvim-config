@@ -76,8 +76,8 @@ return require("packer").startup(function(use)
 
     use({
         "lewis6991/gitsigns.nvim",
-        requires = "nvim-lua/plenary.nvim",
         after = "which-key.nvim",
+        requires = require("rc.plugins.config.gitsigns").requires,
         config = function()
             require("rc.plugins.config.gitsigns").config()
         end,
