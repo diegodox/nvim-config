@@ -3,7 +3,7 @@ local M = {}
 M.run = ":TSUpdate"
 
 -- list of must installed languages
-M.ensure_installed = {
+local ensure_installed = {
     "rust",
     "toml",
     "fish",
@@ -22,7 +22,7 @@ function M.setup()
     end
 
     nvtsconf.setup({
-        ensure_installed = M.ensure_installed,
+        ensure_installed = ensure_installed,
         highlight = { enable = true },
     })
 end
