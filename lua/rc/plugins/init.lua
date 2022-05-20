@@ -68,7 +68,6 @@ return require("packer").startup(function(use)
 
     use({
         "phaazon/hop.nvim",
-        after = "which-key.nvim",
         branch = "v1",
         config = function()
             require("rc.plugins.config.hop").config()
