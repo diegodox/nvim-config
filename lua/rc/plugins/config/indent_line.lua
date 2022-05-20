@@ -1,5 +1,7 @@
 local M = {}
 
+M.requires = "nvim-treesitter/nvim-treesitter"
+
 -- highlights
 function M.highlight()
     vim.cmd([[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]])
@@ -37,11 +39,24 @@ function M.setup()
     })
 end
 
+function M.autoset_highlight()
+    local g = vim.api.nvim_create_augroup("AutoSetIndentBlanklineHightlight", { clear = true })
+    vim.api.nvim_create_autocmd("colorscheme", {
+        group = g,
+        callback = function()
+            M.highlight()
+            vim.notify("set indent_blankline highlights", vim.log.levels.TRACE)
+        end,
+        desc = "Automatically set indent_blankline highlighting after colorscheme applied",
+    })
+end
+
 -- call highlight, settings, setup
 function M.config()
     M.highlight()
     M.setting()
     M.setup()
+    M.autoset_highlight()
 end
 
 return M
