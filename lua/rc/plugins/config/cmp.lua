@@ -115,13 +115,8 @@ end
 
 function M.setup_cmdline(cmp)
     -- disable tabs on command
-    vim.api.nvim_set_keymap("c", "<Tab>", "<nop>", { silent = true, noremap = true, desc = "disable tab on command" })
-    vim.api.nvim_set_keymap(
-        "c",
-        "<S-Tab>",
-        "<nop>",
-        { silent = true, noremap = true, desc = "disable S-tab on command" }
-    )
+    vim.keymap.set("c", "<Tab>", "<nop>", { desc = "disable tab on command" })
+    vim.keymap.set("c", "<S-Tab>", "<nop>", { desc = "disable S-tab on command" })
 
     cmp.setup.cmdline(":", {
         mapping = {
