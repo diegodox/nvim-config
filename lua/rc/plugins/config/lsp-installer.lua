@@ -44,7 +44,7 @@ function M.config()
         },
     })
 
-    for _, lsp in pairs(M.ensure_installed) do
+    for _, lsp in pairs(ensure_installed) do
         if lsp == "rust_analyzer" then -- setup rust_analyzer with rust-tools
             local cfg = {
                 tools = { inlay_hints = { highlight = "NonText" } },
