@@ -128,7 +128,7 @@ return require("packer").startup(function(use)
         "lukas-reineke/indent-blankline.nvim",
         after = "nvim-treesitter",
         config = function()
-            require("rc.plugins.config.indent_blankline").config()
+            require("lua.rc.plugins.config.indent_line").config()
         end,
     })
 
