@@ -21,17 +21,12 @@ vim.keymap.set("v", ">", ">gv", { desc = "Keep select while indenting" })
 vim.keymap.set("v", "<", "<gv", { desc = "Keep select while indenting" })
 
 -- No arrowkeys
-vim.api.nvim_set_keymap("n", "<up>", "<nop>", { desc = "No arrowkeys, use hjkl" })
-vim.api.nvim_set_keymap("n", "<down>", "<nop>", { desc = "No arrowkeys, use hjkl" })
-vim.api.nvim_set_keymap("n", "<left>", "<nop>", { desc = "No arrowkeys, use hjkl" })
-vim.api.nvim_set_keymap("n", "<right>", "<nop>", { desc = "No arrowkeys, use hjkl" })
+vim.keymap.set("n", "<up>", "<nop>", { desc = "No arrowkeys, use hjkl" })
+vim.keymap.set("n", "<down>", "<nop>", { desc = "No arrowkeys, use hjkl" })
+vim.keymap.set("n", "<left>", "<nop>", { desc = "No arrowkeys, use hjkl" })
+vim.keymap.set("n", "<right>", "<nop>", { desc = "No arrowkeys, use hjkl" })
 
 -- Esc from terminal
-vim.api.nvim_set_keymap(
-    "t",
-    "<C-Space>",
-    "<C-\\><C-n>",
-    { noremap = true, silent = true, desc = "Enter to Normal mode from Terminal mode" }
-)
+vim.keymap.set("t", "<C-Space>", "<C-\\><C-n>", { desc = "Enter to Normal mode from Terminal mode" })
 
 vim.cmd([[source ~/.config/nvim/winresize.vim]])
