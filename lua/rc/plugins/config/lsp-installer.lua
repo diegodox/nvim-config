@@ -1,8 +1,9 @@
 local M = {}
 
-M.requires = "simrat39/rust-tools.nvim"
+M.requires = { "simrat39/rust-tools.nvim", "mattn/webapi-vim" }
 
-M.ensure_installed = { "rust_analyzer", "sumneko_lua" }
+-- list of language servers which must installed and configured
+M.ensure_installed = { "rust_analyzer", "sumneko_lua", "pyright", "texlab", "taplo", "clangd", "cmake" }
 
 M.enhance_server_opts = {
     ["sumneko_lua"] = {
@@ -19,6 +20,9 @@ M.enhance_server_opts = {
                 format = { enable = false },
             },
         },
+    },
+    ["clangd"] = {
+        cmd = { "clangd", "--offset-encoding=utf-16" },
     },
 }
 
