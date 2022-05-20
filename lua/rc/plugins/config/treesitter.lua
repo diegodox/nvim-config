@@ -9,6 +9,7 @@ M.ensure_installed = {
     "fish",
     "cpp",
     "lua",
+    "python",
 }
 
 -- setup treesitter
