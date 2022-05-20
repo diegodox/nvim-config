@@ -26,21 +26,18 @@ end
 ---@param term Terminal
 local function create_user_command(term)
     vim.api.nvim_create_user_command("ToggleTerm", function()
-        ---@diagnostic disable-next-line: missing-parameter
-        term:toggle()
+        term:toggle(nil, nil)
     end, { desc = "Toggle terminal" })
 
     vim.api.nvim_create_user_command("ToggleTermVertical", function()
-        local is_open = term:is_open()
-        if is_open then
+        if term:is_open() then
             term:close()
         end
         term:open(vim.o.columns * 0.4, "vertical", false)
     end, { desc = "Toggle terminal open in vertical" })
 
     vim.api.nvim_create_user_command("ToggleTermHorizontal", function()
-        local is_open = term:is_open()
-        if is_open then
+        if term:is_open() then
             term:close()
         end
         term:open(15, "horizontal", false)
