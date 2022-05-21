@@ -71,7 +71,16 @@ M.keymap = {
         pregister({ g = { name = "Git" } }, { prefix = "<Leader>" }, "Setup telescope keymap without 'which-key'")
 
         local builtin = require("telescope.builtin")
-        vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Telescope List git files" })
+
+        --Call git_files if in git directory, otherwise call find_files.
+        --Smarter than my old config.
+        vim.keymap.set("n", "<C-p>", function()
+            local ok, _ = pcall(builtin.git_files)
+            if not ok then
+                vim.notify("Not in git directory, call find_files instead", vim.log.levels.INFO)
+                builtin.find_files()
+            end
+        end, { desc = "Telescope smart list files" })
         vim.keymap.set("n", "<M-p>", builtin.buffers, { desc = "Telescope List Buffers" })
         vim.keymap.set("n", "<Leader>tb", builtin.buffers, { desc = "List buffers" })
         vim.keymap.set("n", "<Leader>tB", builtin.builtin, { desc = "Find builtin features" })
