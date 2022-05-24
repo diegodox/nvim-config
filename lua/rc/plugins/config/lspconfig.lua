@@ -22,7 +22,7 @@ function M.keymap(bufnr)
         { prefix = "<Leader>" },
         "Setup LSP keymap without 'which-key' bufnr: " .. bufnr
     )
-    vim.keymap.set("n", "<Leader>k", vim.lsp.buf.hover, { desc = "Hover", buffer = bufnr })
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover", buffer = bufnr })
     vim.keymap.set("n", "<Leader>lh", vim.lsp.buf.hover, { desc = "Hover", buffer = bufnr })
     vim.keymap.set("n", "<Leader><C-k>", vim.lsp.buf.signature_help, { desc = "Signature", buffer = bufnr })
     vim.keymap.set("n", "<Leader>ls", vim.lsp.buf.signature_help, { desc = "Signature", buffer = bufnr })
