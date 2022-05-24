@@ -1,6 +1,8 @@
 local M = {}
 
-M.run = ":TSUpdate"
+M.run = function()
+    require("treesitter.install").update()
+end
 
 -- list of must installed languages
 local ensure_installed = {
