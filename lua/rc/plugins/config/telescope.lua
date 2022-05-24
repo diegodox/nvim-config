@@ -7,6 +7,19 @@ M.requires = {
     "kyazdani42/nvim-web-devicons",
 }
 
+--- dynamic layout based on nvim window size
+---@param threshold number
+---@return string
+local function dynamic_layout_strategy(threshold)
+    local ui = vim.api.nvim_list_uis()
+    if not ui or not ui[1] or not ui[1]["width"] then
+        return "vertical"
+    end
+    if ui[1]["width"] > threshold then
+        return "horizontal"
+    end
+    return "vertical"
+end
 
 ---call telescope.setup
 local function setup()
@@ -34,10 +47,10 @@ local function setup()
             layout_defaults = {
                 horizontal = {
                     mirror = false,
-                    preview_width = 0.5,
+                    preview_width = 0.7,
                 },
                 vertical = {
-                    mirror = false,
+                    mirror = true,
                 },
             },
             mappings = {
@@ -49,6 +62,11 @@ local function setup()
         },
         pickers = {
             find_files = {
+                -- theme = "dropdown",
+                prompt_prefix = "🔍",
+            },
+            git_files = {
+                -- theme = "dropdown",
                 prompt_prefix = "🔍",
             },
             buffers = {
@@ -75,10 +93,15 @@ M.keymap = {
         --Call git_files if in git directory, otherwise call find_files.
         --Smarter than my old config.
         vim.keymap.set("n", "<C-p>", function()
-            local ok, _ = pcall(builtin.git_files)
+            local threshold = 170
+            local ok, _ = pcall(builtin.git_files, {
+                layout_strategy = dynamic_layout_strategy(threshold),
+            })
             if not ok then
                 vim.notify("Not in git directory, call find_files instead", vim.log.levels.INFO)
-                builtin.find_files()
+                builtin.find_files({
+                    layout_strategy = dynamic_layout_strategy(threshold),
+                })
             end
         end, { desc = "Telescope smart list files" })
         vim.keymap.set("n", "<M-p>", builtin.buffers, { desc = "Telescope List Buffers" })
