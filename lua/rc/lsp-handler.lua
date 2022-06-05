@@ -9,6 +9,9 @@ function M.on_attach(client, bufnr)
                 filter = function(clients)
                     ---@diagnostic disable: redefined-local
                     return vim.tbl_filter(function(client)
+                        if type(client) ~= "table" then
+                            return false
+                        end
                         return client.name ~= "sumneko_lua" -- don't use sumneko_lua's formatter
                     end, clients)
                 end,
