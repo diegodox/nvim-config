@@ -1,5 +1,36 @@
 local M = {}
 
+---@param servername string
+---@return table
+function M.handlers(servername)
+    -- vim.api.nvim_create_autocmd("colorscheme", { callback = vim.cmd("* highlight NormalFloat guibg=#1f2335") })
+    -- vim.api.nvim_create_autocmd("colorscheme", { callback = vim.cmd("* highlight FloatBorder guibg=#1f2335") })
+    vim.cmd("autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335")
+    vim.cmd("autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335")
+
+    local border = {
+        { "🭽", "FloatBorder" },
+        { "▔", "FloatBorder" },
+        { "🭾", "FloatBorder" },
+        { "▕", "FloatBorder" },
+        { "🭿", "FloatBorder" },
+        { "▁", "FloatBorder" },
+        { "🭼", "FloatBorder" },
+        { "▏", "FloatBorder" },
+    }
+
+    -- LSP settings (for overriding per client)
+    local handlers = {
+        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+    }
+    if servername ~= "null-ls" then
+        handlers["$/progress"] = require("rc.plugins.config.notify.lsp").notify_lsp_progress_handler
+    end
+
+    return handlers
+end
+
 function M.on_attach(client, bufnr)
     local group = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -63,6 +94,7 @@ function M.server_opts(server, opts)
     opts = vim.tbl_deep_extend("keep", opts, {
         on_attach = M.on_attach,
         capabilities = M.capabilities(),
+        handlers = M.handlers(server),
     })
 
     return opts

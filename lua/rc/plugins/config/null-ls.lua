@@ -12,9 +12,7 @@ function M.config()
         return
     end
 
-    local lsphandler = require("rc.lsp-handler")
-
-    null_ls.setup({
+    null_ls.setup(require("rc.lsp-handler").server_opts("null-ls", {
         sources = {
             null_ls.builtins.formatting.stylua,
             null_ls.builtins.formatting.fish_indent,
@@ -23,9 +21,7 @@ function M.config()
             null_ls.builtins.diagnostics.shellcheck,
             null_ls.builtins.diagnostics.fish,
         },
-        capabilities = lsphandler.capabilities(),
-        on_attach = lsphandler.on_attach,
-    })
+    }))
 end
 
 return M

@@ -32,9 +32,6 @@ function M.config()
     local notify = require("notify")
     setup_notify(notify)
 
-    -- lsp progress notification
-    require("rc.plugins.config.notify.lsp").setup()
-
     -- reculclate max size of notification window, based on nvim window size
     local aug = vim.api.nvim_create_augroup("NotifyConf", { clear = true })
     vim.api.nvim_create_autocmd("VimResized", {

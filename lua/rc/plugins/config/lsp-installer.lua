@@ -48,14 +48,16 @@ function M.config()
         if lsp == "rust_analyzer" then -- setup rust_analyzer with rust-tools
             local cfg = {
                 tools = { inlay_hints = { highlight = "NonText" } },
-                server = {
-                    on_attach = require("rc.lsp-handler").on_attach,
-                    capabilities = require("rc.lsp-handler").capabilities(),
+                server = require("rc.lsp-handler").server_opts({
+                    -- see: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
                     settings = {
                         -- To enable rust-analyzer settings, visit: https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-                        ["rust-analyzer"] = { checkOnSave = { command = { "clippy", "--all" } } },
+                        ["rust-analyzer"] = {
+                            cargo = { features = "all" },
+                            checkOnSave = { command = "clippy", features = "all" },
+                        },
                     },
-                },
+                }),
             }
             require("rust-tools").setup(cfg)
         else
