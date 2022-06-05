@@ -57,15 +57,6 @@ function M.on_attach(client, bufnr)
         vim.log.levels.TRACE
     )
 
-    local group2 = vim.api.nvim_create_augroup("HoverDiagnostic", { clear = false })
-    vim.api.nvim_create_autocmd("CursorHold", {
-        group = group2,
-        callback = function()
-            vim.diagnostic.open_float(nil, { focusable = false })
-        end,
-        desc = "Open diagnostic flaoting window",
-        buffer = bufnr,
-    })
     vim.notify(
         "CursorHold diagnostic autocmd set to buffer " .. bufnr .. ": " .. vim.api.nvim_buf_get_name(bufnr),
         vim.log.levels.TRACE

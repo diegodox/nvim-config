@@ -14,6 +14,10 @@ local function def_sign()
     end
 end
 
+local function open_diagnostic()
+    vim.diagnostic.open_float(nil, { focusable = true })
+end
+
 ---Set general LSP keybinding
 ---@param bufnr number
 function M.keymap(bufnr)
@@ -32,6 +36,7 @@ function M.keymap(bufnr)
     vim.keymap.set("n", "<Leader>ld", vim.lsp.buf.definition, { desc = "Definitions", buffer = bufnr })
     vim.keymap.set("n", "<Leader>lD", vim.lsp.buf.declaration, { desc = "Declaration", buffer = bufnr })
     vim.keymap.set("n", "<Leader>li", vim.lsp.buf.implementation, { desc = "Implementation", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>lw", open_diagnostic, { desc = "Diagnostic", buffer = bufnr })
     vim.keymap.set("n", "<Leader>lf", vim.lsp.buf.format, { desc = "Format", buffer = bufnr })
     vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename", buffer = bufnr })
 end
