@@ -1,10 +1,3 @@
--- IME control with ESC
-vim.keymap.set(
-    { "n", "i" },
-    "<Esc>",
-    "<cmd>call system('fcitx5-remote -o > /dev/null 2>&1')<CR><Esc>",
-    { desc = "Turn IME(fcitx5) to english mode with ESC" }
-)
 
 -- Move visual line
 vim.keymap.set("n", "k", "gk", { desc = "Move by visual line" })
