@@ -10,7 +10,12 @@ function M.config()
         vim.notify_once("Plugin 'which-key' not found\nSkip setup 'which-key'", vim.lsp.log_levels.ERROR)
         return
     end
-    whichkey.setup({})
+    whichkey.setup({
+        window = {
+            border = "rounded",
+            winblend = 10,
+        },
+    })
 end
 
 ---pcall `whichkey.register(mappings, opts)`
