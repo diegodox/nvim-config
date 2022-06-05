@@ -1,5 +1,5 @@
-vim.cmd([[syntax enable]])
-vim.cmd([[filetype plugin indent on]])
+vim.cmd("syntax enable")
+vim.cmd("filetype plugin indent on")
 
 vim.o.title = true
 vim.o.hidden = true
