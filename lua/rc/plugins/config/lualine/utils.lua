@@ -4,7 +4,7 @@ local M = {}
 ---Latency now is acceptable, but it would be better tabline also redrawn when statusline redrawn.
 ---See: https://github.com/nvim-lualine/lualine.nvim/wiki/FAQ#my-tabline-updates-infrequently
 ---@param period integer
-function M.setup_timer(period)
+function M.setup_tubline_timer(period)
     if _G.Tabline_timer == nil then
         _G.Tabline_timer = vim.loop.new_timer()
     else
@@ -15,6 +15,25 @@ function M.setup_timer(period)
         period, -- repeat every period ms
         vim.schedule_wrap(function() -- updater function
             vim.api.nvim_command("redrawtabline")
+        end)
+    )
+end
+
+---Set timer to update statusline periodicaly
+---Latency now is acceptable, but it would be better tabline also redrawn when statusline redrawn.
+---See: https://github.com/nvim-lualine/lualine.nvim/wiki/FAQ#my-tabline-updates-infrequently
+---@param period integer
+function M.setup_statusline_timer(period)
+    if _G.Satusline_timer == nil then
+        _G.Satusline_timer = vim.loop.new_timer()
+    else
+        _G.Satusline_timer:stop()
+    end
+    _G.Satusline_timer:start(
+        0, -- never timeout
+        period, -- repeat every period ms
+        vim.schedule_wrap(function() -- updater function
+            vim.api.nvim_command("redrawstatus")
         end)
     )
 end
