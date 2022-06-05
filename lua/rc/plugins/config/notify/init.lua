@@ -2,6 +2,7 @@ local M = {}
 
 --- setup nvim-notify
 --- reculclate max size of notification window, based on nvim window size
+---@param notify any
 local function setup_notify(notify)
     local ui = vim.api.nvim_list_uis()
     local max_width = 50
@@ -21,11 +22,9 @@ local function setup_notify(notify)
 end
 
 local function register_user_command()
-    vim.api.nvim_create_user_command(
-        "NotifyDissmiss",
-        "lua require('notify').dismiss({pending = false})",
-        { desc = "Dismiss all notification windows currently displayed" }
-    )
+    vim.api.nvim_create_user_command("NotifyDissmiss", function()
+        require("notify").dismiss({ pending = false })
+    end, { desc = "Dismiss all notification windows currently displayed" })
 end
 
 function M.config()
