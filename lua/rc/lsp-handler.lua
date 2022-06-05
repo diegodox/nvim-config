@@ -57,13 +57,22 @@ end
 
 ---@param server string
 ---@param opts table?
-function M.server_setup(server, opts)
-    local ok, lspconfig = pcall(require, "lspconfig")
+---@return table
+function M.server_opts(server, opts)
     opts = opts or {}
-    vim.tbl_deep_extend("keep", opts, {
+    opts = vim.tbl_deep_extend("keep", opts, {
         on_attach = M.on_attach,
         capabilities = M.capabilities(),
     })
+
+    return opts
+end
+
+---@param server string
+---@param opts table?
+function M.server_setup(server, opts)
+    local ok, lspconfig = pcall(require, "lspconfig")
+    opts = M.server_opts(server, opts)
     if ok then
         lspconfig[server].setup(opts)
     else
