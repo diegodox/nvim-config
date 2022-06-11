@@ -59,23 +59,32 @@ function M.toggle_transparent()
     vim.notify("Toggle background transparent", vim.log.levels.TRACE)
 end
 
+-- set highlight
+function M.set_colorscheme()
+    set_transparent()
+    require("rc.lsp-handler").def_reference_highlight()
+end
+
 -- create autocommand that automatically set background transparent after set colorscheme
-function M.setup_transparent()
+function M.setup_colorscheme()
     local group = vim.api.nvim_create_augroup("Transparent", { clear = true })
-    vim.api.nvim_create_autocmd("colorscheme", { callback = set_transparent, group = group, desc = "set transparent" })
+    vim.api.nvim_create_autocmd(
+        "colorscheme",
+        { callback = M.set_colorscheme, group = group, desc = "set transparent" }
+    )
     vim.api.nvim_create_user_command(
         "ToggleBackgroundTranprent",
-        "lua require('rc.utils').toggle_transparent()",
+        M.toggle_transparent,
         { desc = "Toggle Background Transparentecy" }
     )
     vim.api.nvim_create_user_command(
         "EnableBackgroundTranprent",
-        "lua require('rc.utils').enable_transparent()",
+        M.enable_transparent,
         { desc = "Enable Background Transparentecy" }
     )
     vim.api.nvim_create_user_command(
         "DisableBackgroundTranprent",
-        "lua require('rc.utils').disable_transparent()",
+        M.disable_transparent,
         { desc = "Disable Background Transparentecy" }
     )
 end

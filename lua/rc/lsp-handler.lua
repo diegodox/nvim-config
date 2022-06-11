@@ -13,6 +13,12 @@ function M.define_sign()
     end
 end
 
+function M.def_reference_highlight()
+    vim.cmd("highlight LspReferenceText guibg=#464646")
+    vim.cmd("highlight LspReferenceRead guibg=#464646")
+    vim.cmd("highlight LspReferenceWrite guibg=#464646 gui=underline")
+end
+
 ---Set general LSP keybinding
 ---@param bufnr number
 function M.keymap(bufnr)
@@ -68,6 +74,33 @@ function M.handlers(servername)
     end
 
     return handlers
+end
+
+---@param bufnr number
+function M.auto_highlight_docment(bufnr)
+    local g = vim.api.nvim_create_augroup("document_highlight", { clear = false })
+
+    vim.api.nvim_create_autocmd("CursorHold", {
+        callback = vim.lsp.buf.document_highlight,
+        -- callback = function()
+        --     vim.lsp.buf.document_highlight()
+        --     vim.notify("highlight")
+        -- end,
+        group = g,
+        buffer = bufnr,
+        desc = "Highlights symbol under cursor",
+    })
+
+    vim.api.nvim_create_autocmd("CursorMoved", {
+        callback = vim.lsp.buf.clear_references,
+        -- callback = function()
+        --     vim.lsp.buf.clear_references()
+        --     vim.notify("highlight removed")
+        -- end,
+        group = g,
+        buffer = bufnr,
+        desc = "Removes document highlights from current buffer.",
+    })
 end
 
 ---@param client table
