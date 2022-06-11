@@ -60,7 +60,7 @@ function M.handlers(servername)
 
     -- LSP settings (for overriding per client)
     local handlers = {
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = nil }),
         ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
     }
     if servername ~= "null-ls" then
