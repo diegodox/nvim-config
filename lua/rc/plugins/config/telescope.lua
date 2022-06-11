@@ -5,6 +5,8 @@ M.requires = {
     "nvim-lua/plenary.nvim",
     "nvim-lua/popup.nvim",
     "kyazdani42/nvim-web-devicons",
+    "tami5/sqlite.lua",
+    "nvim-telescope/telescope-frecency.nvim",
 }
 
 --- dynamic layout based on nvim window size
@@ -46,7 +48,7 @@ local function setup()
             layout_strategy = "horizontal",
             layout_defaults = {
                 horizontal = {
-                    mirror = false,
+                    mirror = true,
                     preview_width = 0.7,
                 },
                 vertical = {
@@ -99,7 +101,9 @@ M.keymap = {
             })
             if not ok then
                 vim.notify("Not in git directory, call find_files instead", vim.log.levels.INFO)
-                builtin.find_files({
+
+                local telescope = package.loaded.telescope
+                telescope.extensions.frecency.frecency({
                     layout_strategy = dynamic_layout_strategy(threshold),
                 })
             end
@@ -118,8 +122,6 @@ M.keymap = {
 
     ---bind notifications list keybindings
     notify = function()
-        require("telescope").load_extension("notify")
-
         require("rc.plugins.config.which-key").pregister(
             { t = { name = "Telescope" } },
             { prefix = "<Leader>" },
