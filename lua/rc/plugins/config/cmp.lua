@@ -150,6 +150,11 @@ local function set_hightlight()
     vim.cmd([[highlight CmpItemKindUnit guibg=NONE guifg=#D4D4D4]])
 end
 
+function M.update_capabilities(capabilities)
+    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+    return capabilities
+end
+
 -- setup, setup_cmdline, setup_search, set_hightlight
 function M.config()
     local ok, cmp = pcall(require, "cmp")

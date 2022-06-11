@@ -28,7 +28,7 @@ local enhance_server_opts = {
 
 local function server_setup(server)
     local enhance_opts = enhance_server_opts[server]
-    require("rc.lsp-handler").server_setup(server, enhance_opts)
+    require("rc.plugins.config.lsp_config").server_setup(server, enhance_opts)
 end
 
 function M.config()
@@ -48,7 +48,7 @@ function M.config()
         if lsp == "rust_analyzer" then -- setup rust_analyzer with rust-tools
             local cfg = {
                 tools = { inlay_hints = { highlight = "NonText" } },
-                server = require("rc.lsp-handler").server_opts({
+                server = require("rc.plugins.config.lsp_config").server_opts("rust_analyzer", {
                     -- see: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
                     settings = {
                         -- To enable rust-analyzer settings, visit: https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc

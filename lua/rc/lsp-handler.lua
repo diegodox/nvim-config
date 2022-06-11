@@ -1,5 +1,44 @@
 local M = {}
 
+function M.define_sign()
+    -- define signs when this module is loaded
+    for type, icon in pairs({
+        Error = " ",
+        Warn = " ",
+        Hint = " ",
+        Info = " ",
+    }) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon })
+    end
+end
+
+---Set general LSP keybinding
+---@param bufnr number
+function M.keymap(bufnr)
+    local function open_diagnostic()
+        vim.diagnostic.open_float(nil, { focusable = true })
+    end
+    require("rc.plugins.config.which-key").pregister(
+        { l = { name = "LSP" } },
+        { prefix = "<Leader>" },
+        "Setup LSP keymap without 'which-key' bufnr: " .. bufnr
+    )
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover", buffer = bufnr })
+    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>lh", vim.lsp.buf.hover, { desc = "Hover", buffer = bufnr })
+    vim.keymap.set("n", "<Leader><C-k>", vim.lsp.buf.signature_help, { desc = "Signature", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>ls", vim.lsp.buf.signature_help, { desc = "Signature", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>l.", vim.lsp.buf.code_action, { desc = "Code Action", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>l,", vim.lsp.buf.range_code_action, { desc = "Range Code Action", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>ld", vim.lsp.buf.definition, { desc = "Definitions", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>lD", vim.lsp.buf.declaration, { desc = "Declaration", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>li", vim.lsp.buf.implementation, { desc = "Implementation", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>lw", open_diagnostic, { desc = "Diagnostic", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>lf", vim.lsp.buf.format, { desc = "Format", buffer = bufnr })
+    vim.keymap.set("n", "<F2>", ":IncRename ", { desc = "Rename", buffer = bufnr })
+end
+
 ---@param servername string
 ---@return table
 function M.handlers(servername)
@@ -31,7 +70,9 @@ function M.handlers(servername)
     return handlers
 end
 
-function M.on_attach(client, bufnr)
+---@param client table
+---@param bufnr number
+function M.on_attach_format(client, bufnr)
     local group = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
     vim.api.nvim_create_autocmd("BufWritePre", {
         group = group,
@@ -56,51 +97,11 @@ function M.on_attach(client, bufnr)
         "lsp formater " .. client.name .. " set to buffer " .. bufnr .. ": " .. vim.api.nvim_buf_get_name(bufnr),
         vim.log.levels.TRACE
     )
-
-    vim.notify(
-        "CursorHold diagnostic autocmd set to buffer " .. bufnr .. ": " .. vim.api.nvim_buf_get_name(bufnr),
-        vim.log.levels.TRACE
-    )
-
-    require("rc.plugins.config.telescope").keymap.lsp(bufnr)
-    require("rc.plugins.config.lspconfig").keymap(bufnr)
 end
 
+---@return table<string, string|table|boolean|function> capabilities
 function M.capabilities()
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    if ok then
-        capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-    else
-        vim.notify("fail to update capabilities via 'cmp_nvim_lsp'", vim.log.levels.WARN)
-    end
-    return capabilities
-end
-
----@param server string
----@param opts table?
----@return table
-function M.server_opts(server, opts)
-    opts = opts or {}
-    opts = vim.tbl_deep_extend("keep", opts, {
-        on_attach = M.on_attach,
-        capabilities = M.capabilities(),
-        handlers = M.handlers(server),
-    })
-
-    return opts
-end
-
----@param server string
----@param opts table?
-function M.server_setup(server, opts)
-    local ok, lspconfig = pcall(require, "lspconfig")
-    opts = M.server_opts(server, opts)
-    if ok then
-        lspconfig[server].setup(opts)
-    else
-        vim.notify("plugin 'lspconfig' not found, fail to setup server " .. server, vim.log.levels.ERROR)
-    end
+    return vim.lsp.protocol.make_client_capabilities()
 end
 
 return M

@@ -12,7 +12,7 @@ function M.config()
         return
     end
 
-    null_ls.setup(require("rc.lsp-handler").server_opts("null-ls", {
+    null_ls.setup(require("rc.plugins.config.lsp_config").server_opts("null-ls", {
         sources = {
             null_ls.builtins.formatting.stylua,
             null_ls.builtins.formatting.fish_indent,
