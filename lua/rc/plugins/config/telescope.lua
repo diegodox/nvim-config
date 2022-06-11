@@ -116,6 +116,8 @@ M.keymap = {
         vim.keymap.set("n", "<Leader>tr", builtin.oldfiles, { desc = "MRU" })
         vim.keymap.set("n", "<Leader>tk", builtin.keymaps, { desc = "List Keymap" })
         vim.keymap.set("n", "<Leader>tG", builtin.git_files, { desc = "Git files" })
+        vim.keymap.set("n", "<Leader>th", builtin.help_tags, { desc = "List Helps" })
+        vim.keymap.set("n", "<Leader>tH", builtin.highlights, { desc = "List Highlights" })
         vim.keymap.set("n", "<Leader>gc", builtin.git_commits, { desc = "List commits" })
         vim.keymap.set("n", "<Leader>gC", builtin.git_bcommits, { desc = "List buffer commits" })
     end,
