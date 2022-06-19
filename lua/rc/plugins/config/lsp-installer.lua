@@ -33,7 +33,8 @@ local function server_setup(server)
 end
 
 function M.config()
-    require("nvim-lsp-installer").setup({
+    local lsp_isntaller = require("nvim-lsp-installer")
+    lsp_isntaller.setup({
         ensure_installed = ensure_installed, -- ensure these servers are always installed
         automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
         ui = {
@@ -46,8 +47,9 @@ function M.config()
         },
     })
 
-    for _, lsp in pairs(ensure_installed) do
-        if lsp == "rust_analyzer" then -- setup rust_analyzer with rust-tools
+    for _, lsp in pairs(lsp_isntaller.get_installed_servers()) do
+        local lsp_name = lsp.name
+        if lsp_name == "rust_analyzer" then -- setup rust_analyzer with rust-tools
             local cfg = {
                 tools = { inlay_hints = { highlight = "NonText" } },
                 server = require("rc.plugins.config.lsp_config").server_opts("rust_analyzer", {
@@ -68,7 +70,7 @@ function M.config()
             }
             require("rust-tools").setup(cfg)
         else
-            server_setup(lsp)
+            server_setup(lsp_name)
         end
     end
 end
