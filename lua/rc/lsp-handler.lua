@@ -77,7 +77,7 @@ function M.handlers(servername)
 end
 
 ---@param bufnr number
-function M.auto_highlight_docment(bufnr)
+function M.auto_highlight_document(bufnr)
     local g = vim.api.nvim_create_augroup("document_highlight", { clear = false })
 
     vim.api.nvim_create_autocmd("CursorHold", {

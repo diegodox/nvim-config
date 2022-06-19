@@ -21,7 +21,7 @@ function M.server_opts(server, opts)
     opts = vim.tbl_deep_extend("keep", opts, {
         on_attach = function(client, bufnr)
             lsphandler.on_attach_format(client, bufnr)
-            lsphandler.auto_highlight_docment(bufnr)
+            lsphandler.auto_highlight_document(bufnr)
             M.on_attach_keymap(bufnr)
         end,
         capabilities = M.update_capabilities(lsphandler.capabilities()),
