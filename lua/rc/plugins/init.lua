@@ -60,6 +60,13 @@ return require("packer").startup(function(use)
         end,
     })
 
+    use({
+        "stevearc/stickybuf.nvim",
+        config = function()
+            require("rc.plugins.config.stickybuf_nvim").config()
+        end,
+    })
+
     -- capture command output to buffer
     use("tyru/capture.vim") -- this plugin works with no configuration
 
