@@ -47,8 +47,7 @@ return require("packer").startup(function(use)
         end,
     })
 
-
-    use({
+    use("stevearc/dressing.nvim")
 
     use({
         "folke/which-key.nvim",
