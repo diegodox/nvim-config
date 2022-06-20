@@ -66,6 +66,14 @@ return require("packer").startup(function(use)
         end,
     })
 
+    use({
+        -- move window
+        "sindrets/winshift.nvim",
+        setup = function()
+            require("rc.plugins.config.winshift").config()
+        end,
+    })
+
     -- capture command output to buffer
     use("tyru/capture.vim") -- this plugin works with no configuration
 
