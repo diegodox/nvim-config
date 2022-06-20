@@ -76,7 +76,6 @@ return require("packer").startup(function(use)
 
     use({
         "lewis6991/gitsigns.nvim",
-        after = "which-key.nvim",
         requires = require("rc.plugins.config.gitsigns").requires,
         config = function()
             require("rc.plugins.config.gitsigns").config()
@@ -133,7 +132,6 @@ return require("packer").startup(function(use)
 
     use({
         "nvim-telescope/telescope.nvim",
-        after = "which-key.nvim",
         requires = require("rc.plugins.config.telescope").requires,
         config = function()
             require("rc.plugins.config.telescope").config()
@@ -142,7 +140,6 @@ return require("packer").startup(function(use)
 
     use({
         "neovim/nvim-lspconfig",
-        after = "which-key.nvim",
         config = function()
             require("rc.plugins.config.lspconfig").config()
         end,
@@ -178,7 +175,6 @@ return require("packer").startup(function(use)
 
     use({
         "akinsho/toggleterm.nvim",
-        after = "which-key.nvim",
         config = function()
             require("rc.plugins.config.toggleterm").config()
         end,
