@@ -40,6 +40,7 @@ vim.o.list = true
 vim.o.listchars = "tab:▸ ,trail:·"
 vim.o.scrolloff = 5
 vim.o.sidescrolloff = 5
+vim.o.cmdheight = 0
 
 -- window settings
 vim.o.splitbelow = true
@@ -50,3 +51,6 @@ vim.o.winfixwidth = true
 vim.g.mapleader = " "
 
 vim.g.transparent_bg = false
+vim.diagnostic.config({
+    update_in_insert = true,
+})

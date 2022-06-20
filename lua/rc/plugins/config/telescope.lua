@@ -59,8 +59,12 @@ local function setup()
                 i = {
                     ["<C-h>"] = "which_key",
                     ["<esc>"] = actions.close,
+                    ["<C-e>"] = function(prompt_bufnr, _mode)
+                        require("trouble.providers.telescope").open_with_trouble(prompt_bufnr, _mode)
+                    end,
                 },
             },
+            winblend = 7,
         },
         pickers = {
             find_files = {
@@ -80,6 +84,8 @@ local function setup()
             },
         },
     })
+
+    vim.cmd("highlight link TelescopeNormal NormalUntransparent")
 end
 
 M.keymap = {
@@ -132,6 +138,16 @@ M.keymap = {
 
         local notify = require("telescope").extensions.notify
         vim.keymap.set("n", "<Leader>tn", notify.notify, { desc = "List notifications" })
+    end,
+
+    ---Debugger Adapter Protocol
+    dap = function()
+        require("telescope").load_extension("dap")
+        local dap = require("telescope").extensions.dap
+        vim.keymap.set("n", "<Leader>dH", dap.commands, { desc = "DAP commands" })
+        vim.keymap.set("n", "<Leader>dC", dap.configurations, { desc = "DAP configurations" })
+        vim.keymap.set("n", "<Leader>dP", dap.list_breakpoints, { desc = "DAP list_breakpoints" })
+        vim.keymap.set("n", "<Leader>dV", dap.variables, { desc = "DAP variables" })
     end,
 
     ---bind telescope's lsp keybinding to buffer

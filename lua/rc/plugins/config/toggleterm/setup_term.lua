@@ -4,22 +4,9 @@ local function create_term()
         size = 15,
         env = {
             -- open a new split in current nvim to edit, instead of opening new vim in terminal
-            VISUAL = "nvr -cc split",
-            EDITOR = "nvr -cc split",
+            VISUAL = "nvim --server " .. vim.v.servername .. " --remote +vs",
+            EDITOR = "nvim --server " .. vim.v.servername .. " --remote +vs",
         },
-    })
-end
-
----@param term Terminal
-local function auto_close_tab_leave(term)
-    -- auto close term before leave current tab
-    local group = vim.api.nvim_create_augroup("AutoCloseTermTabLeave", { clear = true })
-    vim.api.nvim_create_autocmd("TabLeave", {
-        group = group,
-        callback = function()
-            term:close()
-        end,
-        desc = "Close ToggleTerm Before Leave Tab",
     })
 end
 
@@ -63,7 +50,10 @@ end
 ---Setup toggle terminal
 return function()
     local term = create_term()
-    auto_close_tab_leave(term)
+    require("rc.plugins.config.toggleterm.utils").close_autocmd(
+        "TabLeave",
+        term,
+        { desc = "Close ToggleTerm Before Leave Tab" }
+    )
     create_user_command(term)
-    set_keymap()
 end

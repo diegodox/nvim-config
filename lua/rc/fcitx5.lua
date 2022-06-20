@@ -26,7 +26,7 @@ local function buf_filetype(bufnr)
 end
 
 ---@return boolean?
-local function is_ime_on()
+function M.is_ime_on()
     local status = os_capture("fcitx5-remote")
     if status == "2" then
         return false
@@ -39,7 +39,7 @@ end
 
 ---remember current ime mode to `last_ime_status`
 function M.store_ime_status()
-    M.last_ime_status = is_ime_on()
+    M.last_ime_status = M.is_ime_on()
 end
 
 ---call system function to make ime off

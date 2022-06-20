@@ -10,19 +10,33 @@ function M.config()
         return
     end
 
+    require("rc.plugins.config.which-key").pregister({ g = { name = "Git" } }, { prefix = "<Leader>" })
+
     gitsigns.setup({
         numhl = true,
         current_line_blame = true,
         current_line_blame_opts = { delay = 100 },
+        sign_priority = 100,
+        on_attach = function(bufnr)
+            local gs = package.loaded.gitsigns
+            if not gs then
+                vim.notify_once("gs not loaded")
+            end
+
+            vim.keymap.set("n", "<Leader>gh", gs.preview_hunk, { desc = "Preview Hunk Diff", buffer = bufnr })
+            vim.keymap.set("n", "<Leader>gs", gs.stage_hunk, { desc = "Stage Hunk", buffer = bufnr })
+            vim.keymap.set("n", "<Leader>gR", gs.reset_hunk, { desc = "Reset Hunk", buffer = bufnr })
+            vim.keymap.set("n", "<Leader>gu", gs.undo_stage_hunk, { desc = "Undo Stage Hunk", buffer = bufnr })
+
+            -- git hunk as text object
+            vim.keymap.set(
+                { "o", "x" },
+                "ih",
+                ":<C-U>Gitsigns select_hunk<CR>",
+                { desc = "Select Hunk", buffer = bufnr }
+            )
+        end,
     })
-
-    M.keymap()
-end
-
--- apply keymap
-function M.keymap()
-    require("rc.plugins.config.which-key").pregister({ g = { name = "Git" } }, { prefix = "<Leader>" })
-    vim.keymap.set("n", "<Leader>gh", "<cmd>Gitsigns preview_hunk<CR>", { silent = true, desc = "Preview Hunk Diff" })
 end
 
 return M

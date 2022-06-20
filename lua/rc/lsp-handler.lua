@@ -82,10 +82,6 @@ function M.auto_highlight_document(bufnr)
 
     vim.api.nvim_create_autocmd("CursorHold", {
         callback = vim.lsp.buf.document_highlight,
-        -- callback = function()
-        --     vim.lsp.buf.document_highlight()
-        --     vim.notify("highlight")
-        -- end,
         group = g,
         buffer = bufnr,
         desc = "Highlights symbol under cursor",
@@ -93,10 +89,6 @@ function M.auto_highlight_document(bufnr)
 
     vim.api.nvim_create_autocmd("CursorMoved", {
         callback = vim.lsp.buf.clear_references,
-        -- callback = function()
-        --     vim.lsp.buf.clear_references()
-        --     vim.notify("highlight removed")
-        -- end,
         group = g,
         buffer = bufnr,
         desc = "Removes document highlights from current buffer.",

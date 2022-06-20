@@ -81,6 +81,11 @@ return require("packer").startup(function(use)
     use("zsugabubus/crazy8.nvim") -- this plugin works with no configuration
 
     use({
+        "mbbill/undotree",
+        config = function() end,
+    })
+
+    use({
         "phaazon/hop.nvim",
         branch = "v1",
         config = function()
@@ -106,6 +111,7 @@ return require("packer").startup(function(use)
     use({
         "norcalli/nvim-colorizer.lua",
         config = function()
+            --bug: stop working after change colorscheme
             require("colorizer").setup()
         end,
     })
@@ -113,7 +119,8 @@ return require("packer").startup(function(use)
     use({
         -- "nvim-lualine/lualine.nvim",
         "diegodox/lualine.nvim",
-        branch = "tabline-last-sepalator",
+        branch = "winbar",
+        after = "nvim-gps",
         requires = require("rc.plugins.config.lualine").requires,
         config = function()
             require("rc.plugins.config.lualine").config()
@@ -138,7 +145,6 @@ return require("packer").startup(function(use)
 
     use({
         "lukas-reineke/indent-blankline.nvim",
-        after = "nvim-treesitter",
         config = function()
             require("rc.plugins.config.indent_line").config()
         end,
@@ -152,27 +158,36 @@ return require("packer").startup(function(use)
         end,
     })
 
-    use({
-        "neovim/nvim-lspconfig",
-        config = function()
-            require("rc.plugins.config.lspconfig").config()
-        end,
-    })
+    use("neovim/nvim-lspconfig")
 
     use({
         "williamboman/nvim-lsp-installer",
-        after = { "nvim-lspconfig", "cmp-nvim-lsp" },
+        requires = require("rc.plugins.config.lsp-installer").requires,
         config = function()
             require("rc.plugins.config.lsp-installer").config()
         end,
     })
 
     use({
-        "jose-elias-alvarez/null-ls.nvim",
-        after = { "nvim-lspconfig", "cmp-nvim-lsp" },
+        "ray-x/lsp_signature.nvim",
+        config = function()
+            require("rc.plugins.config.lsp-signature").config()
+        end,
+    })
+
+    use({
+        -- "jose-elias-alvarez/null-ls.nvim",
+        "diegodox/null-ls.nvim",
         require = require("rc.plugins.config.null-ls").requires,
         config = function()
             require("rc.plugins.config.null-ls").config()
+        end,
+    })
+
+    use({
+        "smjonas/inc-rename.nvim",
+        config = function()
+            require("inc_rename").setup()
         end,
     })
 
@@ -185,12 +200,57 @@ return require("packer").startup(function(use)
     })
 
     use({
+        "SmiteshP/nvim-gps",
+        after = "nvim-treesitter",
+    })
+
+    use({
+        "EthanJWright/toolwindow.nvim",
+        config = function()
+            require("rc.plugins.config.toolwindow_nvim").config()
+        end,
+    })
+
+    use({
         "akinsho/toggleterm.nvim",
         config = function()
             require("rc.plugins.config.toggleterm").config()
         end,
     })
 
+    use({
+        "kevinhwang91/rnvimr",
+        -- requires = require("rc.plugins.config.rnvimr").requires,
+        config = function()
+            require("rc.plugins.config.rnvimr").config()
+        end,
+    })
+
+    use({
+        "kdheepak/lazygit.nvim",
+        requires = require("rc.plugins.config.lazygit_nvim").requires,
+        config = function()
+            require("rc.plugins.config.lazygit_nvim").config()
+        end,
+    })
+
+    use({
+        "sindrets/diffview.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            require("diffview").setup()
+        end,
+    })
+
+    use({
+        "folke/trouble.nvim",
+        config = function()
+            require("rc.plugins.config.trouble_nvim").config()
+        end,
+    })
+    -- use({
+    --     "mfussenegger/nvim-dap",
+    -- })
 
     use({
         "iamcco/markdown-preview.nvim",

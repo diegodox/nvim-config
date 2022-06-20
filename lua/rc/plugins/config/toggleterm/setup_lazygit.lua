@@ -3,6 +3,14 @@ return function()
     local lazygit = require("rc.plugins.config.toggleterm.utils").new_terminal({
         cmd = "lazygit",
         direction = "float",
+        ---@param lazygit Terminal
+        on_open = function(lazygit)
+            require("rc.plugins.config.toggleterm.utils").close_autocmd(
+                { "WinLeave", "TabLeave" },
+                lazygit,
+                { desc = "Close LazyGit Before Leave Buffer", buffer = lazygit.bufnr }
+            )
+        end,
     })
 
     vim.api.nvim_create_user_command("ToggleLazygit", function()

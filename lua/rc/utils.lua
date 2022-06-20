@@ -15,18 +15,18 @@ end
 
 local function set_transparent()
     if not vim.g.transparent_bg then
-        vim.notify("not apply transparent", vim.lsp.log_levels.TRACE)
+        -- vim.notify("not apply transparent", vim.lsp.log_levels.TRACE)
         vim.cmd("colorscheme " .. vim.g.colors_name)
         return
     end
     if vim.g.neovide then
-        vim.notify("apply neovide transparent", vim.lsp.log_levels.TRACE)
+        -- vim.notify("apply neovide transparent", vim.lsp.log_levels.TRACE)
         vim.g.neovide_transparency = 0.9
         vim.cmd("highlight StartifyPath guibg=none")
         vim.cmd("highlight WarningMsg guibg=none")
         vim.cmd("highlight Error guibg=none")
     else
-        vim.notify("apply term neovim transparent", vim.lsp.log_levels.TRACE)
+        -- vim.notify("apply term neovim transparent", vim.lsp.log_levels.TRACE)
         vim.cmd("highlight Normal ctermbg=none guibg=none")
         vim.cmd("highlight NonText ctermbg=none guibg=none")
         vim.cmd("highlight EndOfBuffer ctermbg=none guibg=none")
@@ -61,6 +61,14 @@ end
 
 -- set highlight
 function M.set_colorscheme()
+    -- copy Normal highlight with background into NormalUntransparent
+    vim.cmd("hi link NormalUntransparent Normal")
+    vim.cmd([[exec 'hi NormalUntransparent ' .
+                \' guifg=' . synIDattr(synIDtrans(hlID('Normal')), 'fg', 'gui') .
+                \' ctermfg=' . synIDattr(synIDtrans(hlID('Normal')), 'fg', 'cterm') .
+                \' guibg=' . synIDattr(synIDtrans(hlID('Normal')), 'bg', 'gui') .
+                \' ctermbg=' . synIDattr(synIDtrans(hlID('Normal')), 'bg', 'cterm')]])
+
     set_transparent()
     require("rc.lsp-handler").def_reference_highlight()
 end
