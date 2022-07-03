@@ -10,6 +10,7 @@ in
   config = {
     home.sessionVariables.EDITOR = "nvim";
     home.sessionVariables.VISUAL = "nvim";
+    programs.fish.shellAbbrs.v = "nvim";
 
     # Overlay neovim by neovim nightly
     nixpkgs.overlays = [
