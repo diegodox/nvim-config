@@ -1,4 +1,5 @@
 local M = {
+    is_ime_available = nil,
     last_ime_status = nil,
     last_filetype = nil,
 }
@@ -27,6 +28,9 @@ end
 
 ---@return boolean?
 function M.is_ime_on()
+    if not M.is_ime_available then
+        return nil
+    end
     local status = os_capture("fcitx5-remote")
     if status == "2" then
         return false
@@ -83,6 +87,10 @@ function M.restore_ime_status()
 end
 
 function M.setup()
+    M.is_ime_available = os.execute("fcitx5-remote") == 0
+    if not M.is_ime_available then
+        return
+    end
     vim.api.nvim_create_autocmd("WinLeave", {
         ---@param opts AutocmdArg
         callback = function(opts)
