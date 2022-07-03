@@ -40,7 +40,7 @@ vim.o.list = true
 vim.o.listchars = "tab:▸ ,trail:·"
 vim.o.scrolloff = 5
 vim.o.sidescrolloff = 5
-vim.o.cmdheight = 0
+-- vim.o.cmdheight = 0
 
 -- window settings
 vim.o.splitbelow = true
