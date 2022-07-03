@@ -1,12 +1,16 @@
 { pkgs, ... }:
 
+let
+  neovim-nightly = import
+    (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    });
+in
 {
   config = {
     # Overlay neovim by neovim nightly
     nixpkgs.overlays = [
-      (import (builtins.fetchTarball {
-        url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-      }))
+      neovim-nightly
     ];
 
     # Enable neovim
