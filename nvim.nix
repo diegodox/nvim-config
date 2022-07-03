@@ -8,6 +8,9 @@ let
 in
 {
   config = {
+    home.sessionVariables.EDITOR = "nvim";
+    home.sessionVariables.VISUAL = "nvim";
+
     # Overlay neovim by neovim nightly
     nixpkgs.overlays = [
       neovim-nightly
