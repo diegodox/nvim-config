@@ -1,10 +1,9 @@
 { pkgs, ... }:
 
 let
-  neovim-nightly = import
-    (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    });
+  neovim-nightly = import (builtins.fetchTarball {
+    url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+  });
 in
 {
   config = {
