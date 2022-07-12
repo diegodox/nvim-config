@@ -25,6 +25,9 @@ function M.keymap(bufnr)
     local function open_diagnostic()
         vim.diagnostic.open_float(nil, { focusable = true })
     end
+    local function increname()
+        require("inc_rename").rename({ default = vim.fn.expand("<cword>") })
+    end
     require("rc.plugins.config.which-key").pregister(
         { l = { name = "LSP" } },
         { prefix = "<Leader>" },
@@ -42,7 +45,7 @@ function M.keymap(bufnr)
     vim.keymap.set("n", "<Leader>li", vim.lsp.buf.implementation, { desc = "Implementation", buffer = bufnr })
     vim.keymap.set("n", "<Leader>lw", open_diagnostic, { desc = "Diagnostic", buffer = bufnr })
     vim.keymap.set("n", "<Leader>lf", vim.lsp.buf.format, { desc = "Format", buffer = bufnr })
-    vim.keymap.set("n", "<F2>", ":IncRename ", { desc = "Rename", buffer = bufnr })
+    vim.keymap.set("n", "<F2>", increname, { desc = "Rename", buffer = bufnr })
 end
 
 ---@param servername string
