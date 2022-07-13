@@ -34,7 +34,7 @@ local function setup()
         vim.notify_once("plugin 'telescope' found, but 'telescope.actions' not found", vim.log.levels.WARN)
         return
     end
-    telescope.setup({
+    local telescope_opts = {
         defaults = {
             vimgrep_arguments = {
                 "rg",
@@ -83,7 +83,9 @@ local function setup()
                 },
             },
         },
-    })
+    }
+
+    telescope.setup(telescope_opts)
 
     vim.cmd("highlight link TelescopeNormal NormalUntransparent")
 end
