@@ -104,6 +104,7 @@ M.keymap = {
             local threshold = 170
             local ok, _ = pcall(builtin.git_files, {
                 layout_strategy = dynamic_layout_strategy(threshold),
+                show_untracked = true,
             })
             if not ok then
                 vim.notify("Not in git directory, call find_files instead", vim.log.levels.INFO)
