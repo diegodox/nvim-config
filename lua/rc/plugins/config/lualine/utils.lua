@@ -228,7 +228,7 @@ M.modules = {
         cond = function()
             local ok, signature = pcall(require, "lsp_signature")
             if not ok then
-                return ""
+                return false
             end
             return signature.status_line().label ~= ""
         end,
