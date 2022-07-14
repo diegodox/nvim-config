@@ -186,11 +186,11 @@ M.modules = {
     ime_status = function()
         local status = require("rc.fcitx5").is_ime_on()
         if not status == nil then
-            return "?"
+            return "??"
         elseif status == true then
-            return "J"
+            return "JP"
         end
-        return "E"
+        return "EN"
     end,
 
     session = { -- current session
