@@ -66,10 +66,7 @@ function M.handlers(servername)
     }
 
     -- LSP settings (for overriding per client)
-    local handlers = {
-        ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = nil }),
-        ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
-    }
+    local handlers = {}
     if servername ~= "null-ls" then
         handlers["$/progress"] = require("rc.plugins.config.notify.lsp").notify_lsp_progress_handler
     end
