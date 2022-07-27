@@ -51,8 +51,6 @@ end
 ---@param servername string
 ---@return table
 function M.handlers(servername)
-    -- vim.api.nvim_create_autocmd("colorscheme", { callback = vim.cmd("* highlight NormalFloat guibg=#1f2335") })
-    -- vim.api.nvim_create_autocmd("colorscheme", { callback = vim.cmd("* highlight FloatBorder guibg=#1f2335") })
     vim.cmd("autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335")
     vim.cmd("autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335")
 
@@ -101,9 +99,8 @@ end
 ---@param client table
 ---@param bufnr number
 function M.on_attach_format(client, bufnr)
-    local group = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
     vim.api.nvim_create_autocmd("BufWritePre", {
-        group = group,
+        group = vim.api.nvim_create_augroup("LspFormatting", { clear = false }),
         callback = function()
             vim.lsp.buf.format({
                 filter = function(clients)
