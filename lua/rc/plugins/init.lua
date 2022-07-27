@@ -176,11 +176,25 @@ return require("packer").startup(function(use)
     })
 
     use({
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+            require("rc.plugins.config.lsplines").config()
+        end,
+    })
+
+    use({
         -- "jose-elias-alvarez/null-ls.nvim",
         "diegodox/null-ls.nvim",
         require = require("rc.plugins.config.null-ls").requires,
         config = function()
             require("rc.plugins.config.null-ls").config()
+        end,
+    })
+
+    use({
+        "mfussenegger/nvim-lint",
+        config = function()
+            require("rc.plugins.config.nvimlint").config()
         end,
     })
 

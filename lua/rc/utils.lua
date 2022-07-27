@@ -71,6 +71,7 @@ function M.set_colorscheme()
 
     set_transparent()
     require("rc.lsp-handler").def_reference_highlight()
+    require("rc.plugins.config.lsplines").highlight()
 end
 
 -- create autocommand that automatically set background transparent after set colorscheme
