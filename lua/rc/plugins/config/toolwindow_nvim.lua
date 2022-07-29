@@ -9,6 +9,7 @@ local keymap_prefix = "<C-t>"
 ---@field open_fn function
 
 ---@class keymap_arg
+---@field mode string|table
 ---@field key string
 ---@field func function | string
 ---@field desc string
