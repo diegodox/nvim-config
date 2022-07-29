@@ -183,8 +183,7 @@ return require("packer").startup(function(use)
     })
 
     use({
-        -- "jose-elias-alvarez/null-ls.nvim",
-        "diegodox/null-ls.nvim",
+        "jose-elias-alvarez/null-ls.nvim",
         require = require("rc.plugins.config.null-ls").requires,
         config = function()
             require("rc.plugins.config.null-ls").config()
