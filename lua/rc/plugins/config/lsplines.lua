@@ -20,11 +20,8 @@ function M.config()
             M.show_diagnostic()
         end,
     })
-
-    M.cargo_check_autocmd()
 end
 
----comment
 ---@param name string
 ---@return number?
 local function get_namespace_by_name(name)
@@ -56,7 +53,8 @@ function M.hide_diagnostic(name, should_fallback)
     end
 end
 
-function M.cargo_check_autocmd()
+---@param name string
+function M.cargo_autocmd(name)
     -- Because of namespace configuration has higher priority than finally global configuration,
     -- we need to set this again.
     vim.api.nvim_create_autocmd("InsertEnter", {
@@ -65,7 +63,7 @@ function M.cargo_check_autocmd()
         pattern = "*.rs",
         callback = function()
             -- diagnostic_config_by_name({ virtual_lines = false }, "cargo_clippy")
-            M.hide_diagnostic("cargo_clippy")
+            M.hide_diagnostic(name)
         end,
     })
 
@@ -81,7 +79,7 @@ function M.cargo_check_autocmd()
         callback = function()
             if vim.bo.filetype == "rust" and not vim.bo.modified then
                 -- diagnostic_config_by_name({ virtual_lines = true }, "cargo_clippy")
-                M.show_diagnostic("cargo_clippy", { virtual_lines = true })
+                M.show_diagnostic(name, { virtual_lines = true })
             end
         end,
     })
@@ -98,9 +96,9 @@ function M.cargo_check_autocmd()
         callback = function()
             -- diagnostic_config_by_name({ virtual_lines = not vim.bo.modified }, "cargo_clippy")
             if vim.bo.modified then
-                M.hide_diagnostic("cargo_clippy")
+                M.hide_diagnostic(name)
             else
-                M.show_diagnostic("cargo_clippy", { virtual_lines = true })
+                M.show_diagnostic(name, { virtual_lines = true })
             end
         end,
     })

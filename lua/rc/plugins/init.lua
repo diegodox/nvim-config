@@ -191,7 +191,7 @@ return require("packer").startup(function(use)
     })
 
     use({
-        "mfussenegger/nvim-lint",
+        "diegodox/nvim-lint",
         config = function()
             require("rc.plugins.config.nvimlint").config()
         end,
