@@ -29,7 +29,7 @@ local enhance_server_opts = {
 ---@param server string
 local function setup_server(server)
     local enhance_opts = enhance_server_opts[server]
-    require("rc.plugins.config.lsp_config").server_setup(server, enhance_opts)
+    require("rc.plugins.config.lsp_config").setup_server(server, enhance_opts)
 end
 
 function M.config()

@@ -34,7 +34,7 @@ end
 
 ---@param server string
 ---@param opts table?
-function M.server_setup(server, opts)
+function M.setup_server(server, opts)
     local lspconfig = require("lspconfig")
     opts = M.server_opts(server, opts)
     lspconfig[server].setup(opts)
