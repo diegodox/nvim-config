@@ -161,10 +161,18 @@ return require("packer").startup(function(use)
     use("neovim/nvim-lspconfig")
 
     use({
-        "williamboman/nvim-lsp-installer",
-        requires = require("rc.plugins.config.lsp-installer").requires,
+        "williamboman/mason.nvim",
+        requires = require("rc.plugins.config.mason").requires,
         config = function()
-            require("rc.plugins.config.lsp-installer").config()
+            require("rc.plugins.config.mason").config()
+        end,
+    })
+
+    use({
+        "simrat39/rust-tools.nvim",
+        requires = require("rc.plugins.config.rust-tools").requires,
+        config = function()
+            require("rc.plugins.config.rust-tools").setup()
         end,
     })
 
