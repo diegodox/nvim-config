@@ -199,13 +199,6 @@ return require("packer").startup(function(use)
     })
 
     use({
-        "diegodox/nvim-lint",
-        config = function()
-            require("rc.plugins.config.nvimlint").config()
-        end,
-    })
-
-    use({
         "smjonas/inc-rename.nvim",
         config = function()
             require("inc_rename").setup()
