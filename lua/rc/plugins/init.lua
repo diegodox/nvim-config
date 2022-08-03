@@ -94,6 +94,15 @@ return require("packer").startup(function(use)
     })
 
     use({
+        "abecodes/tabout.nvim",
+        after = "nvim-cmp",
+        config = function()
+            ---@diagnostic disable-next-line: missing-parameter
+            require("tabout").setup()
+        end,
+    })
+
+    use({
         "lewis6991/gitsigns.nvim",
         requires = require("rc.plugins.config.gitsigns").requires,
         config = function()
