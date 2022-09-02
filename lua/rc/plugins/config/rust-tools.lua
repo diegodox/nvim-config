@@ -9,7 +9,7 @@ local function keymap(bufnr)
         { prefix = "<Leader>" },
         "Setup rust keymap without 'which-key' bufnr: " .. bufnr
     )
-    vim.keymap.set("n", "<Leader>rp", "<cmd>RustParentMoudle<CR>", { desc = "Parent Module", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>rp", "<cmd>RustParentModule<CR>", { desc = "Parent Module", buffer = bufnr })
     vim.keymap.set("n", "<Leader>rr", "<cmd>RustRunnables<CR>", { desc = "Runnables", buffer = bufnr })
     vim.keymap.set("n", "<Leader>rc", "<cmd>RustOpenCargo<CR>", { desc = "Open Cargo.toml", buffer = bufnr })
 end
