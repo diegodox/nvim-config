@@ -2,6 +2,18 @@ local M = {}
 
 M.requires = { "mattn/webapi-vim" }
 
+---@param bufnr number
+local function keymap(bufnr)
+    require("rc.plugins.config.which-key").pregister(
+        { r = { name = "Rust" } },
+        { prefix = "<Leader>" },
+        "Setup rust keymap without 'which-key' bufnr: " .. bufnr
+    )
+    vim.keymap.set("n", "<Leader>rp", "<cmd>RustParentMoudle<CR>", { desc = "Parent Module", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>rr", "<cmd>RustRunnables<CR>", { desc = "Runnables", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>rc", "<cmd>RustOpenCargo", { desc = "Open Cargo.toml", buffer = bufnr })
+end
+
 function M.setup()
     local cfg = {
         tools = { inlay_hints = { highlight = "NonText" } },
@@ -21,6 +33,11 @@ function M.setup()
             },
         }),
     }
+    local on_attach = cfg.server.on_attach
+    cfg.server.on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        keymap(bufnr)
+    end
     require("rust-tools").setup(cfg)
 end
 
