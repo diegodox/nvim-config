@@ -11,7 +11,7 @@ local function keymap(bufnr)
     )
     vim.keymap.set("n", "<Leader>rp", "<cmd>RustParentMoudle<CR>", { desc = "Parent Module", buffer = bufnr })
     vim.keymap.set("n", "<Leader>rr", "<cmd>RustRunnables<CR>", { desc = "Runnables", buffer = bufnr })
-    vim.keymap.set("n", "<Leader>rc", "<cmd>RustOpenCargo", { desc = "Open Cargo.toml", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>rc", "<cmd>RustOpenCargo<CR>", { desc = "Open Cargo.toml", buffer = bufnr })
 end
 
 function M.setup()
