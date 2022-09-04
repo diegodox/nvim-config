@@ -14,14 +14,14 @@ function M.config()
     -- Make Neovim wipe the buffers corresponding to the files deleted by Ranger
     vim.g.rnvimr_enable_bw = 1
     -- Customize the initial layout
-    vim.cmd([[let g:rnvimr_layout = {
-                \ 'relative': 'editor',
-                \ 'width': float2nr(round(0.85 * &columns)),
-                \ 'height': float2nr(round(0.85 * &lines)),
-                \ 'col': float2nr(round(0.075 * &columns)),
-                \ 'row': float2nr(round(0.075 * &lines)),
-                \ 'style': 'minimal'
-                \ }]])
+    vim.g.rnvimr_layout = {
+        style = "minimal",
+        relative = "editor",
+        width = math.ceil(0.85 * vim.o.columns),
+        height = math.ceil(0.85 * vim.o.lines),
+        col = math.ceil(0.075 * vim.o.columns),
+        row = math.ceil(0.075 * vim.o.lines),
+    }
     -- " Add views for Ranger to adapt the size of floating window
     -- let g:rnvimr_ranger_views = [
     --             \ {'minwidth': 90, 'ratio': []},
