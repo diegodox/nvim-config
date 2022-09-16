@@ -83,21 +83,6 @@ function M.hide(win_width)
     end
 end
 
----return true if gps successfully setup gps module, otherwise false
----@return boolean
-function M.setup_gps()
-    local ok, gps_plug = pcall(require, "nvim-gps")
-    if not ok then
-        vim.notify_once("plugin 'nvim-gps' not found")
-        return ok
-    end
-    M.gps_plug = gps_plug
-    M.gps_plug.setup({
-        separator = "  ", -- match to lualine components separators
-    })
-    return ok
-end
-
 ---workspace diagnostics
 ---@return LualineDiagnostic
 local function workspace_diag_source()
@@ -170,11 +155,6 @@ M.modules = {
         end,
     },
 
-    ---@param gps table
-    ---@return table
-    gps = function(gps)
-        return { gps.get_location, cond = gps.is_available }
-    end, -- gps module
 
     cwd = { -- current working directory
         "vim.fn.getcwd()",

@@ -2,7 +2,6 @@ local M = {} -- lualine configuration
 
 M.requires = { -- plugins required for lualine
     "nvim-treesitter/nvim-treesitter",
-    "SmiteshP/nvim-gps",
     "kyazdani42/nvim-web-devicons",
 }
 
@@ -12,12 +11,18 @@ function M.config()
 
     local utils = require("rc.plugins.config.lualine.utils")
     utils.highlight_autocmd()
-    utils.setup_gps()
     local mod = utils.modules
     require("lualine").setup({
         options = {
             section_separators = { left = "", right = "" },
             globalstatus = true,
+            refresh = {
+                statusline = 300,
+                winbar = 300,
+            },
+            disabled_filetypes = {
+                winbar = { "toggleterm", "Trouble" },
+            },
         },
         sections = {
             lualine_a = { "mode", mod.branch },
@@ -29,7 +34,7 @@ function M.config()
                 mod.center,
                 mod.signature_label,
             },
-            lualine_x = { "diff", mod.workspace_diagnostics },
+            lualine_x = { { "diff", source = vim.b.gitsigns_head }, mod.workspace_diagnostics },
             lualine_y = { { "location", cond = utils.hide(200) }, mod.tabs, mod.ime_status },
             lualine_z = {
                 mod.cwd, --[[ mod.session ]]
@@ -46,19 +51,18 @@ function M.config()
         winbar = {
             lualine_a = { mod.icon, mod.filename({ path = 1 }) },
             lualine_b = {},
-            lualine_c = { mod.gps(utils.gps_plug) },
+            lualine_c = {},
             lualine_x = {
                 { "encoding", cond = utils.hide(200) },
                 { "fileformat", cond = utils.hide(200) },
                 { "filetype", cond = utils.hide(200) },
-                "diff",
+                { "diff", source = vim.b.gitsigns_status_dict },
                 "diagnostics",
             },
             lualine_y = {},
             lualine_z = {},
         },
     })
-    utils.setup_statusline_timer(300)
 end
 
 return M

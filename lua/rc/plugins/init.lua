@@ -126,10 +126,7 @@ return require("packer").startup(function(use)
     })
 
     use({
-        -- "nvim-lualine/lualine.nvim",
-        "diegodox/lualine.nvim",
-        branch = "winbar",
-        after = "nvim-gps",
+        "nvim-lualine/lualine.nvim",
         requires = require("rc.plugins.config.lualine").requires,
         config = function()
             require("rc.plugins.config.lualine").config()
