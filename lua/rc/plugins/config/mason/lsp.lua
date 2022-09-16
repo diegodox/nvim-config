@@ -41,7 +41,8 @@ local enhance_server_opts = {
 
 ---@param server string
 local function setup_server(server)
-    local enhance_opts = enhance_server_opts[server]
+    local enhance_opts = enhance_server_opts[server] or {}
+    enhance_opts.on_attach = require("rc.plugins.config.navic").on_attach
     require("rc.plugins.config.lsp_config").setup_server(server, enhance_opts)
 end
 
