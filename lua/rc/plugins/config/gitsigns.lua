@@ -14,7 +14,7 @@ function M.config()
 
     gitsigns.setup({
         numhl = true,
-        current_line_blame = true,
+        current_line_blame = false,
         current_line_blame_opts = { delay = 100 },
         sign_priority = 100,
         on_attach = function(bufnr)
