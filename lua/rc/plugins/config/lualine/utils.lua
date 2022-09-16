@@ -155,6 +155,7 @@ M.modules = {
         end,
     },
 
+    navic = require("rc.plugins.config.navic").lualine_widget,
 
     cwd = { -- current working directory
         "vim.fn.getcwd()",

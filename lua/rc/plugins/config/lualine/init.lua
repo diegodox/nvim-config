@@ -2,6 +2,7 @@ local M = {} -- lualine configuration
 
 M.requires = { -- plugins required for lualine
     "nvim-treesitter/nvim-treesitter",
+    "SmiteshP/nvim-navic",
     "kyazdani42/nvim-web-devicons",
 }
 
@@ -51,7 +52,7 @@ function M.config()
         winbar = {
             lualine_a = { mod.icon, mod.filename({ path = 1 }) },
             lualine_b = {},
-            lualine_c = {},
+            lualine_c = { mod.navic() },
             lualine_x = {
                 { "encoding", cond = utils.hide(200) },
                 { "fileformat", cond = utils.hide(200) },
