@@ -18,14 +18,16 @@ end
 function M.server_opts(server, opts)
     local lsphandler = require("rc.lsp-handler")
     opts = opts or {}
+    local on_attach_ext = opts.on_attach or function() end
+    opts.on_attach = function(client, bufnr)
+        lsphandler.on_attach_format(client, bufnr)
+        if client.supports_method("textDocument/documentHighlight") then
+            lsphandler.auto_highlight_document(bufnr)
+        end
+        M.on_attach_keymap(bufnr)
+        on_attach_ext(client, bufnr)
+    end
     opts = vim.tbl_deep_extend("keep", opts, {
-        on_attach = function(client, bufnr)
-            lsphandler.on_attach_format(client, bufnr)
-            if client.supports_method("textDocument/documentHighlight") then
-                lsphandler.auto_highlight_document(bufnr)
-            end
-            M.on_attach_keymap(bufnr)
-        end,
         capabilities = M.update_capabilities(lsphandler.capabilities()),
         handlers = lsphandler.handlers(server),
     })
