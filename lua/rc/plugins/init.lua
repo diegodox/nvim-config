@@ -213,8 +213,9 @@ return require("packer").startup(function(use)
 
     use({
         "smjonas/inc-rename.nvim",
+        after = "dressing.nvim",
         config = function()
-            require("inc_rename").setup()
+            require("rc.plugins.config.increname").setup()
         end,
     })
 
