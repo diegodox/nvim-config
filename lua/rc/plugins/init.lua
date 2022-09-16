@@ -142,6 +142,13 @@ return require("packer").startup(function(use)
     })
 
     use({
+        "nvim-treesitter/nvim-treesitter-context",
+        config = function()
+            require("rc.plugins.config.treesitter-context").config()
+        end,
+    })
+
+    use({
         "p00f/nvim-ts-rainbow",
         after = "nvim-treesitter",
         config = function()
