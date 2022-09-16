@@ -6,7 +6,7 @@ M.requires = { "williamboman/mason-lspconfig.nvim" }
 local ensure_installed = { "rust_analyzer", "sumneko_lua", "pyright", "texlab", "taplo", "clangd", "cmake" }
 
 local enhance_server_opts = {
-    ["sumneko_lua"] = {
+    sumneko_lua = {
         settings = {
             Lua = {
                 diagnostics = {
@@ -21,7 +21,7 @@ local enhance_server_opts = {
             },
         },
     },
-    ["clangd"] = {
+    clangd = {
         cmd = { "clangd", "--offset-encoding=utf-16" },
     },
 }
