@@ -3,7 +3,7 @@ local M = {}
 M.requires = { "williamboman/mason-lspconfig.nvim" }
 
 -- list of language servers which must installed and configured
-local ensure_installed = { "rust_analyzer", "sumneko_lua", "pyright", "texlab", "taplo", "clangd", "cmake" }
+local ensure_installed = { "rust_analyzer", "sumneko_lua", "texlab", "taplo", "clangd", "cmake" }
 
 local enhance_server_opts = {
     sumneko_lua = {
@@ -23,6 +23,19 @@ local enhance_server_opts = {
     },
     clangd = {
         cmd = { "clangd", "--offset-encoding=utf-16" },
+    },
+    pylsp = {
+        settings = {
+            pylsp = {
+                configurationSources = { "pycodestyle" },
+                plugins = {
+                    pycodestyle = { ignore = { "E501" } },
+                    autopep8 = { enabled = false },
+                    flake8 = { enabled = true, ignore = { "E501" } },
+                    pyflakes = { enabled = false },
+                },
+            },
+        },
     },
 }
 
