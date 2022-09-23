@@ -136,7 +136,9 @@ return require("packer").startup(function(use)
 
     use({
         "nvim-treesitter/nvim-treesitter",
-        run = require("rc.plugins.config.treesitter").run,
+        run = function()
+            require("rc.plugins.config.treesitter").run()
+        end,
         config = function()
             require("rc.plugins.config.treesitter").config()
         end,

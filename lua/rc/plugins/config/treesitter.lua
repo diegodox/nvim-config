@@ -1,7 +1,7 @@
 local M = {}
 
 M.run = function()
-    require("treesitter.install").update()
+    require("treesitter.install").update({ with_sync = true })
 end
 
 -- list of must installed languages
