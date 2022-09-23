@@ -9,9 +9,7 @@ function M.config()
     vim.api.nvim_create_autocmd("BufReadPost", {
         desc = "Try run lint for new buffer",
         group = vim.api.nvim_create_augroup("NvimLint", { clear = true }),
-        callback = function()
-            lint.try_lint()
-        end,
+        callback = function() lint.try_lint() end,
     })
     vim.api.nvim_create_autocmd("BufWritePost", {
         desc = "Try update lint for saved buffer",

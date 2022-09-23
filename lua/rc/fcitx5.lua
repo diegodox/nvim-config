@@ -22,9 +22,7 @@ end
 
 ---@param bufnr number
 ---@return string?
-local function buf_filetype(bufnr)
-    return vim.api.nvim_buf_get_option(bufnr, "filetype")
-end
+local function buf_filetype(bufnr) return vim.api.nvim_buf_get_option(bufnr, "filetype") end
 
 ---@return boolean?
 function M.is_ime_on()
@@ -42,9 +40,7 @@ function M.is_ime_on()
 end
 
 ---remember current ime mode to `last_ime_status`
-function M.store_ime_status()
-    M.last_ime_status = M.is_ime_on()
-end
+function M.store_ime_status() M.last_ime_status = M.is_ime_on() end
 
 ---call system function to make ime off
 ---if parameter `store` is true, remember ime status before this function called
@@ -93,9 +89,7 @@ function M.setup()
     end
     vim.api.nvim_create_autocmd("WinLeave", {
         ---@param opts AutocmdArg
-        callback = function(opts)
-            M.last_filetype = buf_filetype(opts.buf)
-        end,
+        callback = function(opts) M.last_filetype = buf_filetype(opts.buf) end,
         desc = "Keep last filetype for fcitx5",
     })
 

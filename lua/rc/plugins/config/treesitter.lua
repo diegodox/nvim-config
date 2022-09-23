@@ -1,8 +1,6 @@
 local M = {}
 
-M.run = function()
-    require("treesitter.install").update({ with_sync = true })
-end
+function M.run() require("treesitter.install").update({ with_sync = true }) end
 
 -- list of must installed languages
 local ensure_installed = {
@@ -30,8 +28,6 @@ function M.setup()
 end
 
 -- configure treesitter
-function M.config()
-    M.setup()
-end
+function M.config() M.setup() end
 
 return M

@@ -7,9 +7,7 @@ local M = {
 --- attach navic to lsp
 ---@param client string
 ---@param bufnr number
-function M.on_attach(client, bufnr)
-    navic.attach(client, bufnr)
-end
+function M.on_attach(client, bufnr) navic.attach(client, bufnr) end
 
 function M.config()
     navic.setup()

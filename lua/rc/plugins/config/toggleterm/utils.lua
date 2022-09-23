@@ -25,9 +25,7 @@ function M.close_autocmd(event, term, opts)
     opts = opts or {}
     opts = vim.tbl_deep_extend("keep", opts, {
         group = group,
-        callback = function()
-            term:close()
-        end,
+        callback = function() term:close() end,
     })
     vim.api.nvim_create_autocmd(event, opts)
 end

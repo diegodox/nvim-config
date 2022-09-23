@@ -22,9 +22,7 @@ end
 ---Set general LSP keybinding
 ---@param bufnr number
 function M.keymap(bufnr)
-    local function open_diagnostic()
-        vim.diagnostic.open_float(nil, { focusable = true })
-    end
+    local function open_diagnostic() vim.diagnostic.open_float(nil, { focusable = true }) end
     local increname = require("rc.plugins.config.increname").increname
     require("rc.plugins.config.which-key").pregister(
         { l = { name = "LSP" } },
@@ -111,8 +109,6 @@ function M.on_attach_format(client, bufnr)
 end
 
 ---@return table<string, string|table|boolean|function> capabilities
-function M.capabilities()
-    return vim.lsp.protocol.make_client_capabilities()
-end
+function M.capabilities() return vim.lsp.protocol.make_client_capabilities() end
 
 return M

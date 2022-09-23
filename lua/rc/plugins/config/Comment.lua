@@ -12,8 +12,6 @@ end
 
 -- configure Comment.nvim
 -- call setup
-function M.config()
-    M.setup()
-end
+function M.config() M.setup() end
 
 return M

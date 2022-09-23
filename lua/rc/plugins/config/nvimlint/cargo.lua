@@ -170,17 +170,13 @@ local function new_clippy(args, hook)
             desc = "Run cargo clippy on file read",
             group = vim.api.nvim_create_augroup("CargoClippy", { clear = false }),
             pattern = "*.rs",
-            callback = function()
-                lint.lint(clippy)
-            end,
+            callback = function() lint.lint(clippy) end,
         })
         vim.api.nvim_create_autocmd("BufWritePost", {
             desc = "Run cargo clippy on file save",
             group = vim.api.nvim_create_augroup("CargoClippy", { clear = false }),
             pattern = "*.rs",
-            callback = function()
-                lint.lint(clippy)
-            end,
+            callback = function() lint.lint(clippy) end,
         })
         hook(clippy)
     end
@@ -192,9 +188,7 @@ function M.configure_clippy(hook)
         desc = "automatically add clippy  when rust_analyzer is attached.",
         group = vim.api.nvim_create_augroup("CargoLint", { clear = true }),
         pattern = "*.rs",
-        callback = function(args)
-            new_clippy(args, hook)
-        end,
+        callback = function(args) new_clippy(args, hook) end,
     })
 end
 

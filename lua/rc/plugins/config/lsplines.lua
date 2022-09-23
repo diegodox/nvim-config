@@ -9,16 +9,12 @@ function M.config()
     })
 
     vim.api.nvim_create_autocmd("InsertEnter", {
-        callback = function()
-            M.hide_diagnostic()
-        end,
+        callback = function() M.hide_diagnostic() end,
     })
 
     vim.api.nvim_create_autocmd("ModeChanged", {
         pattern = "i:*",
-        callback = function()
-            M.show_diagnostic()
-        end,
+        callback = function() M.show_diagnostic() end,
     })
 end
 
@@ -104,8 +100,6 @@ function M.cargo_autocmd(name)
     })
 end
 
-function M.highlight()
-    vim.cmd("highlight! default link DiagnosticVirtualTextHint NonText")
-end
+function M.highlight() vim.cmd("highlight! default link DiagnosticVirtualTextHint NonText") end
 
 return M

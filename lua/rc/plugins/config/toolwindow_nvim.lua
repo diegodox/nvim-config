@@ -62,19 +62,13 @@ local function register_trouble()
     for _, map in ipairs(maps) do
         register({
             name = map.name,
-            open_fn = function()
-                trouble.open(map.open)
-            end,
-            close_fn = function()
-                trouble.close()
-            end,
+            open_fn = function() trouble.open(map.open) end,
+            close_fn = function() trouble.close() end,
             plugin = nil,
         }, {
             mode = "n",
             key = keymap_prefix .. map.key,
-            func = function()
-                toolwindow.open_window(map.name)
-            end,
+            func = function() toolwindow.open_window(map.name) end,
             desc = map.desc,
         })
     end
@@ -84,13 +78,19 @@ function M.config()
     local toolwindow = require("toolwindow")
     -- require("rc.plugins.config.which-key").pregister({ keymap_prefix = { name = "toolwindow" } })
 
-    vim.keymap.set("n", keymap_prefix .. keymap_prefix, function()
-        toolwindow.close()
-    end, { desc = "Close toolwindow" })
+    vim.keymap.set(
+        "n",
+        keymap_prefix .. keymap_prefix,
+        function() toolwindow.close() end,
+        { desc = "Close toolwindow" }
+    )
 
-    vim.keymap.set("n", keymap_prefix .. "<CR>", function()
-        toolwindow.open_window("term", nil)
-    end, { desc = "Open term" })
+    vim.keymap.set(
+        "n",
+        keymap_prefix .. "<CR>",
+        function() toolwindow.open_window("term", nil) end,
+        { desc = "Open term" }
+    )
 
     register_trouble()
 end

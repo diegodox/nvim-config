@@ -12,9 +12,7 @@ end
 
 ---@param term Terminal
 local function create_user_command(term)
-    vim.api.nvim_create_user_command("ToggleTerm", function()
-        term:toggle(nil, nil)
-    end, { desc = "Toggle terminal" })
+    vim.api.nvim_create_user_command("ToggleTerm", function() term:toggle(nil, nil) end, { desc = "Toggle terminal" })
 
     vim.api.nvim_create_user_command("ToggleTermVertical", function()
         if term:is_open() then

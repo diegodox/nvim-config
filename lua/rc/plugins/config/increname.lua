@@ -8,8 +8,6 @@ function M.setup()
     })
 end
 
-function M.increname()
-    return ":IncRename " .. vim.fn.expand("<cword>")
-end
+function M.increname() return ":IncRename " .. vim.fn.expand("<cword>") end
 
 return M

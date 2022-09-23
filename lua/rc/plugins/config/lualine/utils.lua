@@ -150,18 +150,14 @@ M.modules = {
         },
         last_separator = false,
         separator = "",
-        cond = function()
-            return #vim.api.nvim_list_tabpages() > 1
-        end,
+        cond = function() return #vim.api.nvim_list_tabpages() > 1 end,
     },
 
     navic = require("rc.plugins.config.navic").lualine_widget,
 
     cwd = { -- current working directory
         "vim.fn.getcwd()",
-        fmt = function(cwd)
-            return require("rc.utils").path_icon(cwd)
-        end,
+        fmt = function(cwd) return require("rc.utils").path_icon(cwd) end,
     },
 
     ime_status = function()
@@ -176,9 +172,7 @@ M.modules = {
 
     session = { -- current session
         "vim.v.this_session",
-        fmt = function(session_path)
-            return M.replace_empty("[NO SESSION]")(vim.fn.fnamemodify(session_path, ":t"))
-        end,
+        fmt = function(session_path) return M.replace_empty("[NO SESSION]")(vim.fn.fnamemodify(session_path, ":t")) end,
     },
 
     signature_label = {

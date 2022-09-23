@@ -32,9 +32,11 @@ return function()
         end,
     })
 
-    vim.api.nvim_create_user_command("ToggleRanger", function()
-        ranger:toggle(nil, nil)
-    end, { desc = "Toggle floating ranger file manager" })
+    vim.api.nvim_create_user_command(
+        "ToggleRanger",
+        function() ranger:toggle(nil, nil) end,
+        { desc = "Toggle floating ranger file manager" }
+    )
 
     vim.keymap.set("n", "<C-t>b", "<cmd>ToggleRanger<CR>i", { desc = "Toggle floating ranger file manager" })
 end

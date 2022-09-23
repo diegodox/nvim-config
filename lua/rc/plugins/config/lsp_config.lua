@@ -8,9 +8,7 @@ end
 
 ---@param capabilities table<string, string|table|boolean|function> capabilities
 ---@return table<string, string|table|boolean|function> capabilities
-function M.update_capabilities(capabilities)
-    return require("rc.plugins.config.cmp").update_capabilities(capabilities)
-end
+function M.update_capabilities(capabilities) return require("rc.plugins.config.cmp").update_capabilities(capabilities) end
 
 ---@param server string
 ---@param opts table?

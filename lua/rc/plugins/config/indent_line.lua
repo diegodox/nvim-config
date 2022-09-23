@@ -13,9 +13,7 @@ local function highlight()
 end
 
 -- settings
-local function setting()
-    vim.g.indent_blankline_show_trailing_blankline_indent = false
-end
+local function setting() vim.g.indent_blankline_show_trailing_blankline_indent = false end
 
 -- setup indent blank line
 local function setup()

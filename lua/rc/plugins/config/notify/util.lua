@@ -30,18 +30,12 @@ function M.update_spinner(client_id, token)
             replace = notif_data.notification,
         })
 
-        vim.defer_fn(function()
-            M.update_spinner(client_id, token)
-        end, 100)
+        vim.defer_fn(function() M.update_spinner(client_id, token) end, 100)
     end
 end
 
-function M.format_title(title, client_name)
-    return client_name .. (#title > 0 and ": " .. title or "")
-end
+function M.format_title(title, client_name) return client_name .. (#title > 0 and ": " .. title or "") end
 
-function M.format_message(message, percentage)
-    return (percentage and percentage .. "%\t" or "") .. (message or "")
-end
+function M.format_message(message, percentage) return (percentage and percentage .. "%\t" or "") .. (message or "") end
 
 return M

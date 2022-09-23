@@ -14,9 +14,7 @@ function M.config()
         if vim.wo.diff then
             return "]c"
         end
-        vim.schedule(function()
-            gitsigns.prev_hunk()
-        end)
+        vim.schedule(function() gitsigns.prev_hunk() end)
         return "<Ignore>"
     end
 
@@ -24,9 +22,7 @@ function M.config()
         if vim.wo.diff then
             return "[c"
         end
-        vim.schedule(function()
-            gitsigns.prev_hunk()
-        end)
+        vim.schedule(function() gitsigns.prev_hunk() end)
         return "<Ignore>"
     end
 

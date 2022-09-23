@@ -22,9 +22,11 @@ local function setup_notify(notify)
 end
 
 local function register_user_command()
-    vim.api.nvim_create_user_command("NotifyDissmiss", function()
-        require("notify").dismiss({ pending = false })
-    end, { desc = "Dismiss all notification windows currently displayed" })
+    vim.api.nvim_create_user_command(
+        "NotifyDissmiss",
+        function() require("notify").dismiss({ pending = false }) end,
+        { desc = "Dismiss all notification windows currently displayed" }
+    )
 end
 
 function M.config()
@@ -34,9 +36,7 @@ function M.config()
     -- reculclate max size of notification window, based on nvim window size
     local aug = vim.api.nvim_create_augroup("NotifyConf", { clear = true })
     vim.api.nvim_create_autocmd("VimResized", {
-        callback = function()
-            setup_notify(notify)
-        end,
+        callback = function() setup_notify(notify) end,
         group = aug,
     })
 

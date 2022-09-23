@@ -10,17 +10,13 @@ local function setup_rust(dap)
     }
 end
 
-local function sign_define()
-    vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "", linehl = "", numhl = "" })
-end
+local function sign_define() vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "", linehl = "", numhl = "" }) end
 
 local keymap = {
     general = function(dap)
         require("rc.plugins.config.which-key").pregister({ d = { name = "DAP" } }, { prefix = "<Leader>" })
 
-        local set_breakpoint = function()
-            dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-        end
+        local set_breakpoint = function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end
 
         vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint, { desc = "DAP toggle breakpoint" })
         vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "DAP Continue" })
