@@ -148,8 +148,8 @@ local function set_hightlight()
     vim.cmd([[highlight CmpItemKindUnit guibg=NONE guifg=#D4D4D4]])
 end
 
-function M.update_capabilities(capabilities)
-    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+function M.default_capabilities(capabilities)
+    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
     return capabilities
 end
 

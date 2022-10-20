@@ -8,7 +8,7 @@ end
 
 ---@param capabilities table<string, string|table|boolean|function> capabilities
 ---@return table<string, string|table|boolean|function> capabilities
-function M.update_capabilities(capabilities) return require("rc.plugins.config.cmp").update_capabilities(capabilities) end
+function M.default_capabilities(capabilities) return require("rc.plugins.config.cmp").default_capabilities(capabilities) end
 
 ---@param server string
 ---@param opts table?
@@ -26,7 +26,7 @@ function M.server_opts(server, opts)
         on_attach_ext(client, bufnr)
     end
     opts = vim.tbl_deep_extend("keep", opts, {
-        capabilities = M.update_capabilities(lsphandler.capabilities()),
+        capabilities = M.default_capabilities(lsphandler.capabilities()),
         handlers = lsphandler.handlers(server),
     })
     return opts
