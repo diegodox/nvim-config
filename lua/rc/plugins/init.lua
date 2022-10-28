@@ -245,6 +245,11 @@ return require("packer").startup(function(use)
         run = function() vim.fn["mkdp#util#install"]() end,
     })
 
+    use({
+        "gen740/SmoothCursor.nvim",
+        config = function() require("smoothcursor").setup() end,
+    })
+
     -- Automatic setup plugins
     if packer_bootstrap then
         require("packer").sync()
