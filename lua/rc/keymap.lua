@@ -37,4 +37,8 @@ vim.keymap.set(
 -- Easy save
 vim.keymap.set("n", "<C-s>", function() vim.cmd("update") end, { desc = "write buffer" })
 
-vim.cmd("source ~/.config/nvim/winresize.vim")
+for _, k in pairs({ "+", "-", ">", "<" }) do
+    vim.keymap.set("n", "<C-w>" .. k, "<C-w>" .. k .. "<Plug>(resize)", { silent = true, remap = true })
+    vim.keymap.set("n", "<Plug>(resize)" .. k, "<C-w>" .. k .. "<Plug>(resize)", { silent = true })
+end
+vim.keymap.set("n", "<Plug>(resize)", "<Nop>", { silent = true, remap = true })
