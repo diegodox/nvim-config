@@ -151,6 +151,12 @@ return require("packer").startup(function(use)
     })
 
     use({
+        "saecki/crates.nvim",
+        requires = require("rc.plugins.config.crates_nvim").requires,
+        config = function() require("rc.plugins.config.crates_nvim").setup() end,
+    })
+
+    use({
         "ray-x/lsp_signature.nvim",
         config = function() require("rc.plugins.config.lsp-signature").config() end,
     })
