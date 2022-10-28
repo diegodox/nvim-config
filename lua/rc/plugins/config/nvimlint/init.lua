@@ -2,9 +2,9 @@ local M = {}
 
 function M.config()
     local lint = require("lint")
-    require("rc.plugins.config.nvimlint.cargo").configure_clippy(function(clippy)
-        require("rc.plugins.config.lsplines").cargo_autocmd(clippy.name)
-    end)
+    -- require("rc.plugins.config.nvimlint.cargo").configure_clippy(function(clippy)
+    --     require("rc.plugins.config.lsplines").cargo_autocmd(clippy.name)
+    -- end)
     lint.linters_by_ft = {}
     vim.api.nvim_create_autocmd("BufReadPost", {
         desc = "Try run lint for new buffer",

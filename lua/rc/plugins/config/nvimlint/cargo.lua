@@ -96,6 +96,7 @@ end
 
 ---@param args string[]
 local function set_lint_target(args)
+    ---@diagnostic disable-next-line: missing-parameter
     vim.list_extend(args, {
         "--all-features",
         "--examples",
@@ -107,6 +108,7 @@ end
 
 ---@param args string[]
 local function set_output_style(args)
+    ---@diagnostic disable-next-line: missing-parameter
     vim.list_extend(args, {
         "--quiet",
         "--message-format",
@@ -117,6 +119,7 @@ end
 ---@param args string[]
 ---@param root_dir string "rust-analyzer root dir"
 local function set_root_dir(args, root_dir)
+    ---@diagnostic disable-next-line: missing-parameter
     vim.list_extend(args, {
         -- avoid collapsing to rust-analyzer and something else..
         -- by using other other directory
