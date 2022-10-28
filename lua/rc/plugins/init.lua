@@ -111,7 +111,10 @@ return require("packer").startup(function(use)
     use({
         "nvim-treesitter/nvim-treesitter",
         run = function() require("rc.plugins.config.treesitter").run() end,
-        config = function() require("rc.plugins.config.treesitter").config() end,
+        config = function()
+            require("rc.plugins.config.treesitter").config()
+            require("rc.plugins.config.treesitter").highlight_workaround()
+        end,
     })
 
     use({
