@@ -30,6 +30,7 @@ function M.config()
 
     gitsigns.setup({
         numhl = true,
+        signcolumn = false,
         current_line_blame = false,
         current_line_blame_opts = { delay = 100 },
         sign_priority = 100,
