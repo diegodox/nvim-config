@@ -62,9 +62,6 @@ function M.handlers(servername)
 
     -- LSP settings (for overriding per client)
     local handlers = {}
-    if servername ~= "null-ls" then
-        handlers["$/progress"] = require("rc.plugins.config.notify.lsp").notify_lsp_progress_handler
-    end
 
     return handlers
 end
