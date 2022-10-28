@@ -33,6 +33,18 @@ return require("packer").startup(function(use)
     })
 
     use({
+        "levouh/tint.nvim",
+        after = {
+            "vim-code-dark",
+            "dressing.nvim",
+            "alpha-nvim",
+            "lualine.nvim",
+            "gitsigns.nvim",
+        },
+        config = function() require("rc.plugins.config.tint_nvim").config() end,
+    })
+
+    use({
         "rcarriga/nvim-notify",
         config = function() require("rc.plugins.config.notify").config() end,
     })
