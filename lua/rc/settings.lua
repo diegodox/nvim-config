@@ -44,8 +44,6 @@ vim.o.sidescrolloff = 5
 -- window settings
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.winfixheight = true
-vim.o.winfixwidth = true
 
 vim.g.mapleader = " "
 
