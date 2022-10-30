@@ -104,13 +104,13 @@ M.keymap = {
         --Smarter than my old config.
         vim.keymap.set("n", "<C-p>", function()
             local threshold = 170
-            local ok, _ = pcall(builtin.git_files, {
-                layout_strategy = dynamic_layout_strategy(threshold),
-                show_untracked = true,
-            })
-            if not ok then
-                vim.notify("Not in git directory, call find_files instead", vim.log.levels.INFO)
-
+            vim.fn.system("git rev-parse")
+            if vim.v.shell_error == 0 then
+                builtin.git_files({
+                    layout_strategy = dynamic_layout_strategy(threshold),
+                    show_untracked = true,
+                })
+            else
                 local telescope = package.loaded.telescope
                 telescope.extensions.frecency.frecency({
                     layout_strategy = dynamic_layout_strategy(threshold),
