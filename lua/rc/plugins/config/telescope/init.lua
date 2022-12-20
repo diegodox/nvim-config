@@ -76,10 +76,9 @@ local function setup()
     vim.cmd("highlight link TelescopeNormal NormalUntransparent")
 end
 
-local util = require("lua.rc.plugins.config.telescope.util")
-local lsp = require("lua.rc.plugins.config.telescope.lsp")
-local dap = require("lua.rc.plugins.config.telescope.dap")
-dap.load_extension()
+local util = require("rc.plugins.config.telescope.util")
+local lsp = require("rc.plugins.config.telescope.lsp")
+local dap = require("rc.plugins.config.telescope.dap")
 
 M.keymap = {
     ---bind general keymap
