@@ -1,4 +1,11 @@
 local M = {}
+local L = {
+    util = require("rc.plugins.config.telescope.util"),
+    lsp = require("rc.plugins.config.telescope.lsp"),
+    dap = require("rc.plugins.config.telescope.dap"),
+    notify = require("rc.plugins.config.notify.telescope"),
+    pregister = require("rc.plugins.config.which-key").pregister,
+}
 
 -- requirement plugins for telescope
 M.requires = {
@@ -9,8 +16,17 @@ M.requires = {
     "nvim-telescope/telescope-frecency.nvim",
 }
 
+-- configure telescope (setup, keymap)
+function M.config()
+    L.setup()
+    L.keymap.general()
+    L.keymap.telescope()
+    L.keymap.git()
+    L.notify.keymap()
+end
+
 ---call telescope.setup
-local function setup()
+function L.setup()
     local ok_telescope, telescope = pcall(require, "telescope")
     local ok_actions, actions = pcall(require, "telescope.actions")
     if not ok_telescope then
@@ -20,6 +36,7 @@ local function setup()
         vim.notify_once("plugin 'telescope' found, but 'telescope.actions' not found", vim.log.levels.WARN)
         return
     end
+
     local telescope_opts = {
         defaults = {
             vimgrep_arguments = {
@@ -76,23 +93,21 @@ local function setup()
     vim.cmd("highlight link TelescopeNormal NormalUntransparent")
 end
 
-local util = require("rc.plugins.config.telescope.util")
-local lsp = require("rc.plugins.config.telescope.lsp")
-local dap = require("rc.plugins.config.telescope.dap")
-
-M.keymap = {
+L.keymap = {
     ---bind general keymap
     general = function()
-        local pregister = require("rc.plugins.config.which-key").pregister
-        pregister({ l = { name = "LSP" } }, { prefix = "<Leader>" }, "Setup telescope keymap without 'which-key'")
-        pregister({ t = { name = "Telescope" } }, { prefix = "<Leader>" }, "Setup telescope keymap without 'which-key'")
-        pregister({ g = { name = "Git" } }, { prefix = "<Leader>" }, "Setup telescope keymap without 'which-key'")
-
         local builtin = require("telescope.builtin")
-
-        vim.keymap.set("n", "<C-p>", util.smart_find_file, { desc = "Telescope smart list files" })
+        vim.keymap.set("n", "<C-p>", L.util.smart_find_file, { desc = "Telescope smart list files" })
         vim.keymap.set("n", "<M-p>", builtin.buffers, { desc = "Telescope List Buffers" })
+    end,
 
+    telescope = function()
+        local builtin = require("telescope.builtin")
+        L.pregister(
+            { t = { name = "Telescope" } },
+            { prefix = "<Leader>" },
+            "Setup telescope keymap without 'which-key'"
+        )
         vim.keymap.set("n", "<Leader>tb", builtin.buffers, { desc = "List buffers" })
         vim.keymap.set("n", "<Leader>tB", builtin.builtin, { desc = "Find builtin features" })
         vim.keymap.set("n", "<Leader>tf", builtin.find_files, { desc = "Find file" })
@@ -102,33 +117,14 @@ M.keymap = {
         vim.keymap.set("n", "<Leader>tG", builtin.git_files, { desc = "Git files" })
         vim.keymap.set("n", "<Leader>th", builtin.help_tags, { desc = "List Helps" })
         vim.keymap.set("n", "<Leader>tH", builtin.highlights, { desc = "List Highlights" })
+    end,
+
+    git = function()
+        local builtin = require("telescope.builtin")
+        L.pregister({ g = { name = "Git" } }, { prefix = "<Leader>" }, "Setup telescope keymap without 'which-key'")
         vim.keymap.set("n", "<Leader>gc", builtin.git_commits, { desc = "List commits" })
         vim.keymap.set("n", "<Leader>gC", builtin.git_bcommits, { desc = "List buffer commits" })
     end,
-
-    ---bind notifications list keybindings
-    notify = function()
-        require("rc.plugins.config.which-key").pregister(
-            { t = { name = "Telescope" } },
-            { prefix = "<Leader>" },
-            "Setup telescope notify keymap without 'which-key'"
-        )
-
-        local notify = require("telescope").extensions.notify
-        vim.keymap.set("n", "<Leader>tn", notify.notify, { desc = "List notifications" })
-    end,
-
-    ---Debugger Adapter Protocol
-    dap = dap.keymap,
-
-    lsp = lsp.keymap,
 }
-
--- configure telescope (setup, keymap)
-function M.config()
-    setup()
-    M.keymap.general()
-    M.keymap.notify()
-end
 
 return M
