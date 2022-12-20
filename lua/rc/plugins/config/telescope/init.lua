@@ -91,6 +91,9 @@ local function setup()
 end
 
 local lsp = require("lua.rc.plugins.config.telescope.lsp")
+local dap = require("lua.rc.plugins.config.telescope.dap")
+dap.load_extension()
+
 M.keymap = {
     ---bind general keymap
     general = function()
@@ -145,14 +148,7 @@ M.keymap = {
     end,
 
     ---Debugger Adapter Protocol
-    dap = function()
-        require("telescope").load_extension("dap")
-        local dap = require("telescope").extensions.dap
-        vim.keymap.set("n", "<Leader>dH", dap.commands, { desc = "DAP commands" })
-        vim.keymap.set("n", "<Leader>dC", dap.configurations, { desc = "DAP configurations" })
-        vim.keymap.set("n", "<Leader>dP", dap.list_breakpoints, { desc = "DAP list_breakpoints" })
-        vim.keymap.set("n", "<Leader>dV", dap.variables, { desc = "DAP variables" })
-    end,
+    dap = dap.keymap,
 
     lsp = lsp.keymap,
 }
