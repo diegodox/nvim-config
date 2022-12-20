@@ -9,20 +9,6 @@ M.requires = {
     "nvim-telescope/telescope-frecency.nvim",
 }
 
---- dynamic layout based on nvim window size
----@param threshold number
----@return string
-local function dynamic_layout_strategy(threshold)
-    local ui = vim.api.nvim_list_uis()
-    if not ui or not ui[1] or not ui[1]["width"] then
-        return "vertical"
-    end
-    if ui[1]["width"] > threshold then
-        return "horizontal"
-    end
-    return "vertical"
-end
-
 ---call telescope.setup
 local function setup()
     local ok_telescope, telescope = pcall(require, "telescope")
@@ -90,6 +76,7 @@ local function setup()
     vim.cmd("highlight link TelescopeNormal NormalUntransparent")
 end
 
+local util = require("lua.rc.plugins.config.telescope.util")
 local lsp = require("lua.rc.plugins.config.telescope.lsp")
 local dap = require("lua.rc.plugins.config.telescope.dap")
 dap.load_extension()
@@ -111,13 +98,13 @@ M.keymap = {
             vim.fn.system("git rev-parse")
             if vim.v.shell_error == 0 then
                 builtin.git_files({
-                    layout_strategy = dynamic_layout_strategy(threshold),
+                    layout_strategy = util.dynamic_layout_strategy(threshold),
                     show_untracked = true,
                 })
             else
                 local telescope = package.loaded.telescope
                 telescope.extensions.frecency.frecency({
-                    layout_strategy = dynamic_layout_strategy(threshold),
+                    layout_strategy = util.dynamic_layout_strategy(threshold),
                 })
             end
         end, { desc = "Telescope smart list files" })
