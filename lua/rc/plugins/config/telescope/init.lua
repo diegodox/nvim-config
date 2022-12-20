@@ -91,24 +91,9 @@ M.keymap = {
 
         local builtin = require("telescope.builtin")
 
-        --Call git_files if in git directory, otherwise call find_files.
-        --Smarter than my old config.
-        vim.keymap.set("n", "<C-p>", function()
-            local threshold = 170
-            vim.fn.system("git rev-parse")
-            if vim.v.shell_error == 0 then
-                builtin.git_files({
-                    layout_strategy = util.dynamic_layout_strategy(threshold),
-                    show_untracked = true,
-                })
-            else
-                local telescope = package.loaded.telescope
-                telescope.extensions.frecency.frecency({
-                    layout_strategy = util.dynamic_layout_strategy(threshold),
-                })
-            end
-        end, { desc = "Telescope smart list files" })
+        vim.keymap.set("n", "<C-p>", util.smart_find_file, { desc = "Telescope smart list files" })
         vim.keymap.set("n", "<M-p>", builtin.buffers, { desc = "Telescope List Buffers" })
+
         vim.keymap.set("n", "<Leader>tb", builtin.buffers, { desc = "List buffers" })
         vim.keymap.set("n", "<Leader>tB", builtin.builtin, { desc = "Find builtin features" })
         vim.keymap.set("n", "<Leader>tf", builtin.find_files, { desc = "Find file" })
