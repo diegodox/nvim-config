@@ -10,6 +10,9 @@ local function keymap(bufnr)
         { prefix = "<Leader>" },
         "Setup rust keymap without 'which-key' bufnr: " .. bufnr
     )
+    vim.keymap.set("n", "K", r.hover_actions.hover_actions, { desc = "Hover Action", buffer = bufnr })
+    vim.keymap.set({ "n", "v" }, "J", r.join_lines.join_lines, { desc = "Join line", buffer = bufnr })
+
     vim.keymap.set("n", "<Leader>rp", r.parent_module.parent_module, { desc = "Parent Module", buffer = bufnr })
     vim.keymap.set("n", "<Leader>rr", r.runnables.runnables, { desc = "Runnables", buffer = bufnr })
     vim.keymap.set("n", "<Leader>rc", r.open_cargo_toml.open_cargo_toml, { desc = "Open Cargo.toml", buffer = bufnr })
