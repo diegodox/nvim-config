@@ -4,14 +4,15 @@ M.requires = { "mattn/webapi-vim" }
 
 ---@param bufnr number
 local function keymap(bufnr)
+    local r = require("rust-tools")
     require("rc.plugins.config.which-key").pregister(
         { r = { name = "Rust" } },
         { prefix = "<Leader>" },
         "Setup rust keymap without 'which-key' bufnr: " .. bufnr
     )
-    vim.keymap.set("n", "<Leader>rp", "<cmd>RustParentModule<CR>", { desc = "Parent Module", buffer = bufnr })
-    vim.keymap.set("n", "<Leader>rr", "<cmd>RustRunnables<CR>", { desc = "Runnables", buffer = bufnr })
-    vim.keymap.set("n", "<Leader>rc", "<cmd>RustOpenCargo<CR>", { desc = "Open Cargo.toml", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>rp", r.parent_module.parent_module, { desc = "Parent Module", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>rr", r.runnables.runnables, { desc = "Runnables", buffer = bufnr })
+    vim.keymap.set("n", "<Leader>rc", r.open_cargo_toml.open_cargo_toml, { desc = "Open Cargo.toml", buffer = bufnr })
 end
 
 function M.setup()
