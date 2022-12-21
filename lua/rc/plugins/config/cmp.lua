@@ -15,7 +15,8 @@ M.requires = {
 }
 
 -- call cmp.setup
-local function setup(cmp)
+local function setup()
+    local cmp = require("cmp")
     local luasnip = require("luasnip")
     local ok_lspkind, lspkind = pcall(require, "lspkind")
 
@@ -23,6 +24,7 @@ local function setup(cmp)
     local formatting = nil
     if ok_lspkind then
         formatting = {
+            fields = { "kind", "abbr", "menu" },
             format = lspkind.cmp_format({
                 mode = "symbol", -- show only symbol annotations
                 maxwidth = 50,
@@ -46,6 +48,10 @@ local function setup(cmp)
     cmp.setup({
         snippet = {
             expand = function(args) luasnip.lsp_expand(args.body) end,
+        },
+
+        window = {
+            documentation = { border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } },
         },
 
         sources = cmp.config.sources({
@@ -102,8 +108,9 @@ local function setup(cmp)
     })
 end
 
-local function setup_search(cmp)
-    cmp.setup.cmdline("/", {
+local function setup_search()
+    local cmp = require("cmp")
+    cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
             { name = "buffer" },
@@ -111,7 +118,8 @@ local function setup_search(cmp)
     })
 end
 
-local function setup_cmdline(cmp)
+local function setup_cmdline()
+    local cmp = require("cmp")
     -- disable tabs on command
     vim.keymap.set("c", "<Tab>", "<nop>", { desc = "disable tab on command" })
     vim.keymap.set("c", "<S-Tab>", "<nop>", { desc = "disable S-tab on command" })
@@ -127,8 +135,8 @@ local function setup_cmdline(cmp)
             end, { "c" }),
         },
         sources = {
-            { name = "cmdline" },
             { name = "path" },
+            { name = "cmdline" },
         },
     })
 end
@@ -155,14 +163,9 @@ end
 
 -- setup, setup_cmdline, setup_search, set_hightlight
 function M.config()
-    local ok, cmp = pcall(require, "cmp")
-    if not ok then
-        vim.notify_once("plugin 'cmp.nvim' not found, skip setup cmpletion", vim.log.levels.WARN)
-        return
-    end
-    setup(cmp)
-    setup_cmdline(cmp)
-    setup_search(cmp)
+    setup()
+    setup_cmdline()
+    setup_search()
     set_hightlight()
 end
 
