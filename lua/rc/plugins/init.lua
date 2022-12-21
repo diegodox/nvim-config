@@ -26,6 +26,8 @@ return require("packer").startup(function(use)
         config = function() vim.cmd.colorscheme("codedark") end,
     })
 
+    use("machakann/vim-sandwich")
+
     use({
         "goolord/alpha-nvim",
         requires = "kyazdani42/nvim-web-devicons",
