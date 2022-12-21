@@ -109,6 +109,7 @@ local function workspace_diag_source()
     }
 end
 
+---@type table<string, LualineModule|fun(table):LualineModule>
 M.modules = {
     icon = { -- filetype icon
         "filetype",
