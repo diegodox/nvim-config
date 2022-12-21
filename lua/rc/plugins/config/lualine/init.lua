@@ -39,7 +39,7 @@ function M.config()
                 mod.center,
                 mod.signature_label,
             },
-            lualine_x = { { "diff", source = vim.b.gitsigns_head }, mod.workspace_diagnostics },
+            lualine_x = { mod.search, { "diff", source = vim.b.gitsigns_head }, mod.workspace_diagnostics },
             lualine_y = { { "location", cond = utils.hide(200) }, mod.tabs, mod.ime_status },
             lualine_z = {
                 mod.cwd, --[[ mod.session ]]

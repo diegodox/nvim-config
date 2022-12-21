@@ -4,6 +4,9 @@ local function highlight()
     vim.cmd("highlight! link lualine_signature lualine_c_normal")
     vim.cmd("highlight! link lualine_signature_act_param lualine_x_diagnostics_error_normal")
 
+    vim.api.nvim_set_hl(0, "SearchInactive", { fg = "#00a381", bg = "#262626" })
+    vim.api.nvim_set_hl(0, "SearchActive", { fg = "#000000", bg = "#00a381" })
+
     -- vim.cmd("highlight! link lualine_signature lualine_transitional_lualine_a_inactive_to_lualine_c_normal")
     -- vim.cmd("highlight! link lualine_signature_act_param lualine_c_normal")
     -- vim.cmd("highlight! link lualine_signature_act_param lualine_c_normal")
@@ -207,6 +210,20 @@ M.modules = {
             end
             return signature.status_line().label ~= ""
         end,
+    },
+
+    search = {
+        function()
+            local result = vim.fn.searchcount({ maxcount = 999, timeout = 500 })
+            local denominator = math.min(result.total, result.maxcount)
+            return vim.fn.getreg("/") .. " " .. string.format("[%d/%d]", result.current, denominator)
+        end,
+        cond = function() return vim.fn.getreg("/") ~= "" end,
+        icon = {
+            "🔍",
+            color = function() return vim.v.hlsearch == 0 and "SearchInactive" or "SearchActive" end,
+        },
+        color = function() return vim.v.hlsearch == 0 and "SearchInactive" or "SearchActive" end,
     },
 
     ---@return string
