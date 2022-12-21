@@ -256,7 +256,7 @@ return require("packer").startup(function(use)
 
     use({
         "gen740/SmoothCursor.nvim",
-        config = function() require("smoothcursor").setup() end,
+        config = function() require("rc.plugins.config.smooth_cursor_nvim").config() end,
     })
 
     -- Automatic setup plugins
