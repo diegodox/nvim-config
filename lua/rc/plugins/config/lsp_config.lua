@@ -3,7 +3,7 @@ local M = {}
 ---@param bufnr number
 function M.on_attach_keymap(bufnr)
     require("rc.lsp-handler").keymap(bufnr)
-    require("rc.plugins.config.telescope").keymap.lsp(bufnr)
+    require("rc.plugins.config.telescope.lsp").keymap(bufnr)
 end
 
 ---@param capabilities table<string, string|table|boolean|function> capabilities
