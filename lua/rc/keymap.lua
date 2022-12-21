@@ -42,3 +42,14 @@ for _, k in pairs({ "+", "-", ">", "<" }) do
     vim.keymap.set("n", "<Plug>(resize)" .. k, "<C-w>" .. k .. "<Plug>(resize)", { silent = true })
 end
 vim.keymap.set("n", "<Plug>(resize)", "<Nop>", { silent = true, remap = true })
+
+vim.keymap.set("c", "<F1>", "q")
+vim.keymap.set("c", "<F2>", "w")
+vim.keymap.set("c", "<F3>", "e")
+vim.keymap.set("c", "<F4>", "r")
+vim.keymap.set("c", "<F5>", "t")
+vim.keymap.set("c", "<F6>", "y")
+vim.keymap.set("c", "<F7>", "u")
+vim.keymap.set("c", "<F8>", "i")
+vim.keymap.set("c", "<F9>", "o")
+vim.keymap.set("c", "<F10>", "p")
