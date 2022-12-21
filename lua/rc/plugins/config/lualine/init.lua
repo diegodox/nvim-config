@@ -12,6 +12,9 @@ function M.config()
 
     local utils = require("rc.plugins.config.lualine.utils")
     utils.highlight_autocmd()
+
+    local noice_module = require("rc.plugins.config.noice_nvim").lualine()
+
     local mod = utils.modules
     require("lualine").setup({
         options = {
@@ -30,6 +33,7 @@ function M.config()
             lualine_b = {
                 mod.icon,
                 mod.filename(),
+                noice_module.recording,
             },
             lualine_c = {
                 mod.center,
