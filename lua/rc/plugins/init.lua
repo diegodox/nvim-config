@@ -275,6 +275,8 @@ return require("packer").startup(function(use)
         run = function() vim.fn["mkdp#util#install"]() end,
     })
 
+    use("ii14/emmylua-nvim")
+
     use({
         "gen740/SmoothCursor.nvim",
         config = function() require("rc.plugins.config.smooth_cursor_nvim").config() end,
