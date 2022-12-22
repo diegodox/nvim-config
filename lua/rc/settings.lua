@@ -10,7 +10,6 @@ vim.o.conceallevel = 0
 vim.o.updatetime = 300
 vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
-vim.o.iskeyword = vim.o.iskeyword .. ",_"
 vim.o.backspace = "indent,eol,start"
 vim.o.pumblend = 7
 vim.o.pumheight = 20
