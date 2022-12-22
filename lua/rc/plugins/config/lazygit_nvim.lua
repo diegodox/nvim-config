@@ -8,4 +8,10 @@ function M.config()
     vim.keymap.set("n", "<C-g>", "<cmd>LazyGit<CR>", { desc = "Open LazyGit" })
 end
 
+M.lazy = {
+    "kdheepak/lazygit.nvim",
+    dependencies = M.requires,
+    config = M.config,
+}
+
 return M

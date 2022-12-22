@@ -10,4 +10,10 @@ function M.config()
     vim.keymap.set("n", "<Leader>hl", "<Cmd>HopLineStart<CR>", { desc = "Hop to line start" })
 end
 
+M.lazy = {
+    "phaazon/hop.nvim",
+    branch = "v1",
+    config = M.config,
+}
+
 return M

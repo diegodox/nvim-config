@@ -58,4 +58,11 @@ function M.config()
     L.define_sign()
 end
 
+M.lazy = {
+    "rcarriga/nvim-dap-ui",
+    dependencies = M.requires,
+    after = M.after,
+    config = M.config,
+}
+
 return M

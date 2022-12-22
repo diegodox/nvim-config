@@ -43,4 +43,11 @@ function M.lualine()
     return modules
 end
 
+---@type LazySpec
+M.lazy = {
+    "folke/noice.nvim",
+    config = M.config,
+    dependencies = M.dependencies,
+}
+
 return M

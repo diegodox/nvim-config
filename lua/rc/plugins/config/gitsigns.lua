@@ -66,4 +66,12 @@ function M.config()
     })
 end
 
+M.lazy = {
+    "lewis6991/gitsigns.nvim",
+    dependencies = M.requires,
+    config = M.config,
+    lazy = true,
+    event = { "Colorscheme" },
+}
+
 return M

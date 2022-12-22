@@ -127,4 +127,10 @@ L.keymap = {
     end,
 }
 
+M.lazy = {
+    "nvim-telescope/telescope.nvim",
+    dependencies = M.requires,
+    config = M.config,
+}
+
 return M

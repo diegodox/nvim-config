@@ -14,4 +14,9 @@ end
 -- call setup
 function M.config() M.setup() end
 
+M.lazy = {
+    "numToStr/Comment.nvim",
+    config = M.config,
+}
+
 return M

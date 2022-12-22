@@ -27,42 +27,19 @@ local plugins = {
         config = function() require("alpha").setup(require("alpha.themes.startify").config) end,
     },
 
-    {
-        "levouh/tint.nvim",
-        dependencies = require("rc.plugins.config.tint_nvim").after,
-        event = { "Colorscheme" },
-        config = require("rc.plugins.config.tint_nvim").config,
-    },
+    require("rc.plugins.config.tint_nvim").lazy,
 
-    {
-        "folke/noice.nvim",
-        config = require("rc.plugins.config.noice_nvim").config,
-        dependencies = require("rc.plugins.config.noice_nvim").dependencies,
-    },
+    require("rc.plugins.config.noice_nvim").lazy,
 
-    {
-        "rcarriga/nvim-notify",
-        config = require("rc.plugins.config.notify").config,
-    },
+    require("rc.plugins.config.notify").lazy,
 
     "stevearc/dressing.nvim",
 
-    {
-        "folke/which-key.nvim",
-        setup = require("rc.plugins.config.which-key").setup,
-        config = require("rc.plugins.config.which-key").config,
-    },
+    require("rc.plugins.config.which-key").lazy,
 
-    {
-        "stevearc/stickybuf.nvim",
-        config = require("rc.plugins.config.stickybuf_nvim").config,
-    },
+    require("rc.plugins.config.stickybuf_nvim").lazy,
 
-    {
-        -- move window
-        "sindrets/winshift.nvim",
-        setup = require("rc.plugins.config.winshift").config,
-    },
+    require("rc.plugins.config.winshift").lazy,
 
     -- capture command output to buffer
     "tyru/capture.vim", -- this plugin works with no configuration
@@ -75,11 +52,7 @@ local plugins = {
         config = function() end,
     },
 
-    {
-        "phaazon/hop.nvim",
-        branch = "v1",
-        config = require("rc.plugins.config.hop").config,
-    },
+    require("rc.plugins.config.hop").lazy,
 
     {
         "abecodes/tabout.nvim",
@@ -87,18 +60,9 @@ local plugins = {
         config = function() require("tabout").setup() end,
     },
 
-    {
-        "lewis6991/gitsigns.nvim",
-        dependencies = require("rc.plugins.config.gitsigns").requires,
-        config = require("rc.plugins.config.gitsigns").config,
-        lazy = true,
-        event = { "Colorscheme" },
-    },
+    require("rc.plugins.config.gitsigns").lazy,
 
-    {
-        "numToStr/Comment.nvim",
-        config = require("rc.plugins.config.Comment").config,
-    },
+    require("rc.plugins.config.Comment").lazy,
 
     {
         "norcalli/nvim-colorizer.lua",
@@ -106,125 +70,53 @@ local plugins = {
         config = function() require("colorizer").setup() end,
     },
 
-    {
-        "nvim-lualine/lualine.nvim",
-        dependencies = require("rc.plugins.config.lualine").requires,
-        config = require("rc.plugins.config.lualine").config,
-    },
+    require("rc.plugins.config.lualine").lazy,
 
-    {
-        "nvim-treesitter/nvim-treesitter",
-        config = function()
-            require("rc.plugins.config.treesitter").update()
-            require("rc.plugins.config.treesitter").config()
-            require("rc.plugins.config.treesitter.highligh_workaround").set_hi()
-        end,
-    },
+    require("rc.plugins.config.treesitter").lazy,
 
     "nvim-treesitter/playground",
 
-    {
-        "nvim-treesitter/nvim-treesitter-context",
-        config = require("rc.plugins.config.treesitter.context").config,
-    },
+    require("rc.plugins.config.treesitter.context").lazy,
 
-    {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        config = require("rc.plugins.config.treesitter.textobj").config,
-    },
+    require("rc.plugins.config.treesitter.textobj").lazy,
 
-    {
-        "p00f/nvim-ts-rainbow",
-        requires = require("rc.plugins.config.treesitter.rainbow").requires,
-        config = require("rc.plugins.config.treesitter.rainbow").config,
-    },
+    require("rc.plugins.config.treesitter.rainbow").lazy,
 
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        config = require("rc.plugins.config.indent_line").config,
-    },
+    require("rc.plugins.config.indent_line").lazy,
 
-    {
-        "nvim-telescope/telescope.nvim",
-        dependencies = require("rc.plugins.config.telescope").requires,
-        config = require("rc.plugins.config.telescope").config,
-    },
+    require("rc.plugins.config.telescope").lazy,
 
     "neovim/nvim-lspconfig",
 
-    {
-        "williamboman/mason.nvim",
-        dependencies = require("rc.plugins.config.mason").requires,
-        config = require("rc.plugins.config.mason").config,
-    },
+    require("rc.plugins.config.mason").lazy,
 
-    {
-        "glepnir/lspsaga.nvim",
-        branch = "main",
-        config = require("rc.plugins.config.lspsaga_nvim").config,
-    },
+    require("rc.plugins.config.lspsaga_nvim").lazy,
 
-    {
-        "simrat39/rust-tools.nvim",
-        dependencies = require("rc.plugins.config.rust-tools").requires,
-        config = require("rc.plugins.config.rust-tools").setup,
-    },
+    require("rc.plugins.config.rust-tools").lazy,
 
-    {
-        "saecki/crates.nvim",
-        dependencies = require("rc.plugins.config.crates_nvim").requires,
-        config = require("rc.plugins.config.crates_nvim").setup,
-    },
+    require("rc.plugins.config.crates_nvim").lazy,
 
-    {
-        "ray-x/lsp_signature.nvim",
-        config = require("rc.plugins.config.lsp-signature").config,
-    },
+    require("rc.plugins.config.lsp-signature").lazy,
 
-    {
-        url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        config = require("rc.plugins.config.lsplines").config,
-    },
+    require("rc.plugins.config.lsplines").lazy,
 
-    {
-        "jose-elias-alvarez/null-ls.nvim",
-        require = require("rc.plugins.config.null-ls").requires,
-        config = require("rc.plugins.config.null-ls").config,
-    },
+    require("rc.plugins.config.null-ls").lazy,
 
 
-    {
-        "hrsh7th/nvim-cmp",
-        dependencies = require("rc.plugins.config.cmp").requires,
-        config = require("rc.plugins.config.cmp").config,
-    },
+    require("rc.plugins.config.cmp").lazy,
 
     {
         "SmiteshP/nvim-gps",
         after = "nvim-treesitter",
     },
 
-    {
-        "EthanJWright/toolwindow.nvim",
-        config = require("rc.plugins.config.toolwindow_nvim").config,
-    },
+    require("rc.plugins.config.toolwindow_nvim").lazy,
 
-    {
-        "akinsho/toggleterm.nvim",
-        config = require("rc.plugins.config.toggleterm").config,
-    },
+    require("rc.plugins.config.toggleterm").lazy,
 
-    {
-        "kevinhwang91/rnvimr",
-        -- dependencies = require("rc.plugins.config.rnvimr").requires,
-        config = require("rc.plugins.config.rnvimr").config,
-    },
+    require("rc.plugins.config.rnvimr").lazy,
 
-    {
-        "kdheepak/lazygit.nvim",
-        dependencies = require("rc.plugins.config.lazygit_nvim").requires,
-        config = require("rc.plugins.config.lazygit_nvim").config,
-    },
+    require("rc.plugins.config.lazygit_nvim").lazy,
 
     {
         "sindrets/diffview.nvim",
@@ -232,17 +124,9 @@ local plugins = {
         config = function() require("diffview").setup() end,
     },
 
-    {
-        "folke/trouble.nvim",
-        config = require("rc.plugins.config.trouble_nvim").config,
-    },
+    require("rc.plugins.config.trouble_nvim").lazy,
 
-    {
-        "rcarriga/nvim-dap-ui",
-        dependencies = require("rc.plugins.config.dap_nvim").requires,
-        after = require("rc.plugins.config.dap_nvim").after,
-        config = require("rc.plugins.config.dap_nvim").config,
-    },
+    require("rc.plugins.config.dap_nvim").lazy,
 
     {
         "mfussenegger/nvim-dap-python",
@@ -266,10 +150,7 @@ local plugins = {
 
     "ii14/emmylua-nvim",
 
-    {
-        "gen740/SmoothCursor.nvim",
-        config = require("rc.plugins.config.smooth_cursor_nvim").config,
-    },
+    require("rc.plugins.config.smooth_cursor_nvim").lazy,
 }
 
 lazy.setup(plugins, {})

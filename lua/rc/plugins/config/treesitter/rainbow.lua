@@ -22,4 +22,10 @@ function M.config()
     })
 end
 
+M.lazy = {
+    "p00f/nvim-ts-rainbow",
+    requires = M.requires,
+    config = M.config,
+}
+
 return M

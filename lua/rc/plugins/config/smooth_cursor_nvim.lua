@@ -6,4 +6,9 @@ function M.config()
     })
 end
 
+M.lazy = {
+    "gen740/SmoothCursor.nvim",
+    config = M.config,
+}
+
 return M

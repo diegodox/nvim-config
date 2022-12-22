@@ -1,6 +1,6 @@
 local M = {}
 
-M.update = require("nvim-treesitter.install").update({ with_sync = true })
+function M.update() require("nvim-treesitter.install").update({ with_sync = true })() end
 
 -- list of must installed languages
 local ensure_installed = {
@@ -29,5 +29,14 @@ end
 
 -- configure treesitter
 function M.config() M.setup() end
+
+M.lazy = {
+    "nvim-treesitter/nvim-treesitter",
+    config = function()
+        M.update()
+        M.config()
+        require("rc.plugins.config.treesitter.highligh_workaround").set_hi()
+    end,
+}
 
 return M

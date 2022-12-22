@@ -9,4 +9,9 @@ function M.config()
     })
 end
 
+M.lazy = {
+    "folke/trouble.nvim",
+    config = M.config,
+}
+
 return M

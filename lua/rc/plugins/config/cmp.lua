@@ -168,4 +168,10 @@ function M.config()
     set_hightlight()
 end
 
+M.lazy = {
+    "hrsh7th/nvim-cmp",
+    dependencies = M.requires,
+    config = M.config,
+}
+
 return M

@@ -57,4 +57,9 @@ function M.config()
     autoset_highlight()
 end
 
+M.lazy = {
+    "lukas-reineke/indent-blankline.nvim",
+    config = M.config,
+}
+
 return M
