@@ -102,7 +102,6 @@ local plugins = {
 
     require("rc.plugins.config.null-ls").lazy,
 
-
     require("rc.plugins.config.cmp").lazy,
 
     {
