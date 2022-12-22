@@ -1,5 +1,13 @@
 local M = {}
 
+M.after = {
+    "tomasiser/vim-code-dark",
+    "stevearc/dressing.nvim",
+    "goolord/alpha-nvim",
+    "nvim-lualine/lualine.nvim",
+    "lewis6991/gitsigns.nvim",
+}
+
 local ignore_window_ft = {
     "terminal",
     "Trouble",
@@ -42,5 +50,14 @@ function M.config()
         },
     })
 end
+
+-- lazy.nvim table
+---@type LazySpec
+M.lazy = {
+    "levouh/tint.nvim",
+    dependencies = M.after,
+    event = { "Colorscheme" },
+    config = M.config,
+}
 
 return M

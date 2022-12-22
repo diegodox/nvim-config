@@ -15,4 +15,9 @@ function M.config()
     })
 end
 
+M.lazy = {
+    "nvim-treesitter/nvim-treesitter-context",
+    config = M.config,
+}
+
 return M

@@ -46,4 +46,9 @@ function M.config()
     vim.notify = notify
 end
 
+M.lazy = {
+    "rcarriga/nvim-notify",
+    config = M.config,
+}
+
 return M

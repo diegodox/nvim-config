@@ -32,4 +32,10 @@ function M.pregister(mappings, opts, fail_msg)
     return ok_whichkey
 end
 
+M.lazy = {
+    "folke/which-key.nvim",
+    setup = M.setup,
+    config = M.config,
+}
+
 return M

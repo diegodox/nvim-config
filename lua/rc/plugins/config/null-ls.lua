@@ -23,4 +23,10 @@ function M.config()
     }))
 end
 
+M.lazy = {
+    "jose-elias-alvarez/null-ls.nvim",
+    require = M.requires,
+    config = M.config,
+}
+
 return M

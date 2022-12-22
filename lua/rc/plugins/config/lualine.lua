@@ -79,4 +79,10 @@ function M.config()
     })
 end
 
+M.lazy = {
+    "nvim-lualine/lualine.nvim",
+    dependencies = M.requires,
+    config = M.config,
+}
+
 return M

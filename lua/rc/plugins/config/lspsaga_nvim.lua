@@ -53,4 +53,10 @@ function M.keymap(bufnr)
     vim.keymap.set("n", "<F2>", increname, { desc = "Rename", buffer = bufnr, expr = true })
 end
 
+M.lazy = {
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = M.config,
+}
+
 return M

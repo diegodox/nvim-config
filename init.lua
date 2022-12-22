@@ -6,6 +6,9 @@ require("rc.plugins")
 
 require("rc.fcitx5").setup()
 
+require("rc.utils").setup_colorscheme()
+vim.cmd.colorscheme("codedark")
+
 -- local group = vim.api.nvim_create_augroup("TestGroup", { clear = false })
 -- vim.api.nvim_create_autocmd("User", {
 --     callback = function()

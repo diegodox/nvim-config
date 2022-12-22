@@ -30,4 +30,10 @@ function M.config()
     --             \ ]
 end
 
+M.lazy = {
+    "kevinhwang91/rnvimr",
+    -- dependencies = require("rc.plugins.config.rnvimr").requires,
+    config = M.config,
+}
+
 return M

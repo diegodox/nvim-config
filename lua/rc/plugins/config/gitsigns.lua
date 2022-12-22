@@ -1,6 +1,6 @@
 local M = {}
 
-M.requires = "nvim-lua/plenary.nvim"
+M.requires = { "nvim-lua/plenary.nvim" }
 
 function M.config()
     local ok, gitsigns = pcall(require, "gitsigns")
@@ -65,5 +65,13 @@ function M.config()
         end,
     })
 end
+
+M.lazy = {
+    "lewis6991/gitsigns.nvim",
+    dependencies = M.requires,
+    config = M.config,
+    lazy = true,
+    event = { "Colorscheme" },
+}
 
 return M

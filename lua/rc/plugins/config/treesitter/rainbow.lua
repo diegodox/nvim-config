@@ -1,5 +1,7 @@
 local M = {}
 
+M.requires = { "nvim-treesitter/nvim-treesitter" }
+
 function M.config()
     local ok, rainbow = pcall(require, "nvim-treesitter.configs")
 
@@ -19,5 +21,11 @@ function M.config()
         },
     })
 end
+
+M.lazy = {
+    "p00f/nvim-ts-rainbow",
+    requires = M.requires,
+    config = M.config,
+}
 
 return M

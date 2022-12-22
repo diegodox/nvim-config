@@ -2,8 +2,8 @@ local M = {}
 
 local L = {}
 
-M.requires = "mfussenegger/nvim-dap"
-M.after = "nvim-dap"
+M.requires = { "mfussenegger/nvim-dap" }
+M.after = { "nvim-dap" }
 
 function L.define_sign() vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "", linehl = "", numhl = "" }) end
 
@@ -57,5 +57,12 @@ function M.config()
     L.keymap()
     L.define_sign()
 end
+
+M.lazy = {
+    "rcarriga/nvim-dap-ui",
+    dependencies = M.requires,
+    after = M.after,
+    config = M.config,
+}
 
 return M

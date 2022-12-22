@@ -23,4 +23,10 @@ function M.setup()
     cmp_source()
 end
 
+M.lazy = {
+    "saecki/crates.nvim",
+    dependencies = M.requires,
+    config = M.setup,
+}
+
 return M

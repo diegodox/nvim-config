@@ -16,6 +16,7 @@ function M.def_reference_highlight()
     vim.cmd("highlight LspReferenceText guibg=#464646")
     vim.cmd("highlight LspReferenceRead guibg=#464646")
     vim.cmd("highlight LspReferenceWrite guibg=#464646 gui=underline")
+    vim.notify("Lsp reference highlight set", vim.log.levels.TRACE)
 end
 
 ---Set general LSP keybinding
@@ -59,6 +60,11 @@ function M.auto_highlight_document(bufnr)
         buffer = bufnr,
         desc = "Removes document highlights from current buffer.",
     })
+
+    vim.notify(
+        "lsp document highlight set to buffer: " .. bufnr .. ": " .. vim.api.nvim_buf_get_name(bufnr),
+        vim.log.levels.TRACE
+    )
 end
 
 ---@param client table

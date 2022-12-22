@@ -43,13 +43,13 @@ end
 
 function M.enable_transparent()
     vim.g.transparent_bg = true
-    vim.api.nvim_exec_autocmds("colorscheme", {})
+    vim.api.nvim_exec_autocmds("Colorscheme", {})
     vim.notify("Enable background transparent", vim.log.levels.TRACE)
 end
 
 function M.disable_transparent()
     vim.g.transparent_bg = false
-    vim.api.nvim_exec_autocmds("colorscheme", {})
+    vim.api.nvim_exec_autocmds("Colorscheme", {})
     vim.notify("Disable background transparent", vim.log.levels.TRACE)
 end
 
@@ -78,7 +78,7 @@ end
 function M.setup_colorscheme()
     local group = vim.api.nvim_create_augroup("Transparent", { clear = true })
     vim.api.nvim_create_autocmd(
-        "colorscheme",
+        "Colorscheme",
         { callback = M.set_colorscheme, group = group, desc = "set transparent" }
     )
     vim.api.nvim_create_user_command(

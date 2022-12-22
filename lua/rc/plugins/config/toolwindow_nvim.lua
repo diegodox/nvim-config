@@ -95,4 +95,9 @@ function M.config()
     register_trouble()
 end
 
+M.lazy = {
+    "EthanJWright/toolwindow.nvim",
+    config = M.config,
+}
+
 return M

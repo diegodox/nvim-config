@@ -46,4 +46,9 @@ function M.config()
     })
 end
 
+M.lazy = {
+    "stevearc/stickybuf.nvim",
+    config = M.config,
+}
+
 return M

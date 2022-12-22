@@ -1,5 +1,10 @@
 local M = {}
 
+M.dependencies = {
+    "MunifTanjim/nui.nvim",
+    "rcarriga/nvim-notify",
+}
+
 function M.config()
     ---@type NoiceConfig
     local config = {
@@ -13,6 +18,7 @@ function M.config()
             },
         },
         lsp = { signature = { enabled = false } },
+        presets = { inc_rename = true },
     }
     require("noice").setup(config)
 end
@@ -36,5 +42,12 @@ function M.lualine()
     }
     return modules
 end
+
+---@type LazySpec
+M.lazy = {
+    "folke/noice.nvim",
+    config = M.config,
+    dependencies = M.dependencies,
+}
 
 return M

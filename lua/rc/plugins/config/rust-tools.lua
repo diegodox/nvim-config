@@ -56,4 +56,10 @@ function M.setup()
     require("rust-tools").setup(cfg)
 end
 
+M.lazy = {
+    "simrat39/rust-tools.nvim",
+    dependencies = M.requires,
+    config = M.setup,
+}
+
 return M
