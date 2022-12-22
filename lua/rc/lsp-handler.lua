@@ -43,28 +43,6 @@ function M.keymap(bufnr)
     vim.keymap.set("n", "<F2>", increname, { desc = "Rename", buffer = bufnr, expr = true })
 end
 
----@param servername string
----@return table
-function M.handlers(servername)
-    vim.cmd("autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335")
-    vim.cmd("autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335")
-
-    local border = {
-        { "🭽", "FloatBorder" },
-        { "▔", "FloatBorder" },
-        { "🭾", "FloatBorder" },
-        { "▕", "FloatBorder" },
-        { "🭿", "FloatBorder" },
-        { "▁", "FloatBorder" },
-        { "🭼", "FloatBorder" },
-        { "▏", "FloatBorder" },
-    }
-
-    -- LSP settings (for overriding per client)
-    local handlers = {}
-
-    return handlers
-end
 
 ---@param bufnr number
 function M.auto_highlight_document(bufnr)

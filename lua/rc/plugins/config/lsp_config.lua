@@ -28,7 +28,6 @@ function M.server_opts(server, opts)
     end
     opts = vim.tbl_deep_extend("keep", opts, {
         capabilities = M.default_capabilities(lsphandler.capabilities()),
-        handlers = lsphandler.handlers(server),
     })
     return opts
 end
