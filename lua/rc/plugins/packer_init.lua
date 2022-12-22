@@ -6,9 +6,7 @@ function M.init(packer)
     --
     packer.init({
         display = {
-            open_fn = function()
-                return require("packer.util").float({ border = "rounded" })
-            end,
+            open_fn = function() return require("packer.util").float({ border = "rounded" }) end,
         },
     })
 end

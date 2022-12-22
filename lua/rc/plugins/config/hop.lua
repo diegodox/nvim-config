@@ -1,27 +1,13 @@
--- hop.nvim configuration
-local hop_config = {}
+local M = {}
 
-function hop_config.setup() end
-
-function hop_config.keymap()
-    require("which-key").register({ f = { "<Cmd>HopChar1<CR>", "Hop to char" } }, { prefix = "<Leader>" })
-    vim.api.nvim_set_keymap(
-        "n",
-        "f",
-        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false })<cr>",
-        {}
-    )
-    vim.api.nvim_set_keymap(
-        "n",
-        "F",
-        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false })<cr>",
-        {}
-    )
-end
-
-function hop_config.config()
+function M.config()
     require("hop").setup()
-    hop_config.keymap()
+    vim.keymap.set("n", "<C-f>", "<Cmd>HopChar1<CR>", { desc = "Hop to char" })
+    vim.keymap.set("n", "gl", "<Cmd>HopLineStart<CR>", { desc = "Hop to line start" })
+
+    require("rc.plugins.config.which-key").pregister({ h = { name = "hop" } }, { prefix = "<Leader>" })
+    vim.keymap.set("n", "<Leader>hf", "<Cmd>HopChar1<CR>", { desc = "Hop to char" })
+    vim.keymap.set("n", "<Leader>hl", "<Cmd>HopLineStart<CR>", { desc = "Hop to line start" })
 end
 
-return hop_config
+return M

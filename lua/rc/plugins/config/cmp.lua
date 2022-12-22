@@ -7,22 +7,58 @@ M.requires = {
     "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
+    "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-cmdline",
+    -- format
+    "onsails/lspkind.nvim",
 }
 
 -- call cmp.setup
-function M.setup(cmp)
+local function setup()
+    local cmp = require("cmp")
     local luasnip = require("luasnip")
+    local ok_lspkind, lspkind = pcall(require, "lspkind")
+
+    -- lspkind format
+    local formatting = nil
+    if ok_lspkind then
+        formatting = {
+            fields = { "kind", "abbr", "menu" },
+            format = lspkind.cmp_format({
+                mode = "symbol", -- show only symbol annotations
+                maxwidth = 50,
+                menu = { -- show which source that completion item came from
+                    buffer = "[buf]",
+                    nvim_lsp = "[LSP]",
+                    nvim_lua = "[api]",
+                    path = "[path]",
+                    luasnip = "[snip]",
+                    cmdline = "[cmd]",
+                },
+            }),
+        }
+    else
+        vim.notify_once(
+            "Plugin 'lspkind' not found.\nCompletion will not have fancy icon and it's origin",
+            vim.log.levels.WARN
+        )
+    end
+
     cmp.setup({
         snippet = {
-            expand = function(args)
-                luasnip.lsp_expand(args.body)
-            end,
+            expand = function(args) luasnip.lsp_expand(args.body) end,
+        },
+
+        window = {
+            documentation = { border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" } },
         },
 
         sources = cmp.config.sources({
+            { name = "nvim_lua" },
             { name = "nvim_lsp" },
             { name = "luasnip" },
+            { name = "buffer" },
+            { name = "path" },
         }),
 
         preselect = true,
@@ -64,14 +100,16 @@ function M.setup(cmp)
             end, { "i", "s" }),
         },
 
+        formatting = formatting,
         experimental = {
             ghost_text = true,
         },
     })
 end
 
-function M.setup_search(cmp)
-    cmp.setup.cmdline("/", {
+local function setup_search()
+    local cmp = require("cmp")
+    cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
             { name = "buffer" },
@@ -79,7 +117,12 @@ function M.setup_search(cmp)
     })
 end
 
-function M.setup_cmdline(cmp)
+local function setup_cmdline()
+    local cmp = require("cmp")
+    -- disable tabs on command
+    vim.keymap.set("c", "<Tab>", "<nop>", { desc = "disable tab on command" })
+    vim.keymap.set("c", "<S-Tab>", "<nop>", { desc = "disable S-tab on command" })
+
     cmp.setup.cmdline(":", {
         mapping = {
             ["<Tab>"] = cmp.mapping(function(fallback)
@@ -91,13 +134,14 @@ function M.setup_cmdline(cmp)
             end, { "c" }),
         },
         sources = {
-            { name = "cmdline" },
             { name = "path" },
+            { name = "cmdline" },
         },
     })
 end
 
-M.set_hightlight = function()
+-- vscode theme
+local function set_hightlight()
     vim.cmd([[highlight CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080]])
     vim.cmd([[highlight CmpItemAbbrMatch guibg=NONE guifg=#569CD6]])
     vim.cmd([[highlight CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6]])
@@ -111,17 +155,17 @@ M.set_hightlight = function()
     vim.cmd([[highlight CmpItemKindUnit guibg=NONE guifg=#D4D4D4]])
 end
 
+function M.default_capabilities(capabilities)
+    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+    return capabilities
+end
+
 -- setup, setup_cmdline, setup_search, set_hightlight
 function M.config()
-    local ok, cmp = pcall(require, "cmp")
-    if not ok then
-        print("plugin 'cmp' not found")
-        return
-    end
-    M.setup(cmp)
-    M.setup_cmdline(cmp)
-    M.setup_search(cmp)
-    M.set_hightlight()
+    setup()
+    setup_cmdline()
+    setup_search()
+    set_hightlight()
 end
 
 return M

@@ -2,39 +2,25 @@
 local M = {}
 
 -- required plugins to run null-ls
-M.requires = "nvim-lua/plenary.nvim"
+M.requires = { "nvim-lua/plenary.nvim", "lewis6991/gitsigns.nvim" }
 
 -- configure null-ls
 function M.config()
     local ok, null_ls = pcall(require, "null-ls")
     if not ok then
-        print("plugin 'null-ls' not found")
+        vim.notify_once("plugin 'null-ls' not found, skip setup", vim.lsp.log_levels.WARN)
+        return
     end
 
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    local cmp_nvim_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    if cmp_nvim_ok then
-        capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-    else
-        print("fail to update capabilities via 'cmp_nvim_lsp'")
-    end
-
-    null_ls.setup({
+    null_ls.setup(require("rc.plugins.config.lsp_config").server_opts("null-ls", {
         sources = {
             null_ls.builtins.formatting.stylua,
+            null_ls.builtins.formatting.fish_indent,
+            null_ls.builtins.diagnostics.actionlint,
+            null_ls.builtins.diagnostics.shellcheck,
+            null_ls.builtins.diagnostics.fish,
         },
-        capabilities = capabilities,
-        on_attach = function(client)
-            if client.resolved_capabilities.document_formatting then
-                vim.cmd([[
-                augroup LspFormatting
-                    autocmd! * <buffer>
-                    autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-                augroup END
-                ]])
-            end
-        end,
-    })
+    }))
 end
 
 return M

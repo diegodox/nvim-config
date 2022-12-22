@@ -1,17 +1,16 @@
 local M = {}
 
-M.after = "nvim-treesitter"
-
 function M.config()
-    local ok, conf = pcall(require, "nvim-treesitter.configs")
+    local ok, rainbow = pcall(require, "nvim-treesitter.configs")
 
     if not ok then
-        print("plugin 'nvim-ts-rainbow' not found")
+        vim.notify_once("plugin 'nvim-ts-rainbow' not found", vim.log.levels.WARN)
         return
     end
 
-    conf.setup({
+    rainbow.setup({
         rainbow = {
+            enable = true,
             colors = {
                 "#FFD700",
                 "#87CEFA",

@@ -13,6 +13,7 @@ function M.install()
     vim.o.runtimepath = vim.o.runtimepath .. install_path
     -- install packer.nvim to intstall_path
     if fn.empty(fn.glob(install_path)) > 0 then
+        ---@diagnostic disable-next-line: lowercase-global
         packer_bootstrap = fn.system({
             "git",
             "clone",
