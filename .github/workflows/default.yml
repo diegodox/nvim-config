@@ -14,5 +14,5 @@ jobs:
       - uses: JohnnyMorganz/stylua-action@1.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          args: --check .
+          args: --check --glob **/*.lua --glob !./plugin/packer_compiled.lua
 
