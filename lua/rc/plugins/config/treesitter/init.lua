@@ -1,6 +1,6 @@
 local M = {}
 
-function M.run() require("treesitter.install").update({ with_sync = true }) end
+M.update = require("nvim-treesitter.install").update({ with_sync = true })
 
 -- list of must installed languages
 local ensure_installed = {
