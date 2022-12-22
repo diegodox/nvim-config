@@ -135,7 +135,7 @@ local plugins = {
 
     {
         "p00f/nvim-ts-rainbow",
-        after = "nvim-treesitter",
+        requires = require("rc.plugins.config.treesitter.rainbow").requires,
         config = require("rc.plugins.config.treesitter.rainbow").config,
     },
 
