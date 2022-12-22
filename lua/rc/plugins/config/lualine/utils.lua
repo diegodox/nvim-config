@@ -14,7 +14,7 @@ end
 
 function M.highlight_autocmd()
     local group = vim.api.nvim_create_augroup("LulaineModuleHighlight", { clear = true })
-    vim.api.nvim_create_autocmd("colorscheme", {
+    vim.api.nvim_create_autocmd("Colorscheme", {
         callback = highlight,
         group = group,
         desc = "set lualine utils highlight",

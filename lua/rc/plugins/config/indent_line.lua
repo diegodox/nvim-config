@@ -39,7 +39,7 @@ end
 
 local function autoset_highlight()
     local g = vim.api.nvim_create_augroup("AutoSetIndentBlanklineHightlight", { clear = true })
-    vim.api.nvim_create_autocmd("colorscheme", {
+    vim.api.nvim_create_autocmd("Colorscheme", {
         group = g,
         callback = function()
             highlight()
