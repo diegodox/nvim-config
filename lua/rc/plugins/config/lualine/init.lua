@@ -25,7 +25,16 @@ function M.config()
                 winbar = 300,
             },
             disabled_filetypes = {
-                winbar = { "toggleterm", "Trouble" },
+                winbar = {
+                    "toggleterm",
+                    "Trouble",
+                    "dapui_scopes",
+                    "dapui_breakpoints",
+                    "dapui_stacks",
+                    "dapui_watchs",
+                    "dapui_repl",
+                    "dapui_console",
+                },
             },
         },
         sections = {

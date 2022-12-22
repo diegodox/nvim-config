@@ -247,9 +247,28 @@ return require("packer").startup(function(use)
         "folke/trouble.nvim",
         config = function() require("rc.plugins.config.trouble_nvim").config() end,
     })
-    -- use({
-    --     "mfussenegger/nvim-dap",
-    -- })
+
+    use({
+        "rcarriga/nvim-dap-ui",
+        requires = require("rc.plugins.config.dap_nvim").requires,
+        after = require("rc.plugins.config.dap_nvim").after,
+        config = function() require("rc.plugins.config.dap_nvim").config() end,
+    })
+
+    use({
+        "https://github.com/mfussenegger/nvim-dap-python",
+        requires = "mfussenegger/nvim-dap",
+        ft = "python",
+        config = function()
+            local venv = os.getenv("VIRTUAL_ENV")
+            if venv then
+                local venv_python = string.format("%s/bin/python", venv)
+                require("dap-python").setup(venv_python)
+            else
+                require("dap-python").setup()
+            end
+        end,
+    })
 
     use({
         "iamcco/markdown-preview.nvim",
