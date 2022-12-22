@@ -2,8 +2,8 @@ local M = {}
 
 local L = {}
 
-M.requires = "mfussenegger/nvim-dap"
-M.after = "nvim-dap"
+M.requires = { "mfussenegger/nvim-dap" }
+M.after = { "nvim-dap" }
 
 function L.define_sign() vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "", linehl = "", numhl = "" }) end
 

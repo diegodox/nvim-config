@@ -1,6 +1,6 @@
 local M = {}
 
-M.requires = "nvim-lua/plenary.nvim"
+M.requires = { "nvim-lua/plenary.nvim" }
 
 function M.config()
     vim.g.lazygit_floating_window_winblend = 5

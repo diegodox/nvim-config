@@ -7,9 +7,7 @@ if not ok then
     return
 end
 
---
--- Install plugins
---
+---@type LazySpec[]
 local plugins = {
     "wbthomason/packer.nvim",
 
@@ -28,7 +26,7 @@ local plugins = {
 
     {
         "goolord/alpha-nvim",
-        dependencies = "kyazdani42/nvim-web-devicons",
+        dependencies = { "kyazdani42/nvim-web-devicons" },
         config = function() require("alpha").setup(require("alpha.themes.startify").config) end,
     },
 
@@ -250,7 +248,7 @@ local plugins = {
 
     {
         "sindrets/diffview.nvim",
-        dependencies = "nvim-lua/plenary.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = function() require("diffview").setup() end,
     },
 
@@ -268,8 +266,8 @@ local plugins = {
 
     {
         "mfussenegger/nvim-dap-python",
-        dependencies = "mfussenegger/nvim-dap",
-        ft = "python",
+        dependencies = { "mfussenegger/nvim-dap" },
+        ft = { "python" },
         config = function()
             local venv = os.getenv("VIRTUAL_ENV")
             if venv then
