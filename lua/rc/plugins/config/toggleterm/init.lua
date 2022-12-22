@@ -11,8 +11,6 @@ function M.config()
         float_opts = { winblend = 4 },
     })
     require("rc.plugins.config.toggleterm.setup_term")()
-    -- require("rc.plugins.config.toggleterm.setup_lazygit")()
-    -- require("rc.plugins.config.toggleterm.setup_ranger")()
 end
 
 return M
