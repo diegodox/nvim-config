@@ -77,7 +77,7 @@ lualine_a = {
 -- ```]]
 ---@class LualineModuleTable
 ---@field color table|fun():table Color table
----@field fmt fun(str:string):string Format string
+---@field fmt fun(str:string):string? Format string
 ---@field separator string|LualineSeparatorTable Determines what separator to use for the component.
 ---@field padding integer|LualinePaddingTable Adds padding to the left and right of components.
 ---@field cond fun():boolean Condition function, the component is loaded when the function returns `true`.
