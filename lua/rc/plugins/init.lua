@@ -36,10 +36,7 @@ local plugins = {
     {
         "folke/noice.nvim",
         config = require("rc.plugins.config.noice_nvim").config,
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
-        },
+        dependencies = require("rc.plugins.config.noice_nvim").dependencies,
     },
 
     {
@@ -85,7 +82,7 @@ local plugins = {
 
     {
         "abecodes/tabout.nvim",
-        after = "nvim-cmp",
+        dependencies = { "hrsh7th/nvim-cmp", "nvim-treesitter/nvim-treesitter" },
         config = function() require("tabout").setup() end,
     },
 
@@ -102,14 +99,12 @@ local plugins = {
 
     {
         "norcalli/nvim-colorizer.lua",
-
         --bug: stop working after change colorscheme
         config = function() require("colorizer").setup() end,
     },
 
     {
         "nvim-lualine/lualine.nvim",
-        after = "nvim-navic",
         dependencies = require("rc.plugins.config.lualine").requires,
         config = require("rc.plugins.config.lualine").config,
     },

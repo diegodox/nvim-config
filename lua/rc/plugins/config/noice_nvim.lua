@@ -1,5 +1,10 @@
 local M = {}
 
+M.dependencies = {
+    "MunifTanjim/nui.nvim",
+    "rcarriga/nvim-notify",
+}
+
 function M.config()
     ---@type NoiceConfig
     local config = {
