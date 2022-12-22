@@ -111,22 +111,9 @@ local plugins = {
 
     require("rc.plugins.config.trouble_nvim").lazy,
 
-    require("rc.plugins.config.dap_nvim").lazy,
+    require("rc.plugins.config.dap.ui").lazy,
 
-    {
-        "mfussenegger/nvim-dap-python",
-        dependencies = { "mfussenegger/nvim-dap" },
-        ft = { "python" },
-        config = function()
-            local venv = os.getenv("VIRTUAL_ENV")
-            if venv then
-                local venv_python = string.format("%s/bin/python", venv)
-                require("dap-python").setup(venv_python)
-            else
-                require("dap-python").setup()
-            end
-        end,
-    },
+    require("rc.plugins.config.dap.python").lazy,
 
     {
         "iamcco/markdown-preview.nvim",
