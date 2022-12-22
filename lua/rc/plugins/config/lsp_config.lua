@@ -4,6 +4,7 @@ local M = {}
 function M.on_attach_keymap(bufnr)
     require("rc.lsp-handler").keymap(bufnr)
     require("rc.plugins.config.telescope.lsp").keymap(bufnr)
+    require("rc.plugins.config.lspsaga_nvim").keymap(bufnr)
 end
 
 ---@param capabilities table<string, string|table|boolean|function> capabilities

@@ -171,6 +171,12 @@ return require("packer").startup(function(use)
     })
 
     use({
+        "glepnir/lspsaga.nvim",
+        branch = "main",
+        config = function() require("rc.plugins.config.lspsaga_nvim").config() end,
+    })
+
+    use({
         "simrat39/rust-tools.nvim",
         requires = require("rc.plugins.config.rust-tools").requires,
         config = function() require("rc.plugins.config.rust-tools").setup() end,
