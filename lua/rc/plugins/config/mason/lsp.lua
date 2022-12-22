@@ -1,6 +1,6 @@
 local M = {}
 
-M.requires = { "williamboman/mason-lspconfig.nvim" }
+M.requires = { "williamboman/mason-lspconfig.nvim", "paradoxxxzero/pyls-isort" }
 
 -- list of language servers which must installed and configured
 local ensure_installed = { "rust_analyzer", "sumneko_lua", "texlab", "taplo", "clangd", "cmake" }
@@ -33,6 +33,7 @@ local enhance_server_opts = {
                     autopep8 = { enabled = false },
                     flake8 = { enabled = true, ignore = { "E501" } },
                     pyflakes = { enabled = false },
+                    rope_autoimport = { enabled = true },
                 },
             },
         },
