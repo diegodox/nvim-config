@@ -1,7 +1,6 @@
 local M = {}
 
 function M.define_sign()
-    -- define signs when this module is loaded
     for type, icon in pairs({
         Error = " ",
         Warn = " ",
@@ -42,7 +41,6 @@ function M.keymap(bufnr)
     vim.keymap.set("n", "<Leader>lf", vim.lsp.buf.format, { desc = "Format", buffer = bufnr })
     vim.keymap.set("n", "<F2>", increname, { desc = "Rename", buffer = bufnr, expr = true })
 end
-
 
 ---@param bufnr number
 function M.auto_highlight_document(bufnr)
