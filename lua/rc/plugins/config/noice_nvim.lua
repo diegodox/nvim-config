@@ -18,6 +18,7 @@ function M.config()
             },
         },
         lsp = { signature = { enabled = false } },
+        presets = { inc_rename = true },
     }
     require("noice").setup(config)
 end

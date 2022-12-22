@@ -192,11 +192,6 @@ local plugins = {
         config = require("rc.plugins.config.null-ls").config,
     },
 
-    {
-        "smjonas/inc-rename.nvim",
-        after = "dressing.nvim",
-        config = require("rc.plugins.config.increname").setup,
-    },
 
     {
         "hrsh7th/nvim-cmp",
