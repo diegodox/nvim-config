@@ -129,7 +129,7 @@ local plugins = {
 
     {
         "nvim-treesitter/nvim-treesitter",
-        run = function() require("rc.plugins.config.treesitter").run() end,
+        init = function() require("rc.plugins.config.treesitter").run() end,
         config = function()
             require("rc.plugins.config.treesitter").config()
             require("rc.plugins.config.treesitter.highligh_workaround").set_hi()
