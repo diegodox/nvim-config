@@ -1,5 +1,13 @@
 local M = {}
 
+M.after = {
+    "tomasiser/vim-code-dark",
+    "stevearc/dressing.nvim",
+    "goolord/alpha-nvim",
+    "nvim-lualine/lualine.nvim",
+    "lewis6991/gitsigns.nvim",
+}
+
 local ignore_window_ft = {
     "terminal",
     "Trouble",

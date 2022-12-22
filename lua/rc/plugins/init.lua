@@ -29,13 +29,7 @@ local plugins = {
 
     {
         "levouh/tint.nvim",
-        after = {
-            "vim-code-dark",
-            "dressing.nvim",
-            "alpha-nvim",
-            "lualine.nvim",
-            "gitsigns.nvim",
-        },
+        dependencies = require("rc.plugins.config.tint_nvim").after,
         config = require("rc.plugins.config.tint_nvim").config,
     },
 
