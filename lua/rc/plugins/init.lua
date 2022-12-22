@@ -30,6 +30,7 @@ local plugins = {
     {
         "levouh/tint.nvim",
         dependencies = require("rc.plugins.config.tint_nvim").after,
+        event = { "Colorscheme" },
         config = require("rc.plugins.config.tint_nvim").config,
     },
 
@@ -90,6 +91,8 @@ local plugins = {
         "lewis6991/gitsigns.nvim",
         dependencies = require("rc.plugins.config.gitsigns").requires,
         config = require("rc.plugins.config.gitsigns").config,
+        lazy = true,
+        event = { "Colorscheme" },
     },
 
     {
@@ -185,7 +188,7 @@ local plugins = {
 
     {
         "jose-elias-alvarez/null-ls.nvim",
-        require = require("rc.plugins.config.null-ls").dependencies,
+        require = require("rc.plugins.config.null-ls").requires,
         config = require("rc.plugins.config.null-ls").config,
     },
 
