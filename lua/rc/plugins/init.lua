@@ -136,7 +136,7 @@ return require("packer").startup(function(use)
         run = function() require("rc.plugins.config.treesitter").run() end,
         config = function()
             require("rc.plugins.config.treesitter").config()
-            require("rc.plugins.config.treesitter").highlight_workaround()
+            require("rc.plugins.config.treesitter.highligh_workaround").set_hi()
         end,
     })
 
