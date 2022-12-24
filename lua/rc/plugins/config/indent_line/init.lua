@@ -1,7 +1,8 @@
 local M = {
     fg = "#555555",
-    alpha = 0.1,
-    hls = { "#E06C75", "#E5C07B", "#98C379", "#56B6C2", "#61AFEF", "#C678DD" },
+    alpha = 0.08,
+    hl_indents = { "#E5C07B", "#98C379", "#56B6C2", "#61AFEF", "#C678DD", "#E06C75" },
+    hl_bgs = { "#FFFF00", "#00FF00", "#00FFFF", "#0000FF", "#C678DD", "#E06C75" },
 }
 
 M.requires = "nvim-treesitter/nvim-treesitter"
@@ -11,7 +12,7 @@ local util = require("rc.plugins.config.indent_line.util")
 -- highlights minimal style
 ---@diagnostic disable-next-line: unused-local, unused-function
 local function highlight_indent_blankline()
-    for i, hl in ipairs(M.hls) do
+    for i, hl in ipairs(M.hl_indents) do
         vim.cmd({
             cmd = "highlight",
             args = { "IndentBlanklineIndent" .. i, "guibg=" .. hl, "gui=nocombine" },
@@ -19,13 +20,13 @@ local function highlight_indent_blankline()
     end
 end
 
--- vscode indent rainbow lik highlighting
+-- vscode indent rainbow like highlighting
 local function highlight_indent_rainbow(alpha, fg)
     local is_ok, normal_bg_rgb = util.get_hl_bg_rgb("Normal")
     if not is_ok then
         return
     end
-    for i, hl in ipairs(M.hls) do
+    for i, hl in ipairs(M.hl_bgs) do
         local bg = util.add(alpha, normal_bg_rgb, util.hex2rgb(hl))
         vim.cmd({
             cmd = "highlight",
