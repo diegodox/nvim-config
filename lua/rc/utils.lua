@@ -55,7 +55,7 @@ end
 
 function M.toggle_transparent()
     vim.g.transparent_bg = not vim.g.transparent_bg
-    vim.api.nvim_exec_autocmds("colorscheme", {})
+    vim.api.nvim_exec_autocmds("Colorscheme", {})
     vim.notify("Toggle background transparent", vim.log.levels.TRACE)
 end
 
