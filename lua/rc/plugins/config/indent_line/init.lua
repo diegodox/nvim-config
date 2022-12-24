@@ -9,7 +9,7 @@ M.requires = "nvim-treesitter/nvim-treesitter"
 
 local util = require("rc.plugins.config.indent_line.util")
 
--- highlights minimal style
+-- set indent highlights minimal style
 ---@diagnostic disable-next-line: unused-local, unused-function
 local function highlight_indent_blankline()
     for i, hl in ipairs(M.hl_indents) do
@@ -20,7 +20,7 @@ local function highlight_indent_blankline()
     end
 end
 
--- vscode indent rainbow like highlighting
+-- set indent highlights like vscode's indent-rainbow
 local function highlight_indent_rainbow(alpha, fg)
     local is_ok, normal_bg_rgb = util.get_hl_bg_rgb("Normal")
     if not is_ok then
