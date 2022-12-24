@@ -30,4 +30,31 @@ function M.get_hl_bg_rgb(name)
     return true, M.hex2rgb("#" .. tohex(hl.background, 6))
 end
 
+-- set indent highlights minimal style
+---@param hls string[]
+function M.highlight_indent_blankline(hls)
+    for i, hl in ipairs(hls) do
+        vim.cmd({
+            cmd = "highlight",
+            args = { "IndentBlanklineIndent" .. i, "guibg=" .. hl, "gui=blend" },
+        })
+    end
+end
+
+-- set indent highlights like vscode's indent-rainbow
+---@param hls string[]
+function M.highlight_indent_rainbow(alpha, fg, hls)
+    local is_ok, normal_bg_rgb = M.get_hl_bg_rgb("Normal")
+    if not is_ok then
+        return
+    end
+    for i, hl in ipairs(hls) do
+        local bg = M.add(alpha, normal_bg_rgb, M.hex2rgb(hl))
+        vim.cmd({
+            cmd = "highlight",
+            args = { "IndentBlanklineIndent" .. i, "guifg=" .. fg, "guibg=" .. M.rgb2hex(bg), "gui=replace" },
+        })
+    end
+end
+
 return M

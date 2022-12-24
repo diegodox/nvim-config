@@ -9,32 +9,6 @@ M.requires = "nvim-treesitter/nvim-treesitter"
 
 local util = require("rc.plugins.config.indent_line.util")
 
--- set indent highlights minimal style
----@diagnostic disable-next-line: unused-local, unused-function
-local function highlight_indent_blankline()
-    for i, hl in ipairs(M.hl_indents) do
-        vim.cmd({
-            cmd = "highlight",
-            args = { "IndentBlanklineIndent" .. i, "guibg=" .. hl, "gui=nocombine" },
-        })
-    end
-end
-
--- set indent highlights like vscode's indent-rainbow
-local function highlight_indent_rainbow(alpha, fg)
-    local is_ok, normal_bg_rgb = util.get_hl_bg_rgb("Normal")
-    if not is_ok then
-        return
-    end
-    for i, hl in ipairs(M.hl_bgs) do
-        local bg = util.add(alpha, normal_bg_rgb, util.hex2rgb(hl))
-        vim.cmd({
-            cmd = "highlight",
-            args = { "IndentBlanklineIndent" .. i, "guifg=" .. fg, "guibg=" .. util.rgb2hex(bg), "gui=nocombine" },
-        })
-    end
-end
-
 -- settings
 local function setting() vim.g.indent_blankline_show_trailing_blankline_indent = false end
 
@@ -72,8 +46,8 @@ local function autoset_highlight()
     vim.api.nvim_create_autocmd("Colorscheme", {
         group = g,
         callback = function()
-            highlight_indent_rainbow(M.alpha, M.fg)
-            -- highlight_indent_blankline()
+            util.highlight_indent_rainbow(M.alpha, M.fg, M.hl_bgs)
+            -- util.highlight_indent_blankline(M.hl_indents)
             vim.notify("set indent_blankline highlights", vim.log.levels.TRACE)
         end,
         desc = "Automatically set indent_blankline highlighting after colorscheme applied",
@@ -82,8 +56,8 @@ end
 
 -- call highlight, settings, setup
 function M.config()
-    highlight_indent_rainbow(M.alpha, M.fg)
-    -- highlight_indent_blankline()
+    util.highlight_indent_rainbow(M.alpha, M.fg, M.hl_bgs)
+    -- util.highlight_indent_blankline(M.hl_indents)
     setting()
     setup()
     autoset_highlight()
