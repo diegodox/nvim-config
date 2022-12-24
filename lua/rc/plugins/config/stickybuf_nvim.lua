@@ -46,6 +46,7 @@ function M.config()
     })
 end
 
+---@type LazySpec
 M.lazy = {
     "stevearc/stickybuf.nvim",
     config = M.config,
