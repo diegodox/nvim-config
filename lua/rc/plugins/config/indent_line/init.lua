@@ -46,8 +46,8 @@ local function autoset_highlight()
     vim.api.nvim_create_autocmd("Colorscheme", {
         group = g,
         callback = function()
-            util.highlight_indent_rainbow(M.alpha, M.fg, M.hl_bgs)
-            -- util.highlight_indent_blankline(M.hl_indents)
+            -- util.highlight_indent_rainbow(M.alpha, M.fg, M.hl_bgs)
+            util.highlight_indent_blankline(M.hl_indents)
             vim.notify("set indent_blankline highlights", vim.log.levels.TRACE)
         end,
         desc = "Automatically set indent_blankline highlighting after colorscheme applied",
@@ -56,8 +56,8 @@ end
 
 -- call highlight, settings, setup
 function M.config()
-    util.highlight_indent_rainbow(M.alpha, M.fg, M.hl_bgs)
-    -- util.highlight_indent_blankline(M.hl_indents)
+    -- util.highlight_indent_rainbow(M.alpha, M.fg, M.hl_bgs)
+    util.highlight_indent_blankline(M.hl_indents)
     setting()
     setup()
     autoset_highlight()

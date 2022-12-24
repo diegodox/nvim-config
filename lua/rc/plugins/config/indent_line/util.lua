@@ -36,7 +36,7 @@ function M.highlight_indent_blankline(hls)
     for i, hl in ipairs(hls) do
         vim.cmd({
             cmd = "highlight",
-            args = { "IndentBlanklineIndent" .. i, "guibg=" .. hl, "gui=blend" },
+            args = { "IndentBlanklineIndent" .. i, "guifg=" .. hl },
         })
     end
 end
@@ -48,11 +48,16 @@ function M.highlight_indent_rainbow(alpha, fg, hls)
     if not is_ok then
         return
     end
+
+    -- vim.cmd({
+    --     cmd = "highlight",
+    --     args = { "Visual", "guibg=#264f78", "gui=nocombine" },
+    -- })
     for i, hl in ipairs(hls) do
         local bg = M.add(alpha, normal_bg_rgb, M.hex2rgb(hl))
         vim.cmd({
             cmd = "highlight",
-            args = { "IndentBlanklineIndent" .. i, "guifg=" .. fg, "guibg=" .. M.rgb2hex(bg), "gui=replace" },
+            args = { "IndentBlanklineIndent" .. i, "guifg=" .. fg, "guibg=" .. M.rgb2hex(bg), "gui=nocombine" },
         })
     end
 end
