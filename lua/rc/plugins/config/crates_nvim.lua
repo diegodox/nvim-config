@@ -21,11 +21,13 @@ function M.setup()
     local crates = require("crates")
     crates.setup()
     cmp_source()
+    crates.show()
 end
 
 M.lazy = {
     "saecki/crates.nvim",
     dependencies = M.requires,
+    ft = "toml",
     config = M.setup,
 }
 
