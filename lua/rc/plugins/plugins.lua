@@ -123,6 +123,8 @@ local plugins = {
     "ii14/emmylua-nvim",
 
     require("rc.plugins.config.smooth_cursor_nvim").lazy,
+
+    require("rc.plugins.config.glance_nvim").lazy,
 }
 
 return plugins
