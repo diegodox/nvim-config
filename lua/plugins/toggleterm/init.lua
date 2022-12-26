@@ -1,4 +1,4 @@
-local M = {}
+local M = { "akinsho/toggleterm.nvim" }
 
 ---Configure toggleterm.nvim
 function M.config()
@@ -10,12 +10,7 @@ function M.config()
         start_in_insert = false,
         float_opts = { winblend = 4 },
     })
-    require("rc.plugins.config.toggleterm.setup_term")()
+    require("plugins.toggleterm.setup_term")()
 end
 
-M.lazy = {
-    "akinsho/toggleterm.nvim",
-    config = M.config,
-}
-
---return M.lazy
+return M

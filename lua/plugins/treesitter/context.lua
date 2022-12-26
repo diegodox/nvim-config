@@ -1,4 +1,5 @@
-local M = {}
+---@type LazySpec
+local M = { "nvim-treesitter/nvim-treesitter-context" }
 
 function M.config()
     require("treesitter-context").setup({
@@ -15,9 +16,4 @@ function M.config()
     })
 end
 
-M.lazy = {
-    "nvim-treesitter/nvim-treesitter-context",
-    config = M.config,
-}
-
---return M.lazy
+return M

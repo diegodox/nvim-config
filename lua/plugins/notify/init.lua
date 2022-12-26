@@ -1,4 +1,7 @@
-local M = {}
+---@type LazySpec
+local M = { "rcarriga/nvim-notify" }
+
+M.enabled = false
 
 --- setup nvim-notify
 --- reculclate max size of notification window, based on nvim window size
@@ -46,10 +49,4 @@ function M.config()
     vim.notify = notify
 end
 
----@type LazySpec
-M.lazy = {
-    "rcarriga/nvim-notify",
-    config = M.config,
-}
-
---return { M.lazy }
+return M

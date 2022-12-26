@@ -1,6 +1,6 @@
 ---@return Terminal
 local function create_term()
-    return require("rc.plugins.config.toggleterm.utils").new_terminal({
+    return require("plugins.toggleterm.utils").new_terminal({
         size = 15,
         env = {
             -- open a new split in current nvim to edit, instead of opening new vim in terminal
@@ -30,7 +30,7 @@ local function create_user_command(term)
 end
 
 local function set_keymap()
-    local pregister = require("rc.plugins.config.which-key").pregister
+    local pregister = require("plugins.which-key").pregister
     pregister({ ["<C-t>"] = { name = "ToggleTerm" } })
     pregister({ ["<C-t>"] = { name = "ToggleTerm" } }, { mode = "t" })
 
@@ -48,10 +48,6 @@ end
 ---Setup toggle terminal
 return function()
     local term = create_term()
-    require("rc.plugins.config.toggleterm.utils").close_autocmd(
-        "TabLeave",
-        term,
-        { desc = "Close ToggleTerm Before Leave Tab" }
-    )
+    require("plugins.toggleterm.utils").close_autocmd("TabLeave", term, { desc = "Close ToggleTerm Before Leave Tab" })
     create_user_command(term)
 end

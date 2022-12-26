@@ -1,4 +1,5 @@
-local M = {}
+---@type LazySpec
+local M = { "folke/trouble.nvim" }
 
 function M.config()
     require("trouble").setup({
@@ -9,9 +10,4 @@ function M.config()
     })
 end
 
-M.lazy = {
-    "folke/trouble.nvim",
-    config = M.config,
-}
-
---return M.lazy
+return M

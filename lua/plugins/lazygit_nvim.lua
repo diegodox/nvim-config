@@ -1,6 +1,7 @@
-local M = {}
+---@type LazySpec
+local M = { "kdheepak/lazygit.nvim" }
 
-M.requires = { "nvim-lua/plenary.nvim" }
+M.dependencies = { "nvim-lua/plenary.nvim" }
 
 function M.config()
     vim.g.lazygit_floating_window_winblend = 5
@@ -8,11 +9,4 @@ function M.config()
     vim.keymap.set("n", "<C-g>", "<cmd>LazyGit<CR>", { desc = "Open LazyGit" })
 end
 
-M.lazy = {
-    "kdheepak/lazygit.nvim",
-    dependencies = M.requires,
-    config = M.config,
-}
-
---return M.lazy
-return {}
+return M

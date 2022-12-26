@@ -1,10 +1,8 @@
-local M = {}
+---@type LazySpec
+local M = { "abecodes/tabout.nvim" }
+
+M.dependencies = { "hrsh7th/nvim-cmp", "nvim-treesitter/nvim-treesitter" }
 
 function M.config() require("tabout").setup() end
-M.lazy = {
-    "abecodes/tabout.nvim",
-    dependencies = { "hrsh7th/nvim-cmp", "nvim-treesitter/nvim-treesitter" },
-    config = M.confgi(),
-}
 
---return { M.lazy }
+return M

@@ -1,6 +1,10 @@
-local M = {} -- lualine configuration
+local M = {
+    "nvim-lualine/lualine.nvim",
+    lazy = true,
+    event = { "VimEnter" },
+}
 
-M.requires = { -- plugins required for lualine
+M.dependencies = { -- plugins required for lualine
     "nvim-treesitter/nvim-treesitter",
     "SmiteshP/nvim-navic",
     "kyazdani42/nvim-web-devicons",
@@ -10,10 +14,10 @@ M.requires = { -- plugins required for lualine
 function M.config()
     vim.o.showtabline = 0
 
-    local utils = require("rc.plugins.config.lualine.utils")
+    local utils = require("plugins.lualine.utils")
     utils.highlight_autocmd()
 
-    local noice_module = require("rc.plugins.config.noice_nvim").lualine()
+    local noice_module = require("plugins.noice_nvim").lualine()
 
     local mod = utils.modules
     require("lualine").setup({
@@ -79,12 +83,4 @@ function M.config()
     })
 end
 
-M.lazy = {
-    "nvim-lualine/lualine.nvim",
-    dependencies = M.requires,
-    lazy = true,
-    config = M.config,
-    event = { "VimEnter" },
-}
-
-return { M.lazy }
+return M

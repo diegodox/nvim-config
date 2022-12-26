@@ -1,4 +1,4 @@
-local M = {}
+local M = { "gen740/SmoothCursor.nvim" }
 
 function M.config()
     require("smoothcursor").setup({
@@ -6,9 +6,4 @@ function M.config()
     })
 end
 
-M.lazy = {
-    "gen740/SmoothCursor.nvim",
-    config = M.config,
-}
-
---return { M.lazy }
+return M

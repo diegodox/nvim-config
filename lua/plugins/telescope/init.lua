@@ -1,20 +1,22 @@
-local M = {}
-
-local L = {
-    util = require("rc.plugins.config.telescope.util"),
-    lsp = require("rc.plugins.config.telescope.lsp"),
-    dap = require("rc.plugins.config.telescope.dap"),
-    notify = require("rc.plugins.config.notify.telescope"),
-    pregister = require("rc.plugins.config.which-key").pregister,
-}
+---@type LazySpec
+local M = { "nvim-telescope/telescope.nvim" }
 
 -- requirement plugins for telescope
-M.requires = {
+M.dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-lua/popup.nvim",
     "kyazdani42/nvim-web-devicons",
     "tami5/sqlite.lua",
     "nvim-telescope/telescope-frecency.nvim",
+    "rcarriga/nvim-notify",
+}
+
+local L = {
+    util = require("plugins.telescope.util"),
+    lsp = require("plugins.telescope.lsp"),
+    dap = require("plugins.telescope.dap"),
+    notify = require("plugins.notify.telescope"),
+    pregister = require("plugins.which-key").pregister,
 }
 
 -- configure telescope (setup, keymap)
@@ -128,10 +130,4 @@ L.keymap = {
     end,
 }
 
-M.lazy = {
-    "nvim-telescope/telescope.nvim",
-    dependencies = M.requires,
-    config = M.config,
-}
-
---return M.lazy
+return M

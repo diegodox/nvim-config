@@ -1,4 +1,4 @@
-local M = {}
+local M = { "dnlhc/glance.nvim", lazy = true, event = "CursorHold" }
 
 local function autoset_highlight()
     local g = vim.api.nvim_create_augroup("AutoSetGlanceHightlight", { clear = true })
@@ -17,7 +17,4 @@ function M.config()
     autoset_highlight()
 end
 
-M.lazy = { "dnlhc/glance.nvim", config = M.config, lazy = true, event = "CursorHold" }
-
---return { M.lazy }
-return {}
+return M

@@ -1,6 +1,7 @@
-local M = {}
+---@type LazySpec
+local M = { "folke/which-key.nvim" }
 
-function M.setup() vim.g.timeoutlen = 10 end
+function M.init() vim.g.timeoutlen = 10 end
 
 function M.config()
     local ok, whichkey = pcall(require, "which-key")
@@ -32,10 +33,4 @@ function M.pregister(mappings, opts, fail_msg)
     return ok_whichkey
 end
 
-M.lazy = {
-    "folke/which-key.nvim",
-    setup = M.setup,
-    config = M.config,
-}
-
---return M.lazy
+return M

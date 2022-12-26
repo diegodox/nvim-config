@@ -1,6 +1,7 @@
-local M = {}
+---@type LazySpec
+local M = { "williamboman/mason-lspconfig.nvim" }
 
-M.requires = { "williamboman/mason-lspconfig.nvim", "paradoxxxzero/pyls-isort" }
+M.dependencies = { "paradoxxxzero/pyls-isort" }
 
 -- list of language servers which must installed and configured
 local ensure_installed = { "rust_analyzer", "sumneko_lua", "texlab", "taplo", "clangd", "cmake" }
@@ -43,8 +44,8 @@ local enhance_server_opts = {
 ---@param server string
 local function setup_server(server)
     local enhance_opts = enhance_server_opts[server] or {}
-    enhance_opts.on_attach = require("rc.plugins.config.navic").on_attach
-    require("rc.plugins.config.lsp_config").setup_server(server, enhance_opts)
+    enhance_opts.on_attach = require("plugins.navic").on_attach
+    require("plugins.lsp_config").setup_server(server, enhance_opts)
 end
 
 function M.config()
@@ -61,4 +62,4 @@ function M.config()
     end
 end
 
---return M
+return M

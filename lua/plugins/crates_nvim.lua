@@ -1,6 +1,6 @@
-local M = {}
+local M = { "saecki/crates.nvim", ft = "toml" }
 
-M.requires = {
+M.dependencies = {
     "nvim-lua/plenary.nvim",
 }
 
@@ -17,19 +17,11 @@ local function cmp_source()
     })
 end
 
-function M.setup()
+function M.config()
     local crates = require("crates")
     crates.setup()
     cmp_source()
     crates.show()
 end
 
-M.lazy = {
-    "saecki/crates.nvim",
-    dependencies = M.requires,
-    ft = "toml",
-    config = M.setup,
-}
-
---return M.lazy
-return {}
+return M

@@ -1,4 +1,4 @@
-local M = {}
+local M = { "EthanJWright/toolwindow.nvim" }
 
 local keymap_prefix = "<C-t>"
 
@@ -95,9 +95,4 @@ function M.config()
     register_trouble()
 end
 
-M.lazy = {
-    "EthanJWright/toolwindow.nvim",
-    config = M.config,
-}
-
---return { M.lazy }
+return M

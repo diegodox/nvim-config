@@ -1,4 +1,6 @@
-local M = {}
+---@type LazySpec
+local M = { "folke/noice.nvim" }
+M.enabled = true
 
 M.dependencies = {
     "MunifTanjim/nui.nvim",
@@ -46,11 +48,4 @@ function M.lualine()
     return modules
 end
 
----@type LazySpec
-M.lazy = {
-    "folke/noice.nvim",
-    config = M.config,
-    dependencies = M.dependencies,
-}
-
-return M.lazy
+return M

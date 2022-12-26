@@ -63,5 +63,4 @@ function M.highlight_indent_rainbow(alpha, fg, hls)
     end
 end
 
---return M
-return {}
+return M

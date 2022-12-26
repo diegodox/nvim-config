@@ -1,6 +1,11 @@
-local M = {}
+---@type LazySpec
+local M = {
+    "lewis6991/gitsigns.nvim",
+    lazy = true,
+    event = { "Colorscheme" },
+}
 
-M.requires = { "nvim-lua/plenary.nvim" }
+M.dependencies = { "nvim-lua/plenary.nvim" }
 
 function M.config()
     local ok, gitsigns = pcall(require, "gitsigns")
@@ -26,7 +31,7 @@ function M.config()
         return "<Ignore>"
     end
 
-    require("rc.plugins.config.which-key").pregister({ g = { name = "Git" } }, { prefix = "<Leader>" })
+    require("plugins.which-key").pregister({ g = { name = "Git" } }, { prefix = "<Leader>" })
 
     gitsigns.setup({
         numhl = true,
@@ -66,13 +71,4 @@ function M.config()
     })
 end
 
-M.lazy = {
-    "lewis6991/gitsigns.nvim",
-    dependencies = M.requires,
-    config = M.config,
-    lazy = true,
-    event = { "Colorscheme" },
-}
-
---return M.lazy
-return {}
+return M

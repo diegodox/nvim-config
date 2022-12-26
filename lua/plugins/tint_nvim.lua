@@ -1,6 +1,8 @@
-local M = {}
+---@type LazySpec
+local M = { "levouh/tint.nvim", event = { "Colorscheme" } }
 
-M.after = {
+M.dependencies = {
+
     -- "tomasiser/vim-code-dark",
     "stevearc/dressing.nvim",
     "goolord/alpha-nvim",
@@ -51,13 +53,4 @@ function M.config()
     })
 end
 
--- lazy.nvim table
----@type LazySpec
-M.lazy = {
-    "levouh/tint.nvim",
-    dependencies = M.after,
-    event = { "Colorscheme" },
-    config = M.config,
-}
-
---return { M.lazy }
+return M

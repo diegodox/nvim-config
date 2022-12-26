@@ -1,11 +1,13 @@
-local M = {}
+local M = {
+    "simrat39/rust-tools.nvim",
+}
 
-M.requires = { "mattn/webapi-vim" }
+M.dependencies = { "mattn/webapi-vim" }
 
 ---@param bufnr number
 local function keymap(bufnr)
     local r = require("rust-tools")
-    require("rc.plugins.config.which-key").pregister(
+    require("plugins.which-key").pregister(
         { r = { name = "Rust" } },
         { prefix = "<Leader>" },
         "Setup rust keymap without 'which-key' bufnr: " .. bufnr
@@ -18,8 +20,8 @@ local function keymap(bufnr)
     vim.keymap.set("n", "<Leader>rc", r.open_cargo_toml.open_cargo_toml, { desc = "Open Cargo.toml", buffer = bufnr })
 end
 
-function M.setup()
-    local server = require("rc.plugins.config.lsp_config").server_opts("rust_analyzer", {
+function M.config()
+    local server = require("plugins.lsp_config").server_opts("rust_analyzer", {
         -- see: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
         settings = {
             -- To enable rust-analyzer settings, visit: https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
@@ -56,10 +58,4 @@ function M.setup()
     require("rust-tools").setup(cfg)
 end
 
-M.lazy = {
-    "simrat39/rust-tools.nvim",
-    dependencies = M.requires,
-    config = M.setup,
-}
-
---return M.lazy
+return M

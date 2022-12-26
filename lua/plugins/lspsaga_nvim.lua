@@ -1,4 +1,4 @@
-local M = {}
+local M = { "glepnir/lspsaga.nvim", branch = "main" }
 
 function M.config()
     require("lspsaga").init_lsp_saga({
@@ -31,7 +31,7 @@ local function lsp_finder() command("lsp_finder") end
 
 ---@param bufnr number
 function M.keymap(bufnr)
-    require("rc.plugins.config.which-key").pregister(
+    require("plugins.which-key").pregister(
         { l = { name = "LSP" } },
         { prefix = "<Leader>" },
         "Setup LSP keymap without 'which-key' bufnr: " .. bufnr
@@ -49,15 +49,8 @@ function M.keymap(bufnr)
     -- vim.keymap.set("n", "gd", lsp_finder, { desc = "Lsp Finder", buffer = bufnr })
 
     -- rename
-    local increname = require("rc.plugins.config.increname").increname
+    local increname = require("plugins.increname").increname
     vim.keymap.set("n", "<F2>", increname, { desc = "Rename", buffer = bufnr, expr = true })
 end
 
-M.lazy = {
-    "glepnir/lspsaga.nvim",
-    branch = "main",
-    config = M.config,
-}
-
---return { M.lazy }
-return {}
+return M

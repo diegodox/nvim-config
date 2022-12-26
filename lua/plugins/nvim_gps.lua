@@ -1,5 +1,6 @@
-local M = {}
+---@type LazySpec
+local M = { "SmiteshP/nvim-gps" }
 
-M.lazy = { "SmiteshP/nvim-gps", after = "nvim-treesitter" }
+M.dependencies = { "nvim-treesitter/nvim-treesitter" }
 
---return M.lazy
+return M

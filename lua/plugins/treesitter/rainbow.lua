@@ -1,4 +1,5 @@
-local M = {}
+---@type LazySpec
+local M = { "p00f/nvim-ts-rainbow" }
 
 M.requires = { "nvim-treesitter/nvim-treesitter" }
 
@@ -22,10 +23,4 @@ function M.config()
     })
 end
 
-M.lazy = {
-    "p00f/nvim-ts-rainbow",
-    requires = M.requires,
-    config = M.config,
-}
-
---return M.lazy
+return M

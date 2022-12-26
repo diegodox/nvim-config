@@ -10,6 +10,8 @@ return {
 
     "neovim/nvim-lspconfig",
 
+    "mbbill/undotree",
+
     {
         "sindrets/diffview.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -22,4 +24,11 @@ return {
     },
 
     "ii14/emmylua-nvim",
+
+    {
+        "Mofiqul/vscode.nvim",
+        lazy = true,
+    },
+
+    { "machakann/vim-sandwich" },
 }

@@ -1,4 +1,5 @@
-local M = {}
+---@type LazySpec
+local M = { "stevearc/stickybuf.nvim" }
 
 function M.config()
     require("stickybuf").setup({
@@ -46,10 +47,4 @@ function M.config()
     })
 end
 
----@type LazySpec
-M.lazy = {
-    "stevearc/stickybuf.nvim",
-    config = M.config,
-}
-
---return M.lazy
+return M

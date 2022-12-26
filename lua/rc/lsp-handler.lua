@@ -23,8 +23,8 @@ end
 ---@param bufnr number
 function M.keymap(bufnr)
     local function open_diagnostic() vim.diagnostic.open_float(nil, { focusable = true }) end
-    local increname = require("rc.plugins.config.increname").increname
-    require("rc.plugins.config.which-key").pregister(
+    local increname = require("plugins.increname").increname
+    require("plugins.which-key").pregister(
         { l = { name = "LSP" } },
         { prefix = "<Leader>" },
         "Setup LSP keymap without 'which-key' bufnr: " .. bufnr

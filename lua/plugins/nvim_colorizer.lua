@@ -1,11 +1,7 @@
 --bug: stop working after change colorscheme
-local M = {}
+---@type LazySpec
+local M = { "norcalli/nvim-colorizer.lua" }
 
 function M.config() require("colorizer").setup() end
 
-M.lazy = {
-    "norcalli/nvim-colorizer.lua",
-    config = M.config,
-}
-
---return { M.lazy }
+return M

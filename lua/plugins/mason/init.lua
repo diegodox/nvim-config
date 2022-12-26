@@ -1,8 +1,9 @@
-local M = {}
+---@type LazySpec
+local M = { "williamboman/mason.nvim" }
 
-local lspconfig = require("rc.plugins.config.mason.lsp")
+local lspconfig = require("plugins.mason.lsp")
 
-M.requires = lspconfig.requires
+M.dependencies = { "neovim/nvim-lspconfig", "williamboman/mason-lspconfig.nvim" }
 
 function M.config()
     require("mason").setup({
@@ -18,11 +19,4 @@ function M.config()
     lspconfig.config()
 end
 
----@type LazySpec
-local lazy = {
-    "williamboman/mason.nvim",
-    dependencies = M.requires,
-    config = M.config,
-}
-
---return { lazy }
+return M

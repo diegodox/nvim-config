@@ -1,15 +1,15 @@
-local M = {}
+local M = { "neovim/nvim-lspconfig", lazy = true }
 
 ---@param bufnr number
 function M.on_attach_keymap(bufnr)
     require("rc.lsp-handler").keymap(bufnr)
-    require("rc.plugins.config.telescope.lsp").keymap(bufnr)
-    require("rc.plugins.config.lspsaga_nvim").keymap(bufnr)
+    require("plugins.telescope.lsp").keymap(bufnr)
+    require("plugins.lspsaga_nvim").keymap(bufnr)
 end
 
 ---@param capabilities table<string, string|table|boolean|function> capabilities
 ---@return table<string, string|table|boolean|function> capabilities
-function M.default_capabilities(capabilities) return require("rc.plugins.config.cmp").default_capabilities(capabilities) end
+function M.default_capabilities(capabilities) return require("plugins.cmp").default_capabilities(capabilities) end
 
 ---@param server string
 ---@param opts table?
@@ -40,5 +40,4 @@ function M.setup_server(server, opts)
     lspconfig[server].setup(opts)
 end
 
---return M
-return {}
+return M

@@ -1,4 +1,5 @@
-local M = {}
+---@type LazySpec
+local M = { "smjonas/inc-rename.nvim", enabled = false }
 
 M.requires = { "stevearc/dressing.nvim" }
 
@@ -10,5 +11,4 @@ end
 
 function M.increname() return ":IncRename " .. vim.fn.expand("<cword>") end
 
---return M
-return {}
+return M

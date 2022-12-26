@@ -1,6 +1,7 @@
-local M = {}
+---@type LazySpec
+local M = { "hrsh7th/nvim-cmp" }
 
-M.requires = {
+M.dependencies = {
     -- snip engine
     "L3MON4D3/LuaSnip",
     -- sources
@@ -168,11 +169,4 @@ function M.config()
     set_hightlight()
 end
 
-M.lazy = {
-    "hrsh7th/nvim-cmp",
-    dependencies = M.requires,
-    config = M.config,
-}
-
---return M.lazy
-return {}
+return M

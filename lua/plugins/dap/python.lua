@@ -20,4 +20,5 @@ M.lazy = {
     config = M.config,
 }
 
-return M
+-- return M
+return {}

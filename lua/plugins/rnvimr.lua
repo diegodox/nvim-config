@@ -1,4 +1,5 @@
-local M = {}
+---@type LazySpec
+local M = { "kevinhwang91/rnvimr" }
 
 function M.config()
     -- <C-b> to open ranger in proper size(rnvimr_ranger_views[1])
@@ -30,10 +31,4 @@ function M.config()
     --             \ ]
 end
 
-M.lazy = {
-    "kevinhwang91/rnvimr",
-    -- dependencies = require("rc.plugins.config.rnvimr").requires,
-    config = M.config,
-}
-
---return { M.lazy }
+return M

@@ -1,8 +1,9 @@
 -- config moudle for null-ls
-local M = {}
+---@type LazySpec
+local M = { "jose-elias-alvarez/null-ls.nvim" }
 
 -- required plugins to run null-ls
-M.requires = { "nvim-lua/plenary.nvim", "lewis6991/gitsigns.nvim" }
+M.dependencies = { "nvim-lua/plenary.nvim", "lewis6991/gitsigns.nvim" }
 
 -- configure null-ls
 function M.config()
@@ -12,7 +13,7 @@ function M.config()
         return
     end
 
-    null_ls.setup(require("rc.plugins.config.lsp_config").server_opts("null-ls", {
+    null_ls.setup(require("plugins.lsp_config").server_opts("null-ls", {
         sources = {
             null_ls.builtins.formatting.stylua,
             null_ls.builtins.formatting.fish_indent,
@@ -23,10 +24,4 @@ function M.config()
     }))
 end
 
-M.lazy = {
-    "jose-elias-alvarez/null-ls.nvim",
-    require = M.requires,
-    config = M.config,
-}
-
---return M.lazy
+return M

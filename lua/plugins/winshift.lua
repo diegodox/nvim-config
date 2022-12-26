@@ -1,4 +1,5 @@
-local M = {}
+---@type LazySpec
+local M = { "sindrets/winshift.nvim" }
 
 function M.config()
     vim.keymap.set("n", "<C-w>x", "<Cmd>WinShift swap<CR>", { desc = "Swap windows" })
@@ -8,10 +9,4 @@ function M.config()
     vim.keymap.set("n", "<C-w><S-l>", "<Cmd>WinShift right<CR>", { desc = "Move window right" })
 end
 
-M.lazy = {
-    -- move window
-    "sindrets/winshift.nvim",
-    setup = M.config,
-}
-
---return { M.lazy }
+return M

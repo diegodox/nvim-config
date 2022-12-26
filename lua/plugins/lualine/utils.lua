@@ -157,7 +157,7 @@ M.modules = {
         cond = function() return #vim.api.nvim_list_tabpages() > 1 end,
     },
 
-    navic = require("rc.plugins.config.navic").lualine_widget,
+    navic = require("plugins.navic").lualine_widget,
 
     cwd = { -- current working directory
         "vim.fn.getcwd()",
@@ -245,4 +245,4 @@ M.modules = {
     branch = { "branch", fmt = M.replace_empty("-") },
 }
 
---return M
+return M
