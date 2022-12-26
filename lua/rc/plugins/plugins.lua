@@ -1,7 +1,7 @@
 ---@type LazySpec[]
 local plugins = {
     {
-        "tomasiser/vim-code-dark",
+        "Mofiqul/vscode.nvim",
         lazy = true,
     },
 
