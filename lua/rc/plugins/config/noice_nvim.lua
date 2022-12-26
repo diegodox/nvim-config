@@ -6,7 +6,6 @@ M.dependencies = {
 }
 
 function M.config()
-    ---@type NoiceConfig
     local config = {
         routes = {
             {
@@ -17,7 +16,11 @@ function M.config()
                 opts = { skip = true },
             },
         },
-        lsp = { signature = { enabled = false } },
+        lsp = {
+            signature = { enabled = false },
+            hover = { enabled = false },
+        },
+        notify = { enabled = false },
         presets = { inc_rename = true },
     }
     require("noice").setup(config)
