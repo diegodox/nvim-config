@@ -1,4 +1,6 @@
-local M = {}
+local M = {
+    url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+}
 
 function M.config()
     require("lsp_lines").setup()
@@ -53,14 +55,8 @@ function M.highlight()
     local g = vim.api.nvim_create_augroup("LspLinesHighlight", { clear = true })
     vim.api.nvim_create_autocmd(
         "ColorScheme",
-        { command = "highlight! default link DiagnosticVirtualTextHint NonText" }
+        { command = "highlight! default link DiagnosticVirtualTextHint NonText", group = g }
     )
 end
 
-M.lazy = {
-    url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = M.config,
-}
-
---return M.lazy
-return {}
+return M
