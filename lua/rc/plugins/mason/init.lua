@@ -18,10 +18,11 @@ function M.config()
     lspconfig.config()
 end
 
-M.lazy = {
+---@type LazySpec
+local lazy = {
     "williamboman/mason.nvim",
     dependencies = M.requires,
     config = M.config,
 }
 
-return M
+return lazy

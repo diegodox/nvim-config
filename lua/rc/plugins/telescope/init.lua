@@ -1,4 +1,5 @@
 local M = {}
+
 local L = {
     util = require("rc.plugins.config.telescope.util"),
     lsp = require("rc.plugins.config.telescope.lsp"),
@@ -127,10 +128,10 @@ L.keymap = {
     end,
 }
 
-M.lazy = {
+local lazy = {
     "nvim-telescope/telescope.nvim",
     dependencies = M.requires,
     config = M.config,
 }
 
-return M
+return lazy

@@ -30,7 +30,7 @@ end
 -- configure treesitter
 function M.config() M.setup() end
 
-M.lazy = {
+local lazy = {
     "nvim-treesitter/nvim-treesitter",
     config = function()
         M.update()
@@ -39,4 +39,4 @@ M.lazy = {
     end,
 }
 
-return M
+return lazy

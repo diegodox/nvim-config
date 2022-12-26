@@ -1,4 +1,5 @@
 local M = {}
+
 function M.round(n) return n >= 0 and math.floor(n + 0.5) or math.ceil(n - 0.5) end
 
 function M.hex2rgb(hex)
