@@ -1,6 +1,4 @@
-local M = {
-    module = true,
-}
+local M = {}
 
 --- dynamic layout based on nvim window size
 ---@param threshold number
