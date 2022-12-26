@@ -38,4 +38,4 @@ function M.format_title(title, client_name) return client_name .. (#title > 0 an
 
 function M.format_message(message, percentage) return (percentage and percentage .. "%\t" or "") .. (message or "") end
 
-return M
+--return M

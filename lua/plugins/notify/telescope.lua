@@ -12,4 +12,4 @@ function M.keymap(bufnr)
     vim.keymap.set("n", "<Leader>tn", notify.notify, { desc = "List notifications", bufnr = bufnr })
 end
 
-return M
+--return M

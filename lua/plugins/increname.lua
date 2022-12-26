@@ -10,4 +10,5 @@ end
 
 function M.increname() return ":IncRename " .. vim.fn.expand("<cword>") end
 
-return M
+--return M
+return {}

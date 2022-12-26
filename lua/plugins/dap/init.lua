@@ -44,4 +44,5 @@ M.lazys = {
     require("rc.plugins.dap.ui").lazy,
 }
 
-return M.lazys
+-- return M.lazys
+return {}

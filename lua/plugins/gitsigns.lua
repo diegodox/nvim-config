@@ -74,4 +74,5 @@ M.lazy = {
     event = { "Colorscheme" },
 }
 
-return { M.lazy }
+--return M.lazy
+return {}

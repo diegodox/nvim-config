@@ -245,4 +245,4 @@ M.modules = {
     branch = { "branch", fmt = M.replace_empty("-") },
 }
 
-return M
+--return M

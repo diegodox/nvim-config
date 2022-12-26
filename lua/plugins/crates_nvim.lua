@@ -31,4 +31,5 @@ M.lazy = {
     config = M.setup,
 }
 
-return { M.lazy }
+--return M.lazy
+return {}

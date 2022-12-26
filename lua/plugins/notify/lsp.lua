@@ -46,4 +46,4 @@ function M.notify_lsp_progress_handler(_, result, ctx)
     end
 end
 
-return M
+--return M

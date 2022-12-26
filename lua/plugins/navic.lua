@@ -25,4 +25,4 @@ M.lualine_widget = function()
     }
 end
 
-return M
+--return M

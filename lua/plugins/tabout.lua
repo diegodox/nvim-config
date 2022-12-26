@@ -7,4 +7,4 @@ M.lazy = {
     config = M.confgi(),
 }
 
-return { M.lazy }
+--return { M.lazy }

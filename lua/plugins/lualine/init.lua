@@ -79,4 +79,12 @@ function M.config()
     })
 end
 
-return M
+M.lazy = {
+    "nvim-lualine/lualine.nvim",
+    dependencies = M.requires,
+    lazy = true,
+    config = M.config,
+    event = { "VimEnter" },
+}
+
+return { M.lazy }

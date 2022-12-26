@@ -1,7 +1,7 @@
 local M = {}
 
 M.after = {
-    "tomasiser/vim-code-dark",
+    -- "tomasiser/vim-code-dark",
     "stevearc/dressing.nvim",
     "goolord/alpha-nvim",
     "nvim-lualine/lualine.nvim",
@@ -60,4 +60,4 @@ M.lazy = {
     config = M.config,
 }
 
-return { M.lazy }
+--return { M.lazy }

@@ -40,4 +40,5 @@ function M.setup_server(server, opts)
     lspconfig[server].setup(opts)
 end
 
-return M
+--return M
+return {}

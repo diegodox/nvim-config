@@ -19,4 +19,5 @@ end
 
 M.lazy = { "dnlhc/glance.nvim", config = M.config, lazy = true, event = "CursorHold" }
 
-return { M.lazy }
+--return { M.lazy }
+return {}

@@ -14,4 +14,4 @@ M.lazy = {
     setup = M.config,
 }
 
-return { M.lazy }
+--return { M.lazy }
