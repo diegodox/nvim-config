@@ -13,9 +13,9 @@ function M.config()
     require("rc.plugins.config.toggleterm.setup_term")()
 end
 
-local lazy = {
+M.lazy = {
     "akinsho/toggleterm.nvim",
     config = M.config,
 }
 
-return lazy
+return { M.lazy }

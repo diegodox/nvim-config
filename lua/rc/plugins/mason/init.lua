@@ -25,4 +25,4 @@ local lazy = {
     config = M.config,
 }
 
-return lazy
+return { lazy }

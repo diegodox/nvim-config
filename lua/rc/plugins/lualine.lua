@@ -87,4 +87,4 @@ M.lazy = {
     event = { "VimEnter" },
 }
 
-return M
+return { M.lazy }

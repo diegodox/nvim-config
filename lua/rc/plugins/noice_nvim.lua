@@ -53,4 +53,4 @@ M.lazy = {
     dependencies = M.dependencies,
 }
 
-return M
+return { M.lazy }

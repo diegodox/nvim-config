@@ -8,10 +8,10 @@ function M.config()
     vim.keymap.set("n", "<C-w><S-l>", "<Cmd>WinShift right<CR>", { desc = "Move window right" })
 end
 
-local lazy = {
+M.lazy = {
     -- move window
     "sindrets/winshift.nvim",
     setup = M.config,
 }
 
-return lazy
+return { M.lazy }

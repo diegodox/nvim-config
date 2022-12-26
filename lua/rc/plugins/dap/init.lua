@@ -39,4 +39,9 @@ function M.setup()
     setup_rust(dap)
 end
 
-return M
+M.lazys = {
+    require("rc.plugins.dap.python").lazy,
+    require("rc.plugins.dap.ui").lazy,
+}
+
+return M.lazys

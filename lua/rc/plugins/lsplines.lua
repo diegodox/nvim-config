@@ -57,9 +57,9 @@ function M.highlight()
     )
 end
 
-local lazy = {
+M.lazy = {
     url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = M.config,
 }
 
-return lazy
+return { M.lazy }

@@ -128,10 +128,10 @@ L.keymap = {
     end,
 }
 
-local lazy = {
+M.lazy = {
     "nvim-telescope/telescope.nvim",
     dependencies = M.requires,
     config = M.config,
 }
 
-return lazy
+return { M.lazy }

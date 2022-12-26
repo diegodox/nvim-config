@@ -47,9 +47,9 @@ function M.config()
 end
 
 ---@type LazySpec
-local lazy = {
+M.lazy = {
     "rcarriga/nvim-notify",
     config = M.config,
 }
 
-return lazy
+return { M.lazy }

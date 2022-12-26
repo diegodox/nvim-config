@@ -64,9 +64,9 @@ function M.config()
 end
 
 ---@type LazySpec
-local lazy = {
+M.lazy = {
     "lukas-reineke/indent-blankline.nvim",
     config = M.config,
 }
 
-return lazy
+return { M.lazy }
