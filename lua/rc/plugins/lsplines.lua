@@ -49,7 +49,13 @@ function M.hide_diagnostic(name, should_fallback)
     end
 end
 
-function M.highlight() vim.cmd("highlight! default link DiagnosticVirtualTextHint NonText") end
+function M.highlight()
+    local g = vim.api.nvim_create_augroup("LspLinesHighlight", { clear = true })
+    vim.api.nvim_create_autocmd(
+        "ColorScheme",
+        { command = "highlight! default link DiagnosticVirtualTextHint NonText" }
+    )
+end
 
 local lazy = {
     url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
