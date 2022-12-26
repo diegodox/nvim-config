@@ -17,4 +17,17 @@ function M.install()
     vim.opt.runtimepath:prepend(lazypath)
 end
 
+function M.setup()
+    M.install()
+
+    local ok, lazy = pcall(require, "lazy")
+
+    if not ok then
+        print("Failed to load lazy.nvim")
+        return
+    end
+
+    lazy.setup("plugins")
+end
+
 return M
