@@ -2,53 +2,44 @@ local M = {
     url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 }
 
+local is_enable = true
+
 function M.config()
     require("lsp_lines").setup()
 
     -- Disable virtual_text since it's redundant due to lsp_lines.
-    vim.diagnostic.config({
-        virtual_text = false,
-    })
+    vim.diagnostic.config({ virtual_text = false })
 
+    vim.api.nvim_create_user_command("ToggleLspLines", M.toggle, { desc = "Toggle lsp_lines show/hide" })
+end
+
+function M.disable_on_insert()
     vim.api.nvim_create_autocmd("InsertEnter", {
-        callback = function() M.hide_diagnostic() end,
+        callback = function() M.hide() end,
     })
 
     vim.api.nvim_create_autocmd("ModeChanged", {
         pattern = "i:*",
-        callback = function() M.show_diagnostic() end,
+        callback = function() M.show() end,
     })
 end
 
----@param name string
----@return number?
-local function get_namespace_by_name(name)
-    local nss = vim.diagnostic.get_namespaces()
-    for key, ns in pairs(nss or {}) do
-        if ns and ns.name == name then
-            assert(type(key) == "number")
-            return key
-        end
+function M.toggle()
+    if is_enable then
+        M.hide()
+    else
+        M.show()
     end
 end
 
----@param name string?
----@param config table[]?
----@param should_fallback boolean?
-function M.show_diagnostic(name, config, should_fallback)
-    local ns = name and get_namespace_by_name(name)
-    if should_fallback or ns then
-        vim.diagnostic.show(ns, 0, nil, config)
-    end
+function M.show()
+    vim.diagnostic.config({ virtual_lines = true })
+    is_enable = true
 end
 
----@param name string?
----@param should_fallback boolean?
-function M.hide_diagnostic(name, should_fallback)
-    local ns = name and get_namespace_by_name(name)
-    if should_fallback or ns then
-        vim.diagnostic.hide(ns, 0)
-    end
+function M.hide()
+    vim.diagnostic.config({ virtual_lines = false })
+    is_enable = false
 end
 
 function M.highlight()
