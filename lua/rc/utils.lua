@@ -71,16 +71,15 @@ function M.set_colorscheme()
 
     set_transparent()
     require("rc.lsp-handler").def_reference_highlight()
-    require("rc.plugins.config.lsplines").highlight()
 end
 
 -- create autocommand that automatically set background transparent after set colorscheme
 function M.setup_colorscheme()
     local group = vim.api.nvim_create_augroup("Transparent", { clear = true })
-    vim.api.nvim_create_autocmd(
-        "Colorscheme",
-        { callback = M.set_colorscheme, group = group, desc = "set transparent" }
-    )
+    -- vim.api.nvim_create_autocmd(
+    --     "Colorscheme",
+    --     { callback = M.set_colorscheme, group = group, desc = "set transparent" }
+    -- )
     vim.api.nvim_create_user_command(
         "ToggleBackgroundTranprent",
         M.toggle_transparent,
