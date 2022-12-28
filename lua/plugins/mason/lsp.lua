@@ -1,7 +1,11 @@
 ---@type LazySpec
 local M = { "williamboman/mason-lspconfig.nvim" }
 
-M.dependencies = { "paradoxxxzero/pyls-isort" }
+M.dependencies = {
+    "williamboman/mason.nvim",
+    "neovim/nvim-lspconfig",
+    "paradoxxxzero/pyls-isort",
+}
 
 -- list of language servers which must installed and configured
 local ensure_installed = { "rust_analyzer", "sumneko_lua", "texlab", "taplo", "clangd", "cmake" }
