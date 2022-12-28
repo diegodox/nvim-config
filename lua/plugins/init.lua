@@ -1,3 +1,7 @@
+-- Lazy.nvim auto load plugin in lua/plugins/*.lua or lua/plugins/*/init.lua
+--
+-- This table is list of other plugins.
+---@type LazySpec[]
 return {
 
     -- capture command output to buffer
@@ -7,8 +11,6 @@ return {
     "zsugabubus/crazy8.nvim", -- this plugin works with no configuration
 
     "nvim-treesitter/playground",
-
-    "neovim/nvim-lspconfig",
 
     "mbbill/undotree",
 
