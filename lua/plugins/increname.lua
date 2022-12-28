@@ -1,9 +1,10 @@
 ---@type LazySpec
-local M = { "smjonas/inc-rename.nvim", enabled = false }
+local M = { "smjonas/inc-rename.nvim" }
+M.enabled = false
 
-M.requires = { "stevearc/dressing.nvim" }
+M.dependencies = { "stevearc/dressing.nvim" }
 
-function M.setup()
+function M.config()
     require("inc_rename").setup({
         input_buffer_type = "dressing",
     })
