@@ -12,4 +12,4 @@ function M.keymap(bufnr)
     vim.keymap.set("n", "<Leader>dV", dap.variables, { desc = "DAP variables", bufnr = bufnr })
 end
 
---return M
+return M

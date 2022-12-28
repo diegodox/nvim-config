@@ -33,4 +33,7 @@ return {
     require("plugins.treesitter.context"),
     require("plugins.treesitter.rainbow"),
     require("plugins.treesitter.textobj"),
+
+    require("plugins.dap.ui"),
+    require("plugins.dap.python"),
 }

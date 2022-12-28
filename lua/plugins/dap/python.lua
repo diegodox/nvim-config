@@ -1,4 +1,4 @@
-local M = {}
+local M = { "mfussenegger/nvim-dap-python" }
 
 M.dependencies = { "mfussenegger/nvim-dap" }
 M.ft = { "python" }
@@ -13,12 +13,4 @@ function M.config()
     end
 end
 
-M.lazy = {
-    "mfussenegger/nvim-dap-python",
-    dependencies = M.dependencies,
-    ft = M.ft,
-    config = M.config,
-}
-
--- return M
-return {}
+return M
