@@ -25,10 +25,8 @@ return {
 
     "ii14/emmylua-nvim",
 
-    {
-        "Mofiqul/vscode.nvim",
-        lazy = true,
-    },
-
     { "machakann/vim-sandwich" },
+
+    { "tomasiser/vim-code-dark", lazy = true },
+    { "Mofiqul/vscode.nvim", lazy = true },
 }
