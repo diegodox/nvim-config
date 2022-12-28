@@ -40,7 +40,7 @@ function M.keymap(bufnr)
     vim.keymap.set("n", "<Leader>li", vim.lsp.buf.implementation, { desc = "Implementation", buffer = bufnr })
     vim.keymap.set("n", "<Leader>lw", open_diagnostic, { desc = "Diagnostic", buffer = bufnr })
     vim.keymap.set("n", "<Leader>lf", vim.lsp.buf.format, { desc = "Format", buffer = bufnr })
-    vim.keymap.set("n", "<F2>", increname, { desc = "Rename", buffer = bufnr, expr = true })
+    vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename", buffer = bufnr })
 end
 
 ---@param bufnr number

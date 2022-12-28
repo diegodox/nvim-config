@@ -49,8 +49,7 @@ function M.keymap(bufnr)
     -- vim.keymap.set("n", "gd", lsp_finder, { desc = "Lsp Finder", buffer = bufnr })
 
     -- rename
-    local increname = require("plugins.increname").increname
-    vim.keymap.set("n", "<F2>", increname, { desc = "Rename", buffer = bufnr, expr = true })
+    vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, { desc = "Rename", buffer = bufnr })
 end
 
 return M
