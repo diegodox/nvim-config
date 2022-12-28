@@ -30,6 +30,8 @@ return {
     { "tomasiser/vim-code-dark", lazy = true },
     { "Mofiqul/vscode.nvim", lazy = true },
 
+    require("plugins.mason.lsp"),
+
     require("plugins.treesitter.context"),
     require("plugins.treesitter.rainbow"),
     require("plugins.treesitter.textobj"),
