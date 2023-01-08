@@ -83,7 +83,7 @@ function M.restore_ime_status()
 end
 
 function M.setup()
-    M.is_ime_available = os.execute("fcitx5-remote") == 0
+    M.is_ime_available = os.execute("which fcitx5-remote > /dev/null") == 0
     if not M.is_ime_available then
         return
     end
