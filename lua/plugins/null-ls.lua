@@ -5,6 +5,14 @@ local M = { "jose-elias-alvarez/null-ls.nvim" }
 -- required plugins to run null-ls
 M.dependencies = { "nvim-lua/plenary.nvim", "lewis6991/gitsigns.nvim" }
 
+function disable_dotenv()
+    local ns = vim.api.nvim_create_augroup("disableOnDotenv", { clear = true })
+    vim.api.nvim_create_autocmd(
+        { "BufRead", "BufNewFile" },
+        { pattern = ".env", callback = function() vim.diagnostic.disable(0) end }
+    )
+end
+
 -- configure null-ls
 function M.config()
     local ok, null_ls = pcall(require, "null-ls")
@@ -22,6 +30,8 @@ function M.config()
             null_ls.builtins.diagnostics.fish,
         },
     }))
+
+    disable_dotenv()
 end
 
 return M
