@@ -1,9 +1,10 @@
 local M = { "glepnir/lspsaga.nvim", branch = "main" }
 
 function M.config()
-    require("lspsaga").init_lsp_saga({
+    require("lspsaga").setup({
         saga_winblend = 10,
         max_preview_lines = 30,
+        symbol_in_winbar = { false },
     })
 
     vim.api.nvim_create_autocmd("ColorScheme", {
