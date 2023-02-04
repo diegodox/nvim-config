@@ -50,3 +50,5 @@ vim.g.transparent_bg = false
 vim.diagnostic.config({
     update_in_insert = true,
 })
+
+vim.g.tex_flavor = "latex"
