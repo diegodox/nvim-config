@@ -25,7 +25,6 @@ function M.config()
     L.keymap.general()
     L.keymap.telescope()
     L.keymap.git()
-    L.notify.keymap()
 end
 
 ---call telescope.setup
