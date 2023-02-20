@@ -8,7 +8,7 @@ M.dependencies = {
 }
 
 -- list of language servers which must installed and configured
-local ensure_installed = { "rust_analyzer", "sumneko_lua", "texlab", "taplo", "clangd", "cmake" }
+local ensure_installed = { "rust_analyzer", "texlab", "lua_ls", "taplo", "clangd", "cmake" }
 
 local enhance_server_opts = {
     sumneko_lua = {
