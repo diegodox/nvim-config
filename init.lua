@@ -5,7 +5,6 @@ require("rc.lsp-handler").define_sign()
 
 require("rc.lazynvim").setup()
 
-require("rc.fcitx5").setup()
 
 require("rc.utils").setup_colorscheme()
 vim.cmd.colorscheme("codedark")

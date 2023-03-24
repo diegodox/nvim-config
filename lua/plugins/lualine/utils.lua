@@ -165,7 +165,7 @@ M.modules = {
     },
 
     ime_status = function()
-        local status = require("rc.fcitx5").is_ime_on()
+        local status = require("fcitx5").is_ime_on()
         if not status == nil then
             return "??"
         elseif status == true then

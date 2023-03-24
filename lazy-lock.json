@@ -15,6 +15,7 @@
   "emmylua-nvim": { "branch": "master", "commit": "6b0c586be1b814bc89b94c099a3f670d6de5073a" },
   "gitsigns.nvim": { "branch": "main", "commit": "f388995990aba04cfdc7c3ab870c33e280601109" },
   "glance.nvim": { "branch": "master", "commit": "08e8107af2cd08c9e256990cf91e4bbbae669045" },
+  "fcitx5.nvim": { "branch": "main", "commit": "eee7ecafd5f5346b9c4ef8ee8075b4d9555bd7d2" },
   "hop.nvim": { "branch": "v1", "commit": "75f73d3959a0df7ef3642fd5138acdb1ce50fdc8" },
   "indent-blankline.nvim": { "branch": "master", "commit": "018bd04d80c9a73d399c1061fa0c3b14a7614399" },
   "lazy.nvim": { "branch": "main", "commit": "7339145a223dab7e7ddccf0986ffbf9d2cb804e8" },
