@@ -1,5 +1,7 @@
 local M = { "phaazon/hop.nvim" }
 
+M.enabled = false
+
 M.branch = "v1"
 
 function M.config()

@@ -8,7 +8,8 @@ M.dependencies = {
 }
 
 -- list of language servers which must installed and configured
-local ensure_installed = { "rust_analyzer", "texlab", "lua_ls", "taplo", "clangd", "cmake" }
+local ensure_installed = { "rust_analyzer", "texlab", "lua_ls", "taplo", "clangd", "cmake", "tsserver", "html-lsp",
+    "emmet_ls" }
 
 local enhance_server_opts = {
     sumneko_lua = {
@@ -48,7 +49,7 @@ local enhance_server_opts = {
 ---@param server string
 local function setup_server(server)
     local enhance_opts = enhance_server_opts[server] or {}
-    enhance_opts.on_attach = require("plugins.navic").on_attach
+    enhance_opts.on_attach = function() require("plugins.navic").on_attach() end
     require("plugins.lsp_config").setup_server(server, enhance_opts)
 end
 
@@ -64,6 +65,9 @@ function M.config()
             setup_server(lsp_name)
         end
     end
+
+    -- hot fix for tsserver on my mac
+    setup_server('tsserver')
 end
 
 return M

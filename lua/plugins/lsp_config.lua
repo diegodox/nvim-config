@@ -4,7 +4,7 @@ local M = { "neovim/nvim-lspconfig", lazy = true }
 function M.on_attach_keymap(bufnr)
     require("rc.lsp-handler").keymap(bufnr)
     require("plugins.telescope.lsp").keymap(bufnr)
-    require("plugins.lspsaga_nvim").keymap(bufnr)
+    -- require("plugins.lspsaga_nvim").keymap(bufnr)
 end
 
 ---@param capabilities table<string, string|table|boolean|function> capabilities
@@ -25,6 +25,7 @@ function M.server_opts(server, opts)
         end
         M.on_attach_keymap(bufnr)
         on_attach_ext(client, bufnr)
+        vim.lsp.inlay_hint(bufnr, true)
     end
     opts = vim.tbl_deep_extend("keep", opts, {
         capabilities = M.default_capabilities(lsphandler.capabilities()),

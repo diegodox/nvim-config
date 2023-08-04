@@ -10,6 +10,8 @@ local ensure_installed = {
     "cpp",
     "lua",
     "python",
+    "tsx",
+    "html"
 }
 
 -- configure treesitter

@@ -25,6 +25,7 @@ function M.config()
         sources = {
             null_ls.builtins.formatting.stylua,
             null_ls.builtins.formatting.fish_indent,
+            null_ls.builtins.formatting.prettier,
             null_ls.builtins.diagnostics.actionlint,
             null_ls.builtins.diagnostics.shellcheck,
             null_ls.builtins.diagnostics.fish,
