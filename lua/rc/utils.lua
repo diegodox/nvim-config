@@ -81,17 +81,17 @@ function M.setup_colorscheme()
     --     { callback = M.set_colorscheme, group = group, desc = "set transparent" }
     -- )
     vim.api.nvim_create_user_command(
-        "ToggleBackgroundTranprent",
+        "ToggleBackgroundTransparent",
         M.toggle_transparent,
         { desc = "Toggle Background Transparentecy" }
     )
     vim.api.nvim_create_user_command(
-        "EnableBackgroundTranprent",
+        "EnableBackgroundTransparent",
         M.enable_transparent,
         { desc = "Enable Background Transparentecy" }
     )
     vim.api.nvim_create_user_command(
-        "DisableBackgroundTranprent",
+        "DisableBackgroundTransparent",
         M.disable_transparent,
         { desc = "Disable Background Transparentecy" }
     )
