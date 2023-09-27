@@ -1,5 +1,6 @@
 ---@type LazySpec
 local M = { "kevinhwang91/rnvimr" }
+M.enabled = false
 
 function M.config()
     -- <C-b> to open ranger in proper size(rnvimr_ranger_views[1])
